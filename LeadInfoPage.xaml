@@ -1,0 +1,150 @@
+﻿<Page x:Class="address_inv_desktop.LeadInfoPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:address_inv_desktop"
+      mc:Ignorable="d" 
+      Background="#EDEDED"
+      Title="LeadInfoPage">
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="100"/>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="75"/>
+        </Grid.RowDefinitions>
+
+        <Label Grid.Column="0" Name="LeadProfileHeader" Content="LEAD INFO" Background="#000000" Style="{StaticResource secondaryHeaderTextStyle}"/>
+
+        <Grid Grid.Row="1" HorizontalAlignment="Left">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+
+            <Border Grid.Column="0" Style="{StaticResource selectedSecondaryTabBorder}" >
+                <Label Content="Lead Info" Style="{StaticResource selectedSecondaryTabLabelItem}" />
+            </Border>
+
+            <Border Grid.Column="1" Style="{StaticResource unselectedSecondaryTabBorder}" MouseLeftButtonDown="OnClickMatchedProperties">
+                <Label Content="Matched Properties" Style="{StaticResource unselectedSecondaryTabLabelItem}"/>
+            </Border>
+
+
+        </Grid>
+        
+        <ScrollViewer Grid.Row="2" VerticalScrollBarVisibility="Auto">
+
+            <WrapPanel>
+
+                <Grid Name="LeadGrid" Margin="24">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="1*"/>
+                        <RowDefinition Height="1*"/>
+                        <RowDefinition Height="1*"/>
+                        <RowDefinition Height="1*"/>
+                        <RowDefinition Height="1*"/>
+                        <RowDefinition Height="1*"/>
+                    </Grid.RowDefinitions>
+
+                    <WrapPanel Grid.Row="0">
+                        <WrapPanel Name="FirstNameWrapPanel">
+                            <Label Style="{StaticResource tableItemLabel}" Content="Lead Name"/>
+                            <TextBox Style="{StaticResource textBoxStyle}" Name="leadNameTextBox"/>
+                        </WrapPanel>
+
+                        <WrapPanel Name="LeadGenderWrapPanel">
+                            <Label Style="{StaticResource tableItemLabel}" Content="Gender"/>
+                            <ComboBox Style="{StaticResource comboBoxStyle}" Name="leadGenderComboBox" SelectionChanged="OnSelChangedGender"/>
+                        </WrapPanel>
+                    </WrapPanel>
+
+                    <WrapPanel Grid.Row="1">
+                        <WrapPanel Name="LeadJobTitleWrapPanel">
+                            <Label Style="{StaticResource tableItemLabel}" Content="Job Title"/>
+                            <ComboBox Style="{StaticResource comboBoxStyle}" Name="leadJobtitleComboBox" SelectionChanged="OnSelChangedJobTitle"/>
+                        </WrapPanel>
+
+                        <WrapPanel Name="LeadStatusWrapPanel">
+                            <Label Style="{StaticResource tableItemLabel}" Content="Status *"/>
+                            <ComboBox Style="{StaticResource comboBoxStyle}" Name="leadStatusComboBox" SelectionChanged="OnSelChangeLeadStatus"/>
+                        </WrapPanel>
+                    </WrapPanel>
+
+                    <WrapPanel Grid.Row="2">
+                        <WrapPanel Name="LeadBudgetWrapPanel">
+                            <Label Style="{StaticResource tableItemLabel}" Content="Budget Range"/>
+                            <ComboBox Style="{StaticResource comboBoxStyle}" Name="leadBudgetComboBox" SelectionChanged="OnSelChangedBudgetRange"/>
+                        </WrapPanel>
+
+                        <WrapPanel Name="LeadPaymentWrapPanel">
+                            <Label Style="{StaticResource tableItemLabel}" Content="Payment Method"/>
+                            <ComboBox Style="{StaticResource comboBoxStyle}" Name="leadPaymentComboBox" SelectionChanged="OnSelChangedPaymentMethod"/>
+                        </WrapPanel>
+                    </WrapPanel>
+
+                    <Grid Grid.Row="4" Height="150" Name="StackPanelsGrid">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="60"/>
+                            <RowDefinition/>
+                        </Grid.RowDefinitions>
+
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+
+                        <Label Grid.Column="0" Grid.Row="0" Style="{StaticResource tableSubHeaderItem}" Content="Interested Areas"/>
+                        <ScrollViewer Grid.Column="0" Grid.Row="1" Margin="12">
+                            <StackPanel  x:Name="DistrictsStackPanel" Orientation="Vertical" Background="#FFFFFF">
+
+                            </StackPanel>
+                        </ScrollViewer>
+
+                        <Label Grid.Column="1" Grid.Row="0" Style="{StaticResource tableSubHeaderItem}" Content="Tags"/>
+                        <ScrollViewer Grid.Column="1" Grid.Row="1" Margin="12" >
+                            <StackPanel x:Name="TagsStackPanel" Orientation="Vertical" Background="#FFFFFF">
+                            </StackPanel>
+                        </ScrollViewer>
+
+                        <Label Grid.Column="2" Grid.Row="0" Style="{StaticResource tableSubHeaderItem}" Content="Lead Phones"/>
+                        <ScrollViewer Grid.Column="2" Grid.Row="1" Margin="12">
+                            <StackPanel x:Name="PhonesStackPanel" Orientation="Vertical" Background="#FFFFFF">
+                            </StackPanel>
+                        </ScrollViewer>
+
+                    </Grid>
+
+                    <Grid Grid.Row="5" Height="200">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="60"/>
+                            <RowDefinition/>
+                        </Grid.RowDefinitions>
+
+                        <Label Grid.Row="0" Style="{StaticResource tableSubHeaderItem}" Content="Lead Notes"/>
+                        <ScrollViewer Grid.Row="1">
+                            <StackPanel Margin="12" x:Name="NotesStackPanel" Orientation="Vertical" Background="#FFFFFF">
+                            </StackPanel>
+                        </ScrollViewer>
+                    </Grid>
+
+
+
+                </Grid>
+
+            </WrapPanel>
+
+        </ScrollViewer>
+
+        <Button Grid.Row="3" HorizontalAlignment="Center" Content="Add Details" Name="addTelephoneEmailButton" Style="{StaticResource buttonStyle}" Click="OnBtnClkAddDetails"/>
+
+
+    </Grid>
+</Page>
