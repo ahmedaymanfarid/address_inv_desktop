@@ -11,7 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
-using crm_library;
+using address_inv_library;
 
 namespace address_inv_desktop
 {

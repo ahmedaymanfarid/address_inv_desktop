@@ -313,12 +313,6 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\crm_library\crm_library.csproj">
-      <Project>{5f7fde8b-76c1-4fad-b920-f31d11095b38}</Project>
-      <Name>crm_library</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
     <Resource Include="Photos\real_state_image_1.jpg" />
   </ItemGroup>
   <ItemGroup>
@@ -374,6 +368,20 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Icons\search_icon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\erp_source_code - wpf_version\01electronics_library\01electronics_library.csproj">
+      <Project>{a0cb9e08-2813-48db-96c4-7f9ff208ce32}</Project>
+      <Name>01electronics_library</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\address_inv_library\address_inv_library.csproj">
+      <Project>{05aaab2e-c3b4-4f09-b499-e0520bfaefb4}</Project>
+      <Name>address_inv_library</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\real_estate_library\real_estate_library.csproj">
+      <Project>{5f7fde8b-76c1-4fad-b920-f31d11095b38}</Project>
+      <Name>real_estate_library</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -11,7 +11,8 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
-using crm_library;
+using address_inv_library;
+using real_estate_library;
 
 namespace address_inv_desktop
 {
@@ -47,6 +48,8 @@ namespace address_inv_desktop
         protected List<BASIC_STRUCTS.STATE_STRUCT> listOfStates;
         protected List<BASIC_STRUCTS.CITY_STRUCT> listOfCities;
         protected List<BASIC_STRUCTS.DISTRICT_STRUCT> listOfDistricts;
+
+        protected String returnMessage;
         public AddLeadWindow(ref Employee mLoggedInUser)
         {
             loggedInUser = mLoggedInUser;
@@ -327,8 +330,7 @@ namespace address_inv_desktop
             String inputString = leadFirstNameTextBox.Text;
             String outputString = leadFirstNameTextBox.Text;
 
-
-            if (!integrityChecker.CheckLeadNameEditBox(inputString, ref outputString, true))
+            if (!integrityChecker.CheckLeadNameEditBox(inputString, ref outputString, true, ref returnMessage))
                 return false;
 
             firstName = outputString;
@@ -343,7 +345,7 @@ namespace address_inv_desktop
             String inputString = leadLastNameTextBox.Text;
             String outputString = leadLastNameTextBox.Text;
 
-            if (!integrityChecker.CheckLeadNameEditBox(inputString, ref outputString, true))
+            if (!integrityChecker.CheckLeadNameEditBox(inputString, ref outputString, true, ref returnMessage))
                 return false;
 
             lastName = outputString;
@@ -400,7 +402,7 @@ namespace address_inv_desktop
             String inputString = leadBusinessPhoneTextBox.Text;
             String outputString = leadBusinessPhoneTextBox.Text;
 
-            if (!integrityChecker.CheckLeadPhoneEditBox(inputString, ref outputString, true))
+            if (!integrityChecker.CheckLeadPhoneEditBox(inputString, ref outputString, true, ref returnMessage))
                 return false;
 
             leadBusinessPhoneTextBox.Text = outputString;
@@ -413,7 +415,7 @@ namespace address_inv_desktop
             String inputString = leadPersonalPhoneTextBox.Text;
             String outputString = leadPersonalPhoneTextBox.Text;
 
-            if (!integrityChecker.CheckLeadPhoneEditBox(inputString, ref outputString, false))
+            if (!integrityChecker.CheckLeadPhoneEditBox(inputString, ref outputString, false, ref returnMessage))
                 return false;
 
             if(outputString!= string.Empty)
