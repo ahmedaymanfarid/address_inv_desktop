@@ -313,9 +313,9 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\crm_library\crm_library.csproj">
+    <ProjectReference Include="..\crm_library\real_estate_library.csproj">
       <Project>{5f7fde8b-76c1-4fad-b920-f31d11095b38}</Project>
-      <Name>crm_library</Name>
+      <Name>real_estate_library</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

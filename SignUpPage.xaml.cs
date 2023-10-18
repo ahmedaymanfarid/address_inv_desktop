@@ -13,7 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Security.Cryptography;
-using crm_library;
+using real_estate_library;
 
 namespace address_inv_desktop
 {

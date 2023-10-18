@@ -12,7 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using crm_library;
+using real_estate_library;
 using address_inv_desktop;
 
 namespace address_inv_desktop
