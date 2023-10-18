@@ -15,7 +15,13 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+<<<<<<< HEAD
 using real_estate_library;
+=======
+using address_inv_library;
+using real_estate_library;
+
+>>>>>>> f1056db924f05508e201e913f4f25c418687f515
 using Button = System.Windows.Controls.Button;
 using DataFormats = System.Windows.DataFormats;
 using DragDropEffects = System.Windows.DragDropEffects;
@@ -70,6 +76,8 @@ namespace address_inv_desktop
         ProgressBar progressBar = new ProgressBar();
 
         private Property currentProperty;
+
+        protected String returnMessage;
 
         public PropertyUploadFilesPage(ref Employee mLoggedInUser, ref Property mCurrentProperty, int mViewAddCondition)
         {
@@ -197,7 +205,7 @@ namespace address_inv_desktop
                 if (downloadFile.ShowDialog() == System.Windows.Forms.DialogResult.Cancel)
                     return;
 
-                if (!integrityChecks.CheckFileEditBox(downloadFile.SelectedPath))
+                if (!integrityChecks.CheckFileEditBox(downloadFile.SelectedPath, ref returnMessage))
                     return;
 
                 serverFileName = currentLabel.Content.ToString();
@@ -243,7 +251,7 @@ namespace address_inv_desktop
 
                 uploadFile.ShowDialog();
 
-                if (!integrityChecks.CheckFileEditBox(uploadFile.FileName))
+                if (!integrityChecks.CheckFileEditBox(uploadFile.FileName, ref returnMessage))
                     return;
 
                 localFolderPath = uploadFile.FileName;
@@ -288,7 +296,7 @@ namespace address_inv_desktop
 
             uploadFile.ShowDialog();
 
-            if (!integrityChecks.CheckFileEditBox(uploadFile.FileName))
+            if (!integrityChecks.CheckFileEditBox(uploadFile.FileName, ref returnMessage))
                 return;
 
             if (ftpFiles.Count == 0)

@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using address_inv_library;
 using real_estate_library;
 
 namespace address_inv_desktop

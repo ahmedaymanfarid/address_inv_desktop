@@ -1,4 +1,3 @@
-﻿using real_estate_library;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,6 +11,8 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using address_inv_library;
+using real_estate_library;
 
 namespace address_inv_desktop
 {
@@ -39,6 +40,8 @@ namespace address_inv_desktop
 
         protected int phonesCount;
         protected int emailsCount;
+
+        protected String returnMessage;
         public AddLeadDetailsWindow(ref Employee mLoggedInUser, ref Lead mLead)
         {
             InitializeComponent();
@@ -258,7 +261,7 @@ namespace address_inv_desktop
             String inputString = telephoneTextBox.Text;
             String outputString = telephoneTextBox.Text;
 
-            if (!integrityChecker.CheckCompanyPhoneEditBox(inputString, ref outputString, false))
+            if (!integrityChecker.CheckCompanyPhoneEditBox(inputString, ref outputString, false, ref returnMessage))
                 return false;
 
             //lead.AddCompanyPhone(outputString);

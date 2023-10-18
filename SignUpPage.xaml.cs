@@ -13,7 +13,11 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Security.Cryptography;
+<<<<<<< HEAD
 using real_estate_library;
+=======
+using address_inv_library;
+>>>>>>> f1056db924f05508e201e913f4f25c418687f515
 
 namespace address_inv_desktop
 {
@@ -32,6 +36,8 @@ namespace address_inv_desktop
         String employeePassword;
         String confirmPassword;
         String employeeHashedPassword;
+
+        protected String returnMessage;
         public SignUpPage()
         {
             InitializeComponent();
@@ -42,7 +48,7 @@ namespace address_inv_desktop
             String inputString = businessEmailTextBox.Text;
             String modifiedString = null;
 
-            if (!integrityChecker.CheckEmployeeSignUpEmailEditBox(inputString, ref modifiedString,false))
+            if (!integrityChecker.CheckEmployeeSignUpEmailEditBox(inputString, ref modifiedString,false, ref returnMessage))
                 return false;
 
             if (!signupEmployee.InitializeEmployeeInfo(modifiedString))
@@ -58,7 +64,7 @@ namespace address_inv_desktop
             String inputString = personalEmailTextBox.Text;
             String modifiedString = null;
 
-            if (!integrityChecker.CheckEmployeePersonalEmailEditBox(inputString, ref modifiedString, false))
+            if (!integrityChecker.CheckEmployeePersonalEmailEditBox(inputString, ref modifiedString, false, ref returnMessage))
                 return false;
 
             signupEmployee.SetEmployeePersonalEmail(modifiedString);

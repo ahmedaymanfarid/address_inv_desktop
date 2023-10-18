@@ -13,7 +13,11 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Security.Cryptography;
+<<<<<<< HEAD
 using real_estate_library;
+=======
+using address_inv_library;
+>>>>>>> f1056db924f05508e201e913f4f25c418687f515
 
 namespace address_inv_desktop
 {
@@ -29,6 +33,7 @@ namespace address_inv_desktop
 
         Employee loggedInUser;
 
+        protected String returnMessage;
         public SignInPage()
         {
             InitializeComponent();
@@ -40,7 +45,7 @@ namespace address_inv_desktop
         {
             employeeEmail = employeeEmailTextBox.Text;
 
-            if (!integrityChecker.CheckEmployeeLoginEmailEditBox(employeeEmail, ref employeeEmail, false))
+            if (!integrityChecker.CheckEmployeeLoginEmailEditBox(employeeEmail, ref employeeEmail, false, ref returnMessage))
                return;
 
             loggedInUser.InitializeEmployeeInfo(employeeEmail);

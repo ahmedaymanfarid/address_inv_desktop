@@ -1,6 +1,10 @@
+<<<<<<< HEAD
 ﻿using address_inv_desktop;
 using real_estate_library;
 using System;
+=======
+﻿using System;
+>>>>>>> f1056db924f05508e201e913f4f25c418687f515
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -14,6 +18,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using address_inv_library;
+using real_estate_library;
 
 namespace address_inv_desktop
 {
