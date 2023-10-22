@@ -14,7 +14,7 @@
             <ColumnDefinition Width="1*"/>
         </Grid.ColumnDefinitions>
 
-        <Grid Grid.Column="0" MinHeight="300" Background="#000000">
+        <Grid Grid.Column="0" MinHeight="300" Background="white">
 
             <Grid.RowDefinitions>
                 <RowDefinition />
@@ -27,20 +27,39 @@
                 <RowDefinition />
                 <RowDefinition />
             </Grid.RowDefinitions>
+            <Border  Grid.Row="1" Background="#EDEDED" BorderThickness="4,0,0,0" BorderBrush="Black"></Border>
+            <Rectangle />
 
-            <TextBlock Grid.Row="0" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Style="{StaticResource sideNavigationItemStyle}" Name="DashboardLabel" Text="Dashboard" MouseLeftButtonDown="OnButtonClickedDashboard"/>
-            <TextBlock Grid.Row="1" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Style="{StaticResource sideNavigationItemStyle}" Name="LeadsLabel" Text="Leads" MouseLeftButtonDown="OnButtonClickedLeads" Background="#EDEDED" Foreground="#000000"/>
-            <TextBlock Grid.Row="2" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Style="{StaticResource sideNavigationItemStyle}" Name="OwnersLabel" Text="Owners" MouseLeftButtonDown="OnButtonClickedOwners"/>
-            <TextBlock Grid.Row="3" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Style="{StaticResource sideNavigationItemStyle}" Name="PropertiesLabel" Text="Properties" MouseLeftButtonDown="OnButtonClickedProperties"/>
-            <TextBlock Grid.Row="4" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Style="{StaticResource sideNavigationItemStyle}" Name="ClientVisitsLabel" Text="Client Visits" MouseLeftButtonDown="OnButtonClickedVisits"/>
-            <TextBlock Grid.Row="5" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Style="{StaticResource sideNavigationItemStyle}" Name="ClientCallsLabel" Text="Client Calls" MouseLeftButtonDown="OnButtonClickedCalls"/>
-            <TextBlock Grid.Row="6" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Style="{StaticResource sideNavigationItemStyle}" Name="ClientAttemptsLabel" Text="Client Attempts" MouseLeftButtonDown="OnButtonClickedAttempts"/>
-            <TextBlock Grid.Row="7" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Style="{StaticResource sideNavigationItemStyle}" Name="ClientFollowUpsLabel" Text="Client Follow-ups" MouseLeftButtonDown="OnButtonClickedFollowUps"/>
-            <TextBlock Grid.Row="8" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Style="{StaticResource sideNavigationItemStyle}" Name="AccountsLabel" Text="Accounts" MouseLeftButtonDown="OnButtonClickedAccounts"/>
+            <TextBlock Grid.Row="0"  Style="{StaticResource sideNavigationItemStyle}" Name="DashboardLabel" Text="     Dashboard" MouseLeftButtonDown="OnButtonClickedDashboard" />
+            <Image Grid.Row="0" Source="Icons\chart_histogram.png" Height="30" Width="30" Margin="-200 10 0 0"/>
+
+            <TextBlock Grid.Row="1"  Style="{StaticResource sideNavigationItemStyle}" Name="LeadsLabel" Text="   Leads" MouseLeftButtonDown="OnButtonClickedLeads" Margin="20 0 0 0" Background="#EDEDED" Foreground="#000000" />
+            <Image Grid.Row="1" Source="Icons\note.png" Height="30" Width="30" Margin="-180 10 0 0"/>
+
+            <TextBlock Grid.Row="2"  Style="{StaticResource sideNavigationItemStyle}" Name="OwnersLabel" Text="     Owners" MouseLeftButtonDown="OnButtonClickedOwners"/>
+            <Image Grid.Row="2" Source="Icons\dashboard.png" Height="30" Width="30" Margin="-200 10 0 0"/>
+
+            <TextBlock Grid.Row="3"  Style="{StaticResource sideNavigationItemStyle}" Name="PropertiesLabel" Text="     Properties" MouseLeftButtonDown="OnButtonClickedProperties"/>
+            <Image Grid.Row="3" Source="Icons\apartment.png" Height="30" Width="30" Margin="-200 10 0 0"/>
+
+            <TextBlock Grid.Row="4"  Style="{StaticResource sideNavigationItemStyle}" Name="ClientVisitsLabel" Text="     Client Visits" MouseLeftButtonDown="OnButtonClickedVisits"/>
+            <Image Grid.Row="4" Source="Icons\client_visit_icon.png" Height="30" Width="30" Margin="-200 10 0 0"/>
+
+            <TextBlock Grid.Row="5"  Style="{StaticResource sideNavigationItemStyle}" Name="ClientCallsLabel" Text="     Client Calls" MouseLeftButtonDown="OnButtonClickedCalls"/>
+            <Image Grid.Row="5" Source="Icons\client_call_icon.png" Height="30" Width="30" Margin="-200 10 0 0"/>
+
+            <TextBlock Grid.Row="6"  Style="{StaticResource sideNavigationItemStyle}" Name="ClientAttemptsLabel" Text="     Client Attempts" MouseLeftButtonDown="OnButtonClickedAttempts"/>
+            <Image Grid.Row="6" Source="Icons\client_attempt_icon.png" Height="30" Width="30" Margin="-200 10 0 0"/>
+            
+            <TextBlock Grid.Row="7"  Style="{StaticResource sideNavigationItemStyle}" Name="ClientFollowUpsLabel" Text="     Client Follow-ups" MouseLeftButtonDown="OnButtonClickedFollowUps"/>
+            <Image Grid.Row="7" Source="Icons\client_followup_icon.png" Height="30" Width="30" Margin="-200 10 0 0" />
+            
+            <TextBlock Grid.Row="8"  Style="{StaticResource sideNavigationItemStyle}" Name="AccountsLabel" Text="     Accounts" MouseLeftButtonDown="OnButtonClickedAccounts"/>
+            <Image Grid.Row="8" Source="Icons\portiat.png" Height="30" Width="30" Margin="-200 10 0 0" />
         </Grid>
 
 
-        <Grid Grid.Column="1" VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
+        <Grid Grid.Column="1" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Background="White">
 
             <Grid.ColumnDefinitions>
                 <ColumnDefinition/>
@@ -55,6 +74,17 @@
 
             <Label Grid.Row="0" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Margin="48,24,48,24" Content="LEADS" Style="{StaticResource primaryHeaderTextStyle}"/>
 
+            <WrapPanel Grid.Row="1" Margin="60 0 0 0">
+                <ComboBox Style="{StaticResource filterComboBoxStyleM}" Width="80" IsEditable="True" IsReadOnly="True" Text="Assigned by"></ComboBox >
+                <ComboBox Style="{StaticResource filterComboBoxStyleM}" Width="80" IsEditable="True" IsReadOnly="True" Text="Lead Type"></ComboBox>
+                 <ComboBox Style="{StaticResource filterComboBoxStyleM}" Width="100" IsEditable="True" IsReadOnly="True" Text="Additional Filter"></ComboBox>
+                <Grid>
+                
+                    <TextBox Style="{StaticResource filterTextBoxStyleM}" VerticalContentAlignment="Center" Height="17" Text="    Search for Leads"/>
+                    <Image Width="8" Margin="-85 0 0 0" Source="Icons\search_icon.png"></Image>
+                </Grid>
+                <Button Style="{StaticResource buttonBrowseStyleM}" Content="＋  Add Lead"></Button>
+            </WrapPanel>
             <!--
             <Grid Grid.Row="1" Margin="12,0">
 
@@ -86,22 +116,21 @@
                 </StackPanel>
                 
             </Grid>-->
-            
-            
+
+
             <ScrollViewer x:Name="contactTreeScrollViewer" Grid.Row="2" VerticalScrollBarVisibility="Auto" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Margin="48,24,48,48" MinHeight="400" MinWidth="360" Visibility="Collapsed">
                 <Border BorderBrush="#000000" BorderThickness="3">
                     <TreeView Name="contactTreeView" SelectedItemChanged="OnSelectedItemChangedTreeViewItem"/>
                 </Border>
             </ScrollViewer>
             <ScrollViewer x:Name="contactStackScrollViewer" Grid.Row="2" VerticalScrollBarVisibility="Auto" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Margin="48,24,48,48" MinHeight="400" MinWidth="360" Visibility="Visible">
-                <Border BorderBrush="#000000" BorderThickness="3">
-                    <Grid Name="contactStackView" Background="#FFFFFF">
+                <Border BorderBrush="white" BorderThickness="3">
+                    <Grid Name="contactStackView" Background="White">
                         <Grid.ColumnDefinitions>
-                            <ColumnDefinition MinWidth="150" />
-                            <ColumnDefinition MinWidth="150"/>
-                            <ColumnDefinition MinWidth="150"/>
+                            <ColumnDefinition MinWidth="200" />
+                            <ColumnDefinition MinWidth="200"/>
+                            <ColumnDefinition MinWidth="200"/>
                         </Grid.ColumnDefinitions>
-
                         <Grid.RowDefinitions>
                             <RowDefinition Height="50"/>
                             <RowDefinition />
@@ -109,62 +138,106 @@
                             <RowDefinition />
                             <RowDefinition />
                         </Grid.RowDefinitions>
-
-                        <Label Grid.Column="0" Content="Hot" Style="{StaticResource tableHeaderItem}" Background="IndianRed"/>
-                        <Label Grid.Column="1" Content="Warm" Style="{StaticResource tableHeaderItem}" Background="Orange"/>
-                        <Label Grid.Column="2" Content="Cold" Style="{StaticResource tableHeaderItem}" Background="CadetBlue"/>
-
-                        <Border Grid.Column="0" Grid.Row="1" BorderBrush="IndianRed" BorderThickness="4,0,0,0" Margin="12">
+                        <Border Background="#E6E6E3" Grid.Column="0" Grid.RowSpan="5" CornerRadius="8" Margin="8">
+                        <Rectangle />
+                        </Border>
+                        <Border  Grid.Column="0" CornerRadius="5" Background="White" Margin="16 16 16 4">
                             <Grid>
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition />
-                                    <ColumnDefinition Width="25"/>
-                                </Grid.ColumnDefinitions>
-                                
+                        <Label Content="Hot" Style="{StaticResource tableHeaderItemM}"  Foreground="#ff6242"/>
+                        <Grid Grid.Column="0" HorizontalAlignment="Stretch" Margin="30 0 0 0" VerticalAlignment="Center">
+                                <Label Foreground="#ff6242">⚫</Label>
+                                <Label Foreground="White" Margin="5 0 0 0">2</Label>
+                                </Grid>
+                            </Grid>
+                        </Border>
+                        <Border  Grid.Column="1" Grid.RowSpan="6" Background="#E6E6E3" CornerRadius="8" Margin="8">
+                        <Rectangle/>
+                        </Border>
+                        <Border  Grid.Column="1" CornerRadius="5" Background="White" Margin="16 16 16 4">
+                            <Grid>
+                        <Label Content="Warm" Style="{StaticResource tableHeaderItemM}" Foreground="#fbb145"/>
+                        <Border  Grid.Column="1" HorizontalAlignment="Stretch" Margin="45 0 0 0" VerticalAlignment="Center" CornerRadius="5">
+                            <Grid>
+                                <Label Foreground="#fbb145">⚫</Label>
+                                <Label Foreground="White" Margin="5 0 0 0">3</Label>
+                            </Grid>
+                        </Border>
+                            </Grid>
+                        </Border>
+                        <Border Grid.Column="2" Grid.RowSpan="5" Background="#E6E6E3" CornerRadius="8" Margin="8">
+                        <Rectangle />
+                        </Border>
+                        <Border  Grid.Column="2" CornerRadius="5" Background="White" Margin="16 16 16 4">
+                            <Grid>
+                        <Label Content="Cold" Style="{StaticResource tableHeaderItemM}" Foreground="#86c5da"/>
+                        <Border  Grid.Column="2" HorizontalAlignment="Stretch" Margin="35 0 0 0" VerticalAlignment="Center" CornerRadius="5">
+                            <Grid>
+                                <Label Foreground="#86c5da">⚫</Label>
+                                        <Label Foreground="White" Margin="5 0 0 0">2</Label>
+                            </Grid>
+                        </Border>
+                    </Grid>
+                </Border>
+                <Border Grid.Column="0" Grid.Row="1" Margin="16 8 16 8" Background="White" CornerRadius="8">
+                        <Grid  >
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition/>
+                                <ColumnDefinition  Width="25"/>
+                            </Grid.ColumnDefinitions>
+
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="30"/>
+                                <RowDefinition Height="25"/>
+                                <RowDefinition Height="25"/>
+                                <RowDefinition Height="25"/>
+                                <RowDefinition Height="25"/>
+                            </Grid.RowDefinitions>
+
+                            <Label Grid.Row="0" Grid.Column="0" FontSize="12" FontWeight="Bold" Content="Ahmed A. Hammad"/>
+                            <Separator Margin="0,29,10,0" FontWeight ="UltraBold" Background="Red"/>
+                                <Label Grid.Row="1" Grid.Column="0" FontSize="10" FontWeight="SemiBold" Content="✦ CEO"/>
+                                <Label Grid.Row="2" Grid.Column="0" FontSize="10" FontWeight="SemiBold" Content="📞 (+20) 1063214506"/>
+                                <Label Grid.Row="3" Grid.Column="0" FontSize="10" FontWeight="SemiBold" Content="⌂ Commercial Unit"/>
+                                <Label Grid.Row="4" Grid.Column="0" FontSize="10" FontWeight="SemiBold" Content="$ Budget Range: 10M-15M"/>
+
+                            <Label Name="EditButton" Grid.Column="1" Grid.Row="0" HorizontalAlignment="Left" Width="25">
+                                <Label.Background>
+                                    <ImageBrush ImageSource="Icons\client_followup_icon.png"/>
+                                </Label.Background>
+                                    <Grid Grid.Column="0" Grid.Row="1" HorizontalAlignment="Stretch" Margin="-10 0 0 0"  VerticalAlignment="Center">
+                                        <Label Foreground="Green" FontSize="10" Width="30" Margin="-1 -10">⚫</Label>
+                                        <Label Foreground="White" Margin="3 -10" FontSize="10">1</Label>
+                                    </Grid>
+                                </Label>
+                        </Grid>
+                        </Border>
+                        <Border Grid.Column="1" Grid.Row="1" Margin="16 8 16 8" Background="White" CornerRadius="8">
+                            <Grid  >
                                 <Grid.RowDefinitions>
-                                    <RowDefinition Height="30"/>
+                                    <RowDefinition/>
                                     <RowDefinition Height="25"/>
                                     <RowDefinition Height="25"/>
                                     <RowDefinition Height="25"/>
                                     <RowDefinition Height="25"/>
                                 </Grid.RowDefinitions>
 
-                                <Label Grid.Row="0" FontSize="12" FontWeight="Bold" Content="Ahmed A. Hammad"/>
-                                <Label Grid.Row="1" FontSize="10" FontWeight="SemiBold" Content="CEO"/>
-                                <Label Grid.Row="2" FontSize="10" FontWeight="SemiBold" Content="Commercial Unit"/>
-                                <Label Grid.Row="3" FontSize="10" FontWeight="SemiBold" Content="Budget Range: 10M-15M"/>
-                                <Label Grid.Row="4" FontSize="10" FontWeight="SemiBold" Content="Installments"/>
-
-                                <Label Name="EditButton" Grid.Column="1" Grid.Row="0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                                <Label Grid.Row="0" Grid.Column="0" FontSize="12" FontWeight="Bold" Content="Mohmaed ELbaz"/>
+                                <Separator Margin="0,29,10,0" FontWeight ="UltraBold" Background="Orange"/>
+                                <Label Grid.Row="1" FontSize="10" FontWeight="SemiBold" Content="✦ COO"/>
+                                <Label Grid.Row="2" FontSize="10" FontWeight="SemiBold" Content="📞 (+20) 107123975"/>
+                                <Label Grid.Row="3" FontSize="10" FontWeight="SemiBold" Content="⌂ Villa"/>
+                                <Label Grid.Row="4" FontSize="10" FontWeight="SemiBold" Content="$ Budget Range: 7.5M-10M"/>
+                                <Label Name="EditButton1" Grid.Column="1" Grid.Row="0" HorizontalAlignment="Right" Width="25">
                                     <Label.Background>
-                                        <ImageBrush ImageSource="Icons\edit_icon.png"/>
+                                        <ImageBrush ImageSource="Icons\client_followup_icon.png"/>
                                     </Label.Background>
                                 </Label>
                             </Grid>
-
                         </Border>
-                        <Border Grid.Column="1" Grid.Row="1" BorderBrush="Orange" BorderThickness="4,0,0,0" Margin="12">
-                            <Grid>
+                        <Border Grid.Column="2" Grid.Row="1" Margin="16 8 16 8" Background="White" CornerRadius="8">
+                            <Grid  >
                                 <Grid.RowDefinitions>
-                                    <RowDefinition Height="30"/>
-                                    <RowDefinition Height="25"/>
-                                    <RowDefinition Height="25"/>
-                                    <RowDefinition Height="25"/>
-                                    <RowDefinition Height="25"/>
-                                </Grid.RowDefinitions>
-
-                                <Label Grid.Row="0" FontSize="12" FontWeight="Bold" Content="Mohmaed ELbaz"/>
-                                <Label Grid.Row="1" FontSize="10" FontWeight="SemiBold" Content="COO"/>
-                                <Label Grid.Row="2" FontSize="10" FontWeight="SemiBold" Content="Villa"/>
-                                <Label Grid.Row="3" FontSize="10" FontWeight="SemiBold" Content="Budget Range: 7.5M-10M"/>
-                                <Label Grid.Row="4" FontSize="10" FontWeight="SemiBold" Content="Cash"/>
-                            </Grid>
-
-                        </Border>
-                        <Border Grid.Column="2" Grid.Row="1" BorderBrush="CadetBlue" BorderThickness="4,0,0,0" Margin="12">
-                            <Grid>
-                                <Grid.RowDefinitions>
-                                    <RowDefinition Height="30"/>
+                                    <RowDefinition/>
                                     <RowDefinition Height="25"/>
                                     <RowDefinition Height="25"/>
                                     <RowDefinition Height="25"/>
@@ -172,21 +245,25 @@
                                 </Grid.RowDefinitions>
 
                                 <Label Grid.Row="0" FontSize="12" FontWeight="Bold" Content="Ahmed Soliman"/>
-                                <Label Grid.Row="1" FontSize="10" FontWeight="SemiBold" Content="Banker"/>
-                                <Label Grid.Row="2" FontSize="10" FontWeight="SemiBold" Content="Chalet"/>
-                                <Label Grid.Row="3" FontSize="10" FontWeight="SemiBold" Content="Budget Range: 20-25M"/>
-                                <Label Grid.Row="4" FontSize="10" FontWeight="SemiBold" Content="Cash + Installments"/>
+                                <Separator Margin="0,29,10,0" FontWeight ="UltraBold" Background="#86c5da"/>
+                                <Label Grid.Row="1" FontSize="10" FontWeight="SemiBold" Content="✦ Banker"/>
+                                <Label Grid.Row="2" FontSize="10" FontWeight="SemiBold" Content="📞 (+20) 114762378"/>
+                                <Label Grid.Row="3" FontSize="10" FontWeight="SemiBold" Content="⌂ Chalet"/>
+                                <Label Grid.Row="4" FontSize="10" FontWeight="SemiBold" Content="$ Budget Range: 20-25M"/>
+                                <Label Name="EditButton2" Grid.Column="1" Grid.Row="0" HorizontalAlignment="Right" Width="25">
+                                    <Label.Background>
+                                        <ImageBrush ImageSource="Icons\client_followup_icon.png"/>
+                                    </Label.Background>
+                                </Label>
                             </Grid>
-
                         </Border>
-
-                        <Border Grid.Column="0" Grid.Row="2" BorderBrush="IndianRed" BorderThickness="4,0,0,0" Margin="12">
-                            <Grid>
+                        <Border Grid.Column="0" Grid.Row="2" Margin="16 8 16 8" Background="White" CornerRadius="8">
+                            <Grid  >
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition />
                                     <ColumnDefinition Width="25"/>
                                 </Grid.ColumnDefinitions>
-                                
+
                                 <Grid.RowDefinitions>
                                     <RowDefinition Height="30"/>
                                     <RowDefinition Height="25"/>
@@ -196,17 +273,21 @@
                                 </Grid.RowDefinitions>
 
                                 <Label Grid.Row="0" FontSize="12" FontWeight="Bold" Content="Mona Zakaria"/>
-                                <Label Grid.Row="1" FontSize="10" FontWeight="SemiBold" Content="Doctor"/>
-                                <Label Grid.Row="2" FontSize="10" FontWeight="SemiBold" Content="Appartment "/>
-                                <Label Grid.Row="3" FontSize="10" FontWeight="SemiBold" Content="Budget Range: 5M-7.5M"/>
-                                <Label Grid.Row="4" FontSize="10" FontWeight="SemiBold" Content="Cash"/>
+                                <Separator Margin="0,29,10,0" FontWeight ="UltraBold" Background="Red"/>
+                                <Label Grid.Row="1" FontSize="10" FontWeight="SemiBold" Content="✦ Doctor"/>
+                                <Label Grid.Row="2" FontSize="10" FontWeight="SemiBold" Content="📞 (+20) 11092376998"/>
+                                <Label Grid.Row="3" FontSize="10" FontWeight="SemiBold" Content="◲ Appartment "/>
+                                <Label Grid.Row="4" FontSize="10" FontWeight="SemiBold" Content="$ Budget Range: 5M-7.5M"/>
+                                <Label Name="EditButton3" Grid.Column="1" Grid.Row="0" HorizontalAlignment="Right" Width="25">
+                                    <Label.Background>
+                                        <ImageBrush ImageSource="Icons\client_followup_icon.png"/>
+                                    </Label.Background>
+                                </Label>
 
-                                <Expander Grid.Column="1"/>
                             </Grid>
-
                         </Border>
-                        <Border Grid.Column="1" Grid.Row="2" BorderBrush="Orange" BorderThickness="4,0,0,0" Margin="12">
-                            <Grid>
+                        <Border Grid.Column="1" Grid.Row="2" Margin="16 8 16 8" Background="White" CornerRadius="8">
+                            <Grid  >
                                 <Grid.RowDefinitions>
                                     <RowDefinition Height="30"/>
                                     <RowDefinition Height="25"/>
@@ -216,15 +297,24 @@
                                 </Grid.RowDefinitions>
 
                                 <Label Grid.Row="0" FontSize="12" FontWeight="Bold" Content="Omar El Masry"/>
-                                <Label Grid.Row="1" FontSize="10" FontWeight="SemiBold" Content="Engineer"/>
-                                <Label Grid.Row="2" FontSize="10" FontWeight="SemiBold" Content="Villa"/>
-                                <Label Grid.Row="3" FontSize="10" FontWeight="SemiBold" Content="Budget Range: 30M-35M"/>
-                                <Label Grid.Row="4" FontSize="10" FontWeight="SemiBold" Content="Installments"/>
+                                <Separator Margin="0,29,10,0" FontWeight ="UltraBold" Background="Orange"/>
+                                <Label Grid.Row="1" FontSize="10" FontWeight="SemiBold" Content="✦ Engineer"/>
+                                <Label Grid.Row="2" FontSize="10" FontWeight="SemiBold" Content="📞 (+20) 1029745537"/>
+                                <Label Grid.Row="3" FontSize="10" FontWeight="SemiBold" Content="◲ Villa"/>
+                                <Label Grid.Row="4" FontSize="10" FontWeight="SemiBold" Content="$ Budget Range: 30M-35M"/>
+                                <Label Name="EditButton4" Grid.Column="1" Grid.Row="0" HorizontalAlignment="Right" Width="25">
+                                    <Label.Background>
+                                        <ImageBrush ImageSource="Icons\client_followup_icon.png"/>
+                                    </Label.Background>
+                                    <Grid Grid.Column="0" Grid.Row="1" HorizontalAlignment="Stretch" Margin="-10 0 0 0"  VerticalAlignment="Center">
+                                        <Label Foreground="Green" FontSize="10" Width="30" Margin="-1 -10">⚫</Label>
+                                        <Label Foreground="White" Margin="3 -10" FontSize="10">1</Label>
+                                    </Grid>
+                                </Label>
                             </Grid>
-
                         </Border>
-                        <Border Grid.Column="2" Grid.Row="2" BorderBrush="CadetBlue" BorderThickness="4,0,0,0" Margin="12">
-                            <Grid>
+                        <Border Grid.Column="2" Grid.Row="2" Margin="16 8 16 8" Background="White" CornerRadius="8">
+                            <Grid  >
                                 <Grid.RowDefinitions>
                                     <RowDefinition Height="30"/>
                                     <RowDefinition Height="25"/>
@@ -234,34 +324,21 @@
                                 </Grid.RowDefinitions>
 
                                 <Label Grid.Row="0" FontSize="12" FontWeight="Bold" Content="Mohamed Sarhan"/>
-                                <Label Grid.Row="1" FontSize="10" FontWeight="SemiBold" Content="Sales Manager"/>
-                                <Label Grid.Row="2" FontSize="10" FontWeight="SemiBold" Content="Industrial Unit"/>
-                                <Label Grid.Row="3" FontSize="10" FontWeight="SemiBold" Content="Budget Range: 50-60M"/>
-                                <Label Grid.Row="4" FontSize="10" FontWeight="SemiBold" Content="Cash + Installments"/>
+                                <Separator Margin="0,29,10,0" FontWeight ="UltraBold" Background="#86c5da"/>
+                                <Label Grid.Row="1" FontSize="10" FontWeight="SemiBold" Content="✦ Sales Manager"/>
+                                <Label Grid.Row="2" FontSize="10" FontWeight="SemiBold" Content="📞 (+20) 11073483248"/>
+                                <Label Grid.Row="3" FontSize="10" FontWeight="SemiBold" Content="◲ Industrial Unit"/>
+                                <Label Grid.Row="4" FontSize="10" FontWeight="SemiBold" Content="$ Budget Range: 50-60M"/>
+                                <Label Name="EditButton5" Grid.Column="1" Grid.Row="0" HorizontalAlignment="Right" Width="25">
+                                    <Label.Background>
+                                        <ImageBrush ImageSource="Icons\client_followup_icon.png"/>
+                                    </Label.Background>
+                                </Label>
                             </Grid>
-
                         </Border>
 
-                        <Border Grid.Column="0" Grid.Row="3" BorderBrush="IndianRed" BorderThickness="4,0,0,0" Margin="12">
-                            <Grid>
-                                
-                                <Grid.RowDefinitions>
-                                    <RowDefinition Height="30"/>
-                                    <RowDefinition Height="25"/>
-                                    <RowDefinition Height="25"/>
-                                    <RowDefinition Height="25"/>
-                                    <RowDefinition Height="25"/>
-                                </Grid.RowDefinitions>
 
-                                <Label Grid.Row="0" FontSize="12" FontWeight="Bold" Content="Mona Zakaria"/>
-                                <Label Grid.Row="1" FontSize="10" FontWeight="SemiBold" Content="Doctor"/>
-                                <Label Grid.Row="2" FontSize="10" FontWeight="SemiBold" Content="Appartment "/>
-                                <Label Grid.Row="3" FontSize="10" FontWeight="SemiBold" Content="Budget Range: 5M-7.5M"/>
-                                <Label Grid.Row="4" FontSize="10" FontWeight="SemiBold" Content="Cash"/>
-                            </Grid>
-
-                        </Border>
-                        <Border Grid.Column="1" Grid.Row="3" BorderBrush="Orange" BorderThickness="4,0,0,0" Margin="12">
+                        <Border Grid.Column="1" Grid.Row="3" Margin="16 8 16 8" Background="White" CornerRadius="8">
                             <Grid>
                                 <Grid.RowDefinitions>
                                     <RowDefinition Height="30"/>
@@ -271,88 +348,21 @@
                                     <RowDefinition Height="25"/>
                                 </Grid.RowDefinitions>
 
-                                <Label Grid.Row="0" FontSize="12" FontWeight="Bold" Content="Omar El Masry"/>
-                                <Label Grid.Row="1" FontSize="10" FontWeight="SemiBold" Content="Engineer"/>
-                                <Label Grid.Row="2" FontSize="10" FontWeight="SemiBold" Content="Villa"/>
-                                <Label Grid.Row="3" FontSize="10" FontWeight="SemiBold" Content="Budget Range: 30M-35M"/>
-                                <Label Grid.Row="4" FontSize="10" FontWeight="SemiBold" Content="Installments"/>
+                                <Label Grid.Row="0" FontSize="12" FontWeight="Bold" Content="Karim El Masry"/>
+                                <Separator Margin="0,29,10,0" FontWeight ="UltraBold" Background="Orange"/>
+                                <Label Grid.Row="1" FontSize="10" FontWeight="SemiBold" Content="✦ CEO"/>
+                                <Label Grid.Row="2" FontSize="10" FontWeight="SemiBold" Content="📞 (+20) 1034758465"/>
+                                <Label Grid.Row="3" FontSize="10" FontWeight="SemiBold" Content="◲ Chalet"/>
+                                <Label Grid.Row="4" FontSize="10" FontWeight="SemiBold" Content="$ Budget Range: 30M-35M"/>
+                                <Label Name="EditButton6" Grid.Column="1" Grid.Row="0" HorizontalAlignment="Right" Width="25">
+                                    <Label.Background>
+                                        <ImageBrush ImageSource="Icons\client_followup_icon.png"/>
+                                    </Label.Background>
+                                </Label>
                             </Grid>
 
                         </Border>
-                        <Border Grid.Column="2" Grid.Row="3" BorderBrush="CadetBlue" BorderThickness="4,0,0,0" Margin="12">
-                            <Grid>
-                                <Grid.RowDefinitions>
-                                    <RowDefinition Height="30"/>
-                                    <RowDefinition Height="25"/>
-                                    <RowDefinition Height="25"/>
-                                    <RowDefinition Height="25"/>
-                                    <RowDefinition Height="25"/>
-                                </Grid.RowDefinitions>
-
-                                <Label Grid.Row="0" FontSize="12" FontWeight="Bold" Content="Mohamed Sarhan"/>
-                                <Label Grid.Row="1" FontSize="10" FontWeight="SemiBold" Content="Sales Manager"/>
-                                <Label Grid.Row="2" FontSize="10" FontWeight="SemiBold" Content="Industrial Unit"/>
-                                <Label Grid.Row="3" FontSize="10" FontWeight="SemiBold" Content="Budget Range: 50-60M"/>
-                                <Label Grid.Row="4" FontSize="10" FontWeight="SemiBold" Content="Cash + Installments"/>
-                            </Grid>
-
-                        </Border>
-
-
-                        <Border Grid.Column="0" Grid.Row="4" BorderBrush="IndianRed" BorderThickness="4,0,0,0" Margin="12">
-                            <Grid>
-                                <Grid.RowDefinitions>
-                                    <RowDefinition Height="30"/>
-                                    <RowDefinition Height="25"/>
-                                    <RowDefinition Height="25"/>
-                                    <RowDefinition Height="25"/>
-                                    <RowDefinition Height="25"/>
-                                </Grid.RowDefinitions>
-
-                                <Label Grid.Row="0" FontSize="12" FontWeight="Bold" Content="Mona Zakaria"/>
-                                <Label Grid.Row="1" FontSize="10" FontWeight="SemiBold" Content="Doctor"/>
-                                <Label Grid.Row="2" FontSize="10" FontWeight="SemiBold" Content="Appartment "/>
-                                <Label Grid.Row="3" FontSize="10" FontWeight="SemiBold" Content="Budget Range: 5M-7.5M"/>
-                                <Label Grid.Row="4" FontSize="10" FontWeight="SemiBold" Content="Cash"/>
-                            </Grid>
-
-                        </Border>
-                        <Border Grid.Column="1" Grid.Row="4" BorderBrush="Orange" BorderThickness="4,0,0,0" Margin="12">
-                            <Grid>
-                                <Grid.RowDefinitions>
-                                    <RowDefinition Height="30"/>
-                                    <RowDefinition Height="25"/>
-                                    <RowDefinition Height="25"/>
-                                    <RowDefinition Height="25"/>
-                                    <RowDefinition Height="25"/>
-                                </Grid.RowDefinitions>
-
-                                <Label Grid.Row="0" FontSize="12" FontWeight="Bold" Content="Omar El Masry"/>
-                                <Label Grid.Row="1" FontSize="10" FontWeight="SemiBold" Content="Engineer"/>
-                                <Label Grid.Row="2" FontSize="10" FontWeight="SemiBold" Content="Villa"/>
-                                <Label Grid.Row="3" FontSize="10" FontWeight="SemiBold" Content="Budget Range: 30M-35M"/>
-                                <Label Grid.Row="4" FontSize="10" FontWeight="SemiBold" Content="Installments"/>
-                            </Grid>
-
-                        </Border>
-                        <Border Grid.Column="2" Grid.Row="4" BorderBrush="CadetBlue" BorderThickness="4,0,0,0" Margin="12">
-                            <Grid>
-                                <Grid.RowDefinitions>
-                                    <RowDefinition Height="30"/>
-                                    <RowDefinition Height="25"/>
-                                    <RowDefinition Height="25"/>
-                                    <RowDefinition Height="25"/>
-                                    <RowDefinition Height="25"/>
-                                </Grid.RowDefinitions>
-
-                                <Label Grid.Row="0" FontSize="12" FontWeight="Bold" Content="Mohamed Sarhan"/>
-                                <Label Grid.Row="1" FontSize="10" FontWeight="SemiBold" Content="Sales Manager"/>
-                                <Label Grid.Row="2" FontSize="10" FontWeight="SemiBold" Content="Industrial Unit"/>
-                                <Label Grid.Row="3" FontSize="10" FontWeight="SemiBold" Content="Budget Range: 50-60M"/>
-                                <Label Grid.Row="4" FontSize="10" FontWeight="SemiBold" Content="Cash + Installments"/>
-                            </Grid>
-
-                        </Border>
+                       
                     </Grid>
                 </Border>
             </ScrollViewer>
