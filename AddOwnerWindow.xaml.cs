@@ -263,8 +263,8 @@ namespace address_inv_desktop
             property.InitializeProperty((int)currentLabel.Tag);
             int viewAddCondition = REAL_STATE_MACROS.VIEW_CONDITION;
 
-            AddPropertyWindow addPropertyWindow = new AddPropertyWindow(ref loggedInUser, ref property, viewAddCondition);
-            addPropertyWindow.Show();
+            //AddPropertyWindow addPropertyWindow = new AddPropertyWindow(ref loggedInUser, ref property, viewAddCondition);
+            //addPropertyWindow.Show();
         }
 
         private void OnBtnClkSaveChanges(object sender, RoutedEventArgs e)

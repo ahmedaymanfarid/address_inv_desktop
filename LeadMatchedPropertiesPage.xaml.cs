@@ -277,8 +277,8 @@ namespace address_inv_desktop
 
             int viewAddCondition = REAL_STATE_MACROS.VIEW_CONDITION;
 
-            AddPropertyWindow addPropertyWindow = new AddPropertyWindow(ref loggedInUser, ref currentProperty, viewAddCondition);
-            addPropertyWindow.Show();
+            //AddPropertyWindow addPropertyWindow = new AddPropertyWindow(ref loggedInUser, ref currentProperty, viewAddCondition);
+            //addPropertyWindow.Show();
         }
         public void ResizeImage(ref Image imgToResize, int width, int height)
         {

@@ -119,9 +119,6 @@
     <Compile Include="AddOwnerWindow.xaml.cs">
       <DependentUpon>AddOwnerWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="AddPropertyWindow.xaml.cs">
-      <DependentUpon>AddPropertyWindow.xaml</DependentUpon>
-    </Compile>
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
@@ -147,18 +144,6 @@
     <Compile Include="MainWindow.xaml.cs" />
     <Compile Include="OwnersPage.xaml.cs">
       <DependentUpon>OwnersPage.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="PropertiesPage.xaml.cs">
-      <DependentUpon>PropertiesPage.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="PropertyInfoPage.xaml.cs">
-      <DependentUpon>PropertyInfoPage.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="PropertyMatchedLeeds.xaml.cs">
-      <DependentUpon>PropertyMatchedLeeds.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="PropertyUploadFilesPage.xaml.cs">
-      <DependentUpon>PropertyUploadFilesPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="SignInPage.xaml.cs" />
     <Compile Include="SignInWindow.xaml.cs" />
@@ -228,10 +213,6 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="AddPropertyWindow.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
     <Page Include="ClientFollowUpPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -271,22 +252,6 @@
     <Page Include="OwnersPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="PropertiesPage.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="PropertyInfoPage.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="PropertyMatchedLeeds.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="PropertyUploadFilesPage.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
     </Page>
     <Page Include="SignInPage.xaml">
       <Generator>MSBuild:Compile</Generator>

@@ -366,8 +366,8 @@ namespace address_inv_desktop
                 Property property = new Property();
                 property.InitializeProperty((int)selectedItem.Tag);
 
-                AddPropertyWindow addPropertyWindow = new AddPropertyWindow(ref loggedInUser, ref property, viewAddCondition);
-                addPropertyWindow.Show();
+                //AddPropertyWindow addPropertyWindow = new AddPropertyWindow(ref loggedInUser, ref property, viewAddCondition);
+                //addPropertyWindow.Show();
             }
         }
 
@@ -414,8 +414,8 @@ namespace address_inv_desktop
         }
         private void OnButtonClickedProperties(object sender, RoutedEventArgs e)
         {
-            PropertiesPage propertiesPage = new PropertiesPage(ref loggedInUser);
-            this.NavigationService.Navigate(propertiesPage);
+            //PropertiesPage propertiesPage = new PropertiesPage(ref loggedInUser);
+            //this.NavigationService.Navigate(propertiesPage);
         }
         private void OnButtonClickedVisits(object sender, RoutedEventArgs e)
         {

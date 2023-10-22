@@ -24,14 +24,12 @@ namespace address_inv_desktop
     {
         private Employee loggedInUser;
 
-        private FTPServer ftpServer;
         public DashboardPage(ref Employee mLoggedInUser)
         {
             InitializeComponent();
 
             loggedInUser = mLoggedInUser;
-            ftpServer = new FTPServer();
-
+        
         }
 
         /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -54,8 +52,8 @@ namespace address_inv_desktop
         }
         private void OnButtonClickedProperties(object sender, RoutedEventArgs e)
         {
-            PropertiesPage propertiesPage = new PropertiesPage(ref loggedInUser);
-            this.NavigationService.Navigate(propertiesPage);
+            //PropertiesPage propertiesPage = new PropertiesPage(ref loggedInUser);
+            //this.NavigationService.Navigate(propertiesPage);
         }
         private void OnButtonClickedVisits(object sender, RoutedEventArgs e)
         {
