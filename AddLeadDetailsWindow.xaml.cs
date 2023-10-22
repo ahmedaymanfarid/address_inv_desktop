@@ -84,7 +84,7 @@ namespace address_inv_desktop
         }
         private bool InitializeStateComboBox()
         {
-            if (!commonQueries.GetAllCountryStates(BASIC_MACROS.EGYPT_COUNTRY_ID, ref listOfStates))
+            if (!commonQueries.GetAllCountryStates(BASIC_MACROS.EGYPT_ID, ref listOfStates))
                 return false;
 
             for (int i = 0; i < listOfStates.Count(); i++)
@@ -242,7 +242,7 @@ namespace address_inv_desktop
                 employeeItem.employee_id = loggedInUser.GetEmployeeId();
                 employeeItem.employee_name = loggedInUser.GetEmployeeName();
 
-                if (!lead.AddNewLeadNote(BASIC_STRUCTS.LEAD_NOTE_TYPE.GENERAL_NOTE, employeeItem, notesTextBox.Text.ToString()))
+                if (!lead.AddNewLeadNote(COMPANY_ORGANISATION_MACROS.LEAD_NOTE_TYPE.GENERAL_NOTE, employeeItem, notesTextBox.Text.ToString()))
                     return;
             }
 
@@ -261,7 +261,7 @@ namespace address_inv_desktop
             String inputString = telephoneTextBox.Text;
             String outputString = telephoneTextBox.Text;
 
-            if (!integrityChecker.CheckCompanyPhoneEditBox(inputString, ref outputString, false, ref returnMessage))
+            if (!integrityChecker.CheckLeadPhoneEditBox(inputString, ref outputString, false, ref returnMessage))
                 return false;
 
             //lead.AddCompanyPhone(outputString);

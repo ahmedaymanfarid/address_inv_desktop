@@ -26,7 +26,7 @@ namespace address_inv_desktop
         Employee loggedInUser;
         ClientVisit clientVisit;
 
-        List<BASIC_STRUCTS.CONTACT_MIN_LIST_STRUCT> leads;
+        List<COMPANY_ORGANISATION_MACROS.CONTACT_MIN_LIST_STRUCT> leads;
 
         public AddClientVisitWindow(ref Employee mloggedInUser)
         {
@@ -40,7 +40,7 @@ namespace address_inv_desktop
             clientVisit = new ClientVisit(loggedInUser);
             commonQueries = new CommonQueries();
 
-            leads = new List<BASIC_STRUCTS.CONTACT_MIN_LIST_STRUCT>();
+            leads = new List<COMPANY_ORGANISATION_MACROS.CONTACT_MIN_LIST_STRUCT>();
 
             InitializeLeadsComboBox();
 

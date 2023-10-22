@@ -12,10 +12,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
-<<<<<<< HEAD
-=======
 using address_inv_library;
->>>>>>> f1056db924f05508e201e913f4f25c418687f515
 using real_estate_library;
 
 namespace address_inv_desktop
@@ -29,7 +26,7 @@ namespace address_inv_desktop
         Employee loggedInUser;
         ClientCall clientCall;
 
-        List<BASIC_STRUCTS.CONTACT_MIN_LIST_STRUCT> leads;
+        List<COMPANY_ORGANISATION_MACROS.CONTACT_MIN_LIST_STRUCT> leads;
         public AddClientCallWindow(ref Employee mloggedInUser)
         {
             InitializeComponent();
@@ -42,7 +39,7 @@ namespace address_inv_desktop
             clientCall = new ClientCall(ref loggedInUser);
             commonQueries = new CommonQueries();
 
-            leads = new List<BASIC_STRUCTS.CONTACT_MIN_LIST_STRUCT>();
+            leads = new List<COMPANY_ORGANISATION_MACROS.CONTACT_MIN_LIST_STRUCT>();
 
             if (!InitializeLeadsComboBox())
                 return;

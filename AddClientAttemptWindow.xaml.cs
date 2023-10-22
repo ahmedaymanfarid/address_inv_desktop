@@ -25,7 +25,7 @@ namespace address_inv_desktop
         Employee loggedInUser;
         ClientAttempt clientAttempt;
 
-        List<BASIC_STRUCTS.CONTACT_MIN_LIST_STRUCT> leads;
+        List<COMPANY_ORGANISATION_MACROS.CONTACT_MIN_LIST_STRUCT> leads;
         public AddClientAttemptWindow(ref Employee mloggedInUser)
         {
             InitializeComponent();
@@ -37,7 +37,7 @@ namespace address_inv_desktop
             clientAttempt = new ClientAttempt(ref loggedInUser);
             commonQueries = new CommonQueries();
 
-            leads = new List<BASIC_STRUCTS.CONTACT_MIN_LIST_STRUCT>();
+            leads = new List<COMPANY_ORGANISATION_MACROS.CONTACT_MIN_LIST_STRUCT>();
 
             if (!InitializeLeadsComboBox())
                 return;

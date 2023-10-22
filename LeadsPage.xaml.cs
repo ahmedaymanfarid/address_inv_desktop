@@ -1,8 +1,3 @@
-<<<<<<< HEAD
-﻿using real_estate_library;
-=======
-﻿using address_inv_library;
->>>>>>> f1056db924f05508e201e913f4f25c418687f515
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -20,6 +15,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using real_estate_library;
+using address_inv_library;
 
 namespace address_inv_desktop
 {
@@ -41,16 +37,16 @@ namespace address_inv_desktop
         private List<BASIC_STRUCTS.LEAD_STATUS_STRUCT> leadStatusList;
         private List<REAL_STATE_MACROS.BUDGET_RANGE_STRUCT> budgetRangeList;
         
-        private List<KeyValuePair<COMPANY_ORGANISATION_MACROS.EMPLOYEE_STRUCT, List<BASIC_STRUCTS.CONTACT_LIST_STRUCT>>> employeesLeads;
+        private List<KeyValuePair<COMPANY_ORGANISATION_MACROS.EMPLOYEE_STRUCT, List<COMPANY_ORGANISATION_MACROS.CONTACT_LIST_STRUCT>>> employeesLeads;
 
         //private List<KeyValuePair<int, TreeViewItem>> salesTreeArray;
         //private List<KeyValuePair<int, StackPanel>> salesStackArray;
-        private List<KeyValuePair<BASIC_STRUCTS.CONTACT_MIN_LIST_STRUCT, TreeViewItem>> leadsTreeArray;
-        private List<KeyValuePair<BASIC_STRUCTS.CONTACT_MIN_LIST_STRUCT, StackPanel>> leadsStackArray;
+        private List<KeyValuePair<COMPANY_ORGANISATION_MACROS.CONTACT_MIN_LIST_STRUCT, TreeViewItem>> leadsTreeArray;
+        private List<KeyValuePair<COMPANY_ORGANISATION_MACROS.CONTACT_MIN_LIST_STRUCT, StackPanel>> leadsStackArray;
 
         public LeadsPage(ref Employee mLoggedInUser)
         {
-            employeesLeads = new List<KeyValuePair<COMPANY_ORGANISATION_MACROS.EMPLOYEE_STRUCT, List<BASIC_STRUCTS.CONTACT_LIST_STRUCT>>>();
+            employeesLeads = new List<KeyValuePair<COMPANY_ORGANISATION_MACROS.EMPLOYEE_STRUCT, List<COMPANY_ORGANISATION_MACROS.CONTACT_LIST_STRUCT>>>();
             listOfEmployees = new List<COMPANY_ORGANISATION_MACROS.EMPLOYEE_STRUCT>();
 
             leadStatusList = new List<BASIC_STRUCTS.LEAD_STATUS_STRUCT>();
@@ -59,8 +55,8 @@ namespace address_inv_desktop
             //salesTreeArray = new List<KeyValuePair<int, TreeViewItem>>();
             //salesStackArray = new List<KeyValuePair<int, StackPanel>>();
 
-            leadsTreeArray = new List<KeyValuePair<BASIC_STRUCTS.CONTACT_MIN_LIST_STRUCT, TreeViewItem>>();
-            leadsStackArray = new List<KeyValuePair<BASIC_STRUCTS.CONTACT_MIN_LIST_STRUCT, StackPanel>>();
+            leadsTreeArray = new List<KeyValuePair<COMPANY_ORGANISATION_MACROS.CONTACT_MIN_LIST_STRUCT, TreeViewItem>>();
+            leadsStackArray = new List<KeyValuePair<COMPANY_ORGANISATION_MACROS.CONTACT_MIN_LIST_STRUCT, StackPanel>>();
 
             commonQueries = new CommonQueries();
             loggedInUser = mLoggedInUser;
@@ -144,12 +140,12 @@ namespace address_inv_desktop
 
             for (int i = 0; i < listOfEmployees.Count; i++)
             {
-                List<BASIC_STRUCTS.CONTACT_LIST_STRUCT> employeeLeadList = new List<BASIC_STRUCTS.CONTACT_LIST_STRUCT>();
+                List<COMPANY_ORGANISATION_MACROS.CONTACT_LIST_STRUCT> employeeLeadList = new List<COMPANY_ORGANISATION_MACROS.CONTACT_LIST_STRUCT>();
 
                 if (!commonQueries.GetEmployeeLeads(listOfEmployees[i].employee_id, ref employeeLeadList))
                     return false;
 
-                 employeesLeads.Add(new KeyValuePair<COMPANY_ORGANISATION_MACROS.EMPLOYEE_STRUCT, List<BASIC_STRUCTS.CONTACT_LIST_STRUCT>>(listOfEmployees[i], employeeLeadList));                
+                 employeesLeads.Add(new KeyValuePair<COMPANY_ORGANISATION_MACROS.EMPLOYEE_STRUCT, List<COMPANY_ORGANISATION_MACROS.CONTACT_LIST_STRUCT>>(listOfEmployees[i], employeeLeadList));                
             }
 
             return true;
@@ -243,13 +239,13 @@ namespace address_inv_desktop
 
                     salesPersonItem.Items.Add(leadTreeItem);
 
-                    BASIC_STRUCTS.CONTACT_MIN_LIST_STRUCT lead_item = new BASIC_STRUCTS.CONTACT_MIN_LIST_STRUCT();
+                    COMPANY_ORGANISATION_MACROS.CONTACT_MIN_LIST_STRUCT lead_item = new COMPANY_ORGANISATION_MACROS.CONTACT_MIN_LIST_STRUCT();
 
                     lead_item.sales_person_id = employeesLeads[i].Value[j].sales_person_id;
                     lead_item.contact.contact_id = employeesLeads[i].Value[j].contact_id;
                     lead_item.contact.contact_name = employeesLeads[i].Value[j].contact_name;
 
-                    leadsTreeArray.Add(new KeyValuePair<BASIC_STRUCTS.CONTACT_MIN_LIST_STRUCT, TreeViewItem>(lead_item, leadTreeItem));
+                    leadsTreeArray.Add(new KeyValuePair<COMPANY_ORGANISATION_MACROS.CONTACT_MIN_LIST_STRUCT, TreeViewItem>(lead_item, leadTreeItem));
 
                 }
 
@@ -361,13 +357,13 @@ namespace address_inv_desktop
 
                     employeeStackPanel.Children.Add(leadGridItem);
 
-                    BASIC_STRUCTS.CONTACT_MIN_LIST_STRUCT lead_item = new BASIC_STRUCTS.CONTACT_MIN_LIST_STRUCT();
+                    COMPANY_ORGANISATION_MACROS.CONTACT_MIN_LIST_STRUCT lead_item = new COMPANY_ORGANISATION_MACROS.CONTACT_MIN_LIST_STRUCT();
 
                     lead_item.sales_person_id = employeesLeads[i].Value[j].sales_person_id;
                     lead_item.contact.contact_id = employeesLeads[i].Value[j].contact_id;
                     lead_item.contact.contact_name = employeesLeads[i].Value[j].contact_name;
 
-                    leadsStackArray.Add(new KeyValuePair<BASIC_STRUCTS.CONTACT_MIN_LIST_STRUCT, StackPanel>(lead_item, leadDetailsStackPanel));
+                    leadsStackArray.Add(new KeyValuePair<COMPANY_ORGANISATION_MACROS.CONTACT_MIN_LIST_STRUCT, StackPanel>(lead_item, leadDetailsStackPanel));
 
                 }
 
@@ -647,7 +643,7 @@ namespace address_inv_desktop
 
                 if (!selectedItem.HasItems)
                 {
-                    BASIC_STRUCTS.CONTACT_MIN_LIST_STRUCT currentLeadStruct = new BASIC_STRUCTS.CONTACT_MIN_LIST_STRUCT();
+                    COMPANY_ORGANISATION_MACROS.CONTACT_MIN_LIST_STRUCT currentLeadStruct = new COMPANY_ORGANISATION_MACROS.CONTACT_MIN_LIST_STRUCT();
                     currentLeadStruct = leadsTreeArray.Find(current_item => current_item.Value == selectedItem).Key;
 
                     Lead selectedLead = new Lead();
@@ -660,7 +656,7 @@ namespace address_inv_desktop
             }
             else if(contactStackScrollViewer.Visibility == Visibility.Visible)
             {
-                BASIC_STRUCTS.CONTACT_MIN_LIST_STRUCT currentLeadStruct = new BASIC_STRUCTS.CONTACT_MIN_LIST_STRUCT();
+                COMPANY_ORGANISATION_MACROS.CONTACT_MIN_LIST_STRUCT currentLeadStruct = new COMPANY_ORGANISATION_MACROS.CONTACT_MIN_LIST_STRUCT();
                 currentLeadStruct = leadsStackArray.Find(current_item => current_item.Value == currentSelectedLeadItem).Key;
 
                 Lead selectedLead = new Lead();

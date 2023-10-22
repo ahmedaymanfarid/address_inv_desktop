@@ -12,10 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-<<<<<<< HEAD
-=======
 using address_inv_library;
->>>>>>> f1056db924f05508e201e913f4f25c418687f515
 using real_estate_library;
 
 namespace address_inv_desktop
@@ -34,9 +31,9 @@ namespace address_inv_desktop
         private StackPanel currentSelectedLeadItem;
 
         private List<COMPANY_ORGANISATION_MACROS.EMPLOYEE_STRUCT> listOfEmployees;
-        private List<BASIC_STRUCTS.LEAD_MATCHING_STRUCT> leads;
+        private List<COMPANY_ORGANISATION_MACROS.LEAD_MATCHING_STRUCT> leads;
 
-        private List<KeyValuePair<COMPANY_ORGANISATION_MACROS.EMPLOYEE_STRUCT, List<BASIC_STRUCTS.CONTACT_LIST_STRUCT>>> employeesLeads;
+        private List<KeyValuePair<COMPANY_ORGANISATION_MACROS.EMPLOYEE_STRUCT, List<COMPANY_ORGANISATION_MACROS.CONTACT_LIST_STRUCT>>> employeesLeads;
 
         private List<REAL_STATE_MACROS.BUDGET_RANGE_STRUCT> budgetRanges;
 
@@ -50,9 +47,9 @@ namespace address_inv_desktop
             commonQueries = new CommonQueries();
 
             InitializeComponent();
-            employeesLeads = new List<KeyValuePair<COMPANY_ORGANISATION_MACROS.EMPLOYEE_STRUCT, List<BASIC_STRUCTS.CONTACT_LIST_STRUCT>>>();
+            employeesLeads = new List<KeyValuePair<COMPANY_ORGANISATION_MACROS.EMPLOYEE_STRUCT, List<COMPANY_ORGANISATION_MACROS.CONTACT_LIST_STRUCT>>>();
             listOfEmployees = new List<COMPANY_ORGANISATION_MACROS.EMPLOYEE_STRUCT>();
-            leads = new List<BASIC_STRUCTS.LEAD_MATCHING_STRUCT>();
+            leads = new List<COMPANY_ORGANISATION_MACROS.LEAD_MATCHING_STRUCT>();
             budgetRanges = new List<REAL_STATE_MACROS.BUDGET_RANGE_STRUCT>();
 
             if (!InitializeEmployeesList())
@@ -208,7 +205,7 @@ namespace address_inv_desktop
         {
             for (int i = 0; i < leads.Count; i++)
             {
-                BASIC_STRUCTS.LEAD_MATCHING_STRUCT tmp = new BASIC_STRUCTS.LEAD_MATCHING_STRUCT();
+                COMPANY_ORGANISATION_MACROS.LEAD_MATCHING_STRUCT tmp = new COMPANY_ORGANISATION_MACROS.LEAD_MATCHING_STRUCT();
                 tmp = leads[i];
                 tmp.match_percentage = GetMatchedPercentage(currentProperty, leads[i]);
                 leads[i] = tmp;
@@ -218,7 +215,7 @@ namespace address_inv_desktop
         }
 
 
-        private int GetMatchedPercentage(Property mProperty, BASIC_STRUCTS.LEAD_MATCHING_STRUCT mLead)
+        private int GetMatchedPercentage(Property mProperty, COMPANY_ORGANISATION_MACROS.LEAD_MATCHING_STRUCT mLead)
         {
             int matchPercentage = 0;
             int budget = 30;
@@ -308,12 +305,12 @@ namespace address_inv_desktop
 
             for (int i = 0; i < listOfEmployees.Count; i++)
             {
-                List<BASIC_STRUCTS.CONTACT_LIST_STRUCT> employeeLeadList = new List<BASIC_STRUCTS.CONTACT_LIST_STRUCT>();
+                List<COMPANY_ORGANISATION_MACROS.CONTACT_LIST_STRUCT> employeeLeadList = new List<COMPANY_ORGANISATION_MACROS.CONTACT_LIST_STRUCT>();
 
                 if (!commonQueries.GetEmployeeLeads(listOfEmployees[i].employee_id, ref employeeLeadList))
                     return false;
 
-                employeesLeads.Add(new KeyValuePair<COMPANY_ORGANISATION_MACROS.EMPLOYEE_STRUCT, List<BASIC_STRUCTS.CONTACT_LIST_STRUCT>>(listOfEmployees[i], employeeLeadList));
+                employeesLeads.Add(new KeyValuePair<COMPANY_ORGANISATION_MACROS.EMPLOYEE_STRUCT, List<COMPANY_ORGANISATION_MACROS.CONTACT_LIST_STRUCT>>(listOfEmployees[i], employeeLeadList));
             }
 
             return true;

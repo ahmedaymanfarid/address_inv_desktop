@@ -1,9 +1,4 @@
-<<<<<<< HEAD
-﻿using real_estate_library;
 using System;
-=======
-﻿using System;
->>>>>>> f1056db924f05508e201e913f4f25c418687f515
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;

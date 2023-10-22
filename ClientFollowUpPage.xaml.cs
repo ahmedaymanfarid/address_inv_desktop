@@ -12,10 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-<<<<<<< HEAD
-=======
 using address_inv_library;
->>>>>>> f1056db924f05508e201e913f4f25c418687f515
 using real_estate_library;
 
 namespace address_inv_desktop
@@ -43,7 +40,7 @@ namespace address_inv_desktop
         private List<String> listOfMonths = new List<string>();
 
         protected List<COMPANY_ORGANISATION_MACROS.EMPLOYEE_STRUCT> listOfEmployees;
-        protected List<BASIC_STRUCTS.CONTACT_MIN_LIST_STRUCT> listOfLeads;
+        protected List<COMPANY_ORGANISATION_MACROS.CONTACT_MIN_LIST_STRUCT> listOfLeads;
         protected List<REAL_STATE_MACROS.PROPERTY_STRUCT> listOfProperties;
 
         protected List<REAL_STATE_MACROS.CLIENT_FOLLOWUP_STRUCT> follow_upsList;
@@ -57,7 +54,7 @@ namespace address_inv_desktop
             CommonFunctionsObject = new CommonFunctions();
 
             listOfEmployees = new List<COMPANY_ORGANISATION_MACROS.EMPLOYEE_STRUCT>();
-            listOfLeads = new List<BASIC_STRUCTS.CONTACT_MIN_LIST_STRUCT>();
+            listOfLeads = new List<COMPANY_ORGANISATION_MACROS.CONTACT_MIN_LIST_STRUCT>();
 
             follow_upsList = new List<REAL_STATE_MACROS.CLIENT_FOLLOWUP_STRUCT>();
             filteredFollowUp = new List<REAL_STATE_MACROS.CLIENT_FOLLOWUP_STRUCT>();

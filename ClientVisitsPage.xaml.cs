@@ -1,10 +1,4 @@
-<<<<<<< HEAD
-﻿using address_inv_desktop;
-using real_estate_library;
 using System;
-=======
-﻿using System;
->>>>>>> f1056db924f05508e201e913f4f25c418687f515
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -34,7 +28,7 @@ namespace address_inv_desktop
         protected CommonFunctions commonFunctionsObject;
 
         protected List<COMPANY_ORGANISATION_MACROS.EMPLOYEE_STRUCT> listOfEmployees;
-        protected List<BASIC_STRUCTS.CONTACT_MIN_LIST_STRUCT> listOfLeads;
+        protected List<COMPANY_ORGANISATION_MACROS.CONTACT_MIN_LIST_STRUCT> listOfLeads;
         protected List<REAL_STATE_MACROS.PROPERTY_STRUCT> listOfProperties;
 
         protected List<REAL_STATE_MACROS.CLIENT_VISIT_STRUCT> visitsInfo;
@@ -58,7 +52,7 @@ namespace address_inv_desktop
             commonFunctionsObject = new CommonFunctions();
 
             listOfEmployees = new List<COMPANY_ORGANISATION_MACROS.EMPLOYEE_STRUCT>();
-            listOfLeads = new List<BASIC_STRUCTS.CONTACT_MIN_LIST_STRUCT>();
+            listOfLeads = new List<COMPANY_ORGANISATION_MACROS.CONTACT_MIN_LIST_STRUCT>();
 
             visitsInfo = new List<REAL_STATE_MACROS.CLIENT_VISIT_STRUCT>();
             filteredVisits = new List<REAL_STATE_MACROS.CLIENT_VISIT_STRUCT>();

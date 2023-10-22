@@ -12,10 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-<<<<<<< HEAD
-=======
 using address_inv_library;
->>>>>>> f1056db924f05508e201e913f4f25c418687f515
 using real_estate_library;
 
 namespace address_inv_desktop
@@ -169,7 +166,7 @@ namespace address_inv_desktop
         {
             propertyStateComboBox.Items.Clear();
 
-            if (!commonQueries.GetAllCountryStates(BASIC_MACROS.EGYPT_COUNTRY_ID, ref listOfStates))
+            if (!commonQueries.GetAllCountryStates(BASIC_MACROS.EGYPT_ID, ref listOfStates))
                 return false;
 
             for (int i = 0; i < listOfStates.Count; i++)
