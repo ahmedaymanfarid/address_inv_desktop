@@ -114,7 +114,7 @@ namespace address_inv_desktop
             //lastAttemptDatePicker.IsEnabled = false;
             //lastVisitDatePicker.IsEnabled = false;
 
-            viewButton.IsEnabled = false;
+            //viewButton.IsEnabled = false;
         }
         
         public bool InitializeEmployeesList()
@@ -507,41 +507,41 @@ namespace address_inv_desktop
         /// ON SELECTION CHANGED HANDLERS
         //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-        private void OnSelChangedLeadStatusComboBox(object sender, SelectionChangedEventArgs e)
-        {
-            viewButton.IsEnabled = false;
-
-            InitializeLeadsTree();
-            InitializeLeadsStackPanel();
-        }
-        private void OnSelChangedBudgetComboBox(object sender, SelectionChangedEventArgs e)
-        {
-            viewButton.IsEnabled = false;
-
-            InitializeLeadsTree();
-            InitializeLeadsStackPanel();
-        }
-        private void OnSelChangedLastCallDate(object sender, SelectionChangedEventArgs e)
-        {
-            viewButton.IsEnabled = false;
-
-            InitializeLeadsTree();
-            InitializeLeadsStackPanel();
-        }
-        private void OnSelChangedLastAttemptDate(object sender, SelectionChangedEventArgs e)
-        {
-            viewButton.IsEnabled = false;
-
-            InitializeLeadsTree();
-            InitializeLeadsStackPanel();
-        }
-        private void OnSelChangedLastVisitDate(object sender, SelectionChangedEventArgs e)
-        {
-            viewButton.IsEnabled = false;
-
-            InitializeLeadsTree();
-            InitializeLeadsStackPanel();
-        }
+        //private void OnSelChangedLeadStatusComboBox(object sender, SelectionChangedEventArgs e)
+        //{
+        //    viewButton.IsEnabled = false;
+        //
+        //    InitializeLeadsTree();
+        //    InitializeLeadsStackPanel();
+        //}
+        //private void OnSelChangedBudgetComboBox(object sender, SelectionChangedEventArgs e)
+        //{
+        //    viewButton.IsEnabled = false;
+        //
+        //    InitializeLeadsTree();
+        //    InitializeLeadsStackPanel();
+        //}
+        //private void OnSelChangedLastCallDate(object sender, SelectionChangedEventArgs e)
+        //{
+        //    viewButton.IsEnabled = false;
+        //
+        //    InitializeLeadsTree();
+        //    InitializeLeadsStackPanel();
+        //}
+        //private void OnSelChangedLastAttemptDate(object sender, SelectionChangedEventArgs e)
+        //{
+        //    viewButton.IsEnabled = false;
+        //
+        //    InitializeLeadsTree();
+        //    InitializeLeadsStackPanel();
+        //}
+        //private void OnSelChangedLastVisitDate(object sender, SelectionChangedEventArgs e)
+        //{
+        //    viewButton.IsEnabled = false;
+        //
+        //    InitializeLeadsTree();
+        //    InitializeLeadsStackPanel();
+        //}
         //private void OnSelChangedSalesPersonComboBox(object sender, SelectionChangedEventArgs e)
         //{
         //    viewButton.IsEnabled = false;
@@ -621,7 +621,7 @@ namespace address_inv_desktop
         
         private void OnBtnClickAddLead(object sender, RoutedEventArgs e)
         {
-            viewButton.IsEnabled = false;
+            //viewButton.IsEnabled = false;
 
             AddLeadWindow addLeadWindow = new AddLeadWindow(ref loggedInUser);
             addLeadWindow.Closed += OnClosedAddLeadWindow;
@@ -756,17 +756,17 @@ namespace address_inv_desktop
                     currentIcon.Source = new BitmapImage(new Uri(@"icons\phone_icon_blue.png", UriKind.Relative));
             }
 
-            viewButton.IsEnabled = true;
+            //viewButton.IsEnabled = true;
         }
         private void OnSelectedItemChangedTreeViewItem(object sender, RoutedPropertyChangedEventArgs<object> e)
         {
             //VIEW BUTTON IS ENABLED ONCE ANY ITEM IS SELECTED
-            viewButton.IsEnabled = false;
+            //viewButton.IsEnabled = false;
             TreeViewItem selectedItem = (TreeViewItem)contactTreeView.SelectedItem;
 
             if (selectedItem != null)
             {
-                viewButton.IsEnabled = true;
+                //viewButton.IsEnabled = true;
             }
 
         }

@@ -64,7 +64,6 @@
                 <RowDefinition Height="100"/>
                 <RowDefinition Height="50"/>
                 <RowDefinition Height="1*"/>
-                <RowDefinition Height="75"/>
             </Grid.RowDefinitions>
             <Border  Grid.Column="1" Grid.RowSpan="4" BorderThickness="4,0,0,0" BorderBrush="Black"></Border>
 
@@ -363,16 +362,7 @@
                 </Border>
             </ScrollViewer>
 
-            <Grid Grid.Row="3">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition/>
-                    <ColumnDefinition/>
-                </Grid.ColumnDefinitions>
-
-                <Button Grid.Column="0" Content="Add Lead" Style="{StaticResource buttonStyle}" Click="OnBtnClickAddLead" Name="addLeadButton"/>
-                <Button Grid.Column="1" Content="View" Style="{StaticResource buttonStyle}" Click="OnBtnClickView" Name="viewButton"/>
-            </Grid>
-
+           
         </Grid>
 
     </Grid>

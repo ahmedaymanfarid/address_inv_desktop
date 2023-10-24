@@ -40,7 +40,7 @@ namespace address_inv_desktop
         {
             sqlDatabase = new SQLServer();
             loggedInUser = mLoggedInUser;
-            commonQueries = new CommonQueries(sqlDatabase);
+            commonQueries = new CommonQueries();
             owner = mOwner;
             viewAddCondition = mViewAddCondition;
             addPropertyCondition = mAddPropertyCondition;

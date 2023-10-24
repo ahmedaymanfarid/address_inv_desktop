@@ -351,24 +351,7 @@ namespace address_inv_desktop
         //VIEWING TABS
         /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-        private void OnClickListView(object sender, MouseButtonEventArgs e)
-        {
-            listViewLabel.Style = (Style)FindResource("selectedMainTabLabelItem");
-            tableViewLabel.Style = (Style)FindResource("unselectedMainTabLabelItem");
-
-            stackPanelScrollViewer.Visibility = Visibility.Visible;
-            gridScrollViewer.Visibility = Visibility.Collapsed;
-        }
-
-        private void OnClickTableView(object sender, MouseButtonEventArgs e)
-        {
-            listViewLabel.Style = (Style)FindResource("unselectedMainTabLabelItem");
-            tableViewLabel.Style = (Style)FindResource("selectedMainTabLabelItem");
-
-            stackPanelScrollViewer.Visibility = Visibility.Collapsed;
-            gridScrollViewer.Visibility = Visibility.Visible;
-        }
-
+    
         //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
         /// ON BTN CLICKED HANDLERS
         //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
