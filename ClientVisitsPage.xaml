@@ -14,7 +14,7 @@
             <ColumnDefinition Width="1*"/>
         </Grid.ColumnDefinitions>
 
-        <Grid Grid.Column="0" MinHeight="300" Background="#000000">
+        <Grid Grid.Column="0" MinHeight="300" Background="#ffffff">
 
             <Grid.RowDefinitions>
                 <RowDefinition />
@@ -27,6 +27,7 @@
                 <RowDefinition />
                 <RowDefinition />
             </Grid.RowDefinitions>
+            <Border  Grid.Row="4" Background="#EDEDED" BorderThickness="4,0,0,0" BorderBrush="Black"></Border>
 
             <TextBlock Grid.Row="0" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Style="{StaticResource sideNavigationItemStyle}" Name="DashboardLabel" Text="Dashboard" MouseLeftButtonDown="OnButtonClickedDashboard"/>
             <TextBlock Grid.Row="1" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Style="{StaticResource sideNavigationItemStyle}" Name="LeadsLabel" Text="Leads" MouseLeftButtonDown="OnButtonClickedLeads"/>
@@ -52,6 +53,7 @@
                 <RowDefinition Height="1*"/>
                 <RowDefinition Height="75"/>
             </Grid.RowDefinitions>
+            <Border  Grid.Column="1" Grid.RowSpan="4" BorderThickness="4,0,0,0" BorderBrush="Black"></Border>
 
             <Label Grid.Row="0" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Margin="48,24,48,24" Content="CLIENT VISITS" Style="{StaticResource primaryHeaderTextStyle}"/>
 

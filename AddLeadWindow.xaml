@@ -52,68 +52,74 @@
                         </WrapPanel>
 
                     </WrapPanel>
-
                     <WrapPanel Grid.Row="1">
+                        <WrapPanel Name="EmailWrapPanel">
+                            <Label Style="{StaticResource tableItemLabel}" Content="Email *"/>
+                            <TextBox Style="{StaticResource textBoxStyle}" Name="leadEmailTextBox" TextChanged="OnTextChangedEmail"/>
+                        </WrapPanel>
+
                         <WrapPanel Name="CallWrapPanel">
                             <Label Style="{StaticResource tableItemLabel}" Content="Last Call"/>
                             <DatePicker Style="{StaticResource datePickerStyle}" Name="callDatePicker"/>
                         </WrapPanel>
 
+                    </WrapPanel>
+                    <WrapPanel Grid.Row="2">
                         <WrapPanel Name="AttemptWrapPanel">
                             <Label Style="{StaticResource tableItemLabel}" Content="Last Attempt"/>
                             <DatePicker Style="{StaticResource datePickerStyle}" Name="attemptDatePicker"/>
                         </WrapPanel>
-                    </WrapPanel>
                     
-                    <WrapPanel Grid.Row="2">
                         <WrapPanel Name="FollowUpWrapPanel">
                             <Label Style="{StaticResource tableItemLabel}" Content="Last Follow Up"/>
                             <DatePicker Style="{StaticResource datePickerStyle}" Name="followUpDatePicker"/>
                         </WrapPanel>
-                        
+
+                    </WrapPanel>
+
+
+                    <WrapPanel Grid.Row="3">
                         <WrapPanel Name="LeadGenderWrapPanel">
                             <Label Style="{StaticResource tableItemLabel}" Content="Gender"/>
                             <ComboBox Style="{StaticResource comboBoxStyle}" Name="leadGenderComboBox" SelectionChanged="OnSelChangedGender"/>
                         </WrapPanel>
-                    </WrapPanel>
 
-                    <WrapPanel Grid.Row="3">
                         <WrapPanel Name="LeadJobTitleWrapPanel">
                             <Label Style="{StaticResource tableItemLabel}" Content="Job Title"/>
                             <ComboBox Style="{StaticResource comboBoxStyle}" Name="leadJobtitleComboBox" SelectionChanged="OnSelChangedJobTitle"/>
                         </WrapPanel>
-                        
-                        <WrapPanel Name="LeadStatusWrapPanel">
+
+                    </WrapPanel>
+                    <WrapPanel Grid.Row="4">
+                    <WrapPanel Name="LeadStatusWrapPanel">
                             <Label Style="{StaticResource tableItemLabel}" Content="Status *"/>
                             <ComboBox Style="{StaticResource comboBoxStyle}" Name="leadStatusComboBox" SelectionChanged="OnSelChangeLeadStatus"/>
                         </WrapPanel>
-                    </WrapPanel>
 
-                    <WrapPanel Grid.Row="4">
                         <WrapPanel Name="LeadBudgetWrapPanel">
                             <Label Style="{StaticResource tableItemLabel}" Content="Budget Range"/>
                             <ComboBox Style="{StaticResource comboBoxStyle}" Name="leadBudgetComboBox" SelectionChanged="OnSelChangedBudgetRange"/>
                         </WrapPanel>
-                        
+
+                    </WrapPanel>
+
+                    <WrapPanel Grid.Row="5">
                         <WrapPanel Name="LeadPaymentWrapPanel">
                             <Label Style="{StaticResource tableItemLabel}" Content="Payment Method"/>
                             <ComboBox Style="{StaticResource comboBoxStyle}" Name="leadPaymentComboBox" SelectionChanged="OnSelChangedPaymentMethod"/>
                         </WrapPanel>
-                    </WrapPanel>
-
-                    <WrapPanel Grid.Row="5">
                         <WrapPanel Name="LeadBusinessPhoneWrapPanel">
                             <Label Style="{StaticResource tableItemLabel}" Content="Business Phone *"/>
                             <TextBox Style="{StaticResource textBoxStyle}" Name="leadBusinessPhoneTextBox" TextChanged="OnTextChangedBusinessPhone"/>
                         </WrapPanel>
-                        
+
+                    </WrapPanel>
+
+                    <WrapPanel Grid.Row="6">
                         <WrapPanel Name="LeadPersonalPhoneWrapPanel">
                             <Label Style="{StaticResource tableItemLabel}" Content="Personal Phone"/>
                             <TextBox Style="{StaticResource textBoxStyle}" Name="leadPersonalPhoneTextBox" TextChanged="OnTextChangedPersonalPhone"/>
                         </WrapPanel>
-                    </WrapPanel>
-
-                    <WrapPanel Grid.Row="6">
                         <WrapPanel Name="StateWrapPanel">
                             <Label Style="{StaticResource tableItemLabel}" Content="Interested State"/>
                             <ComboBox Style="{StaticResource comboBoxStyle}" Name="stateComboBox" SelectionChanged="OnSelChangedState"/>
@@ -144,13 +150,13 @@
                             <Label Style="{StaticResource tableItemLabel}" Content="Notes"/>
                             <TextBox Style="{StaticResource commentsTextBoxStyle}" Name="notesTextBox"/>
                         </WrapPanel>
+                        <WrapPanel Grid.Row="1">
+                            <Label Style="{StaticResource tableItemLabel}" Content="Tags"/>
 
-                        <Label Grid.Row="1" Style="{StaticResource tableSubHeaderItem}" Content="Tags"/>
+                            <WrapPanel Margin="12" Name="TagsStackPanel" Background="#EDEDED">
 
-                        <ScrollViewer Grid.Row="2" MinHeight="200">
-                            <StackPanel Margin="12" Name="TagsStackPanel" Orientation="Vertical" Background="#FFFFFF">
-                            </StackPanel>
-                        </ScrollViewer>
+                            </WrapPanel>
+                        </WrapPanel>
                     </Grid>
                 </Grid>
 

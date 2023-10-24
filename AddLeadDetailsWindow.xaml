@@ -89,11 +89,9 @@
                         </WrapPanel>
 
                         <Label Grid.Row="1" Style="{StaticResource tableSubHeaderItem}" Content="Tags"/>
-                        
-                        <ScrollViewer Grid.Row="2" MinHeight="200">
-                            <StackPanel Margin="12" Name="TagsStackPanel" Orientation="Vertical" Background="#FFFFFF">
-                            </StackPanel>
-                        </ScrollViewer>
+
+                        <WrapPanel Grid.Row="2" Margin="12" Name="TagsStackPanel" Background="#EDEDED">
+                            </WrapPanel>
                     </Grid>
 
                 </Grid>

@@ -32,7 +32,8 @@
             <Setter Property="TextBlock.HorizontalAlignment" Value="Left" />
             <Setter Property="TextBlock.FontWeight" Value="SemiBold" />
             <Setter Property="TextBlock.FontSize" Value="20" />
-            <Setter Property="TextBlock.Padding" Value="12,12,0,0"/>
+            <Setter Property="TextBlock.Padding" Value="0,12,0,0"/>
+            <Setter Property="TextBlock.Margin" Value="12,0,0,0"/>
             <Setter Property="TextBlock.Foreground" Value="Gray" />
             <Setter Property="TextBlock.Background" Value="White" />
         </Style>
@@ -56,12 +57,9 @@
             <Setter Property="FontSize" Value="16" />
         </Style>
         <Style x:Key="tableSubHeaderItem" TargetType="{x:Type Label}">
-            <Setter Property="VerticalAlignment" Value="Stretch" />
-            <Setter Property="HorizontalAlignment" Value="Stretch" />
             <Setter Property="VerticalContentAlignment" Value="Center" />
-            <Setter Property="HorizontalContentAlignment" Value="Center" />
-            <Setter Property="Foreground" Value="#FFFFFF" />
-            <Setter Property="Background" Value="#000000" />
+            <Setter Property="HorizontalContentAlignment" Value="Left" />
+            <Setter Property="Foreground" Value="#000000" />
             <Setter Property="FontFamily" Value="Sans Serif" />
             <Setter Property="FontWeight" Value="DemiBold" />
             <Setter Property="FontSize" Value="16" />
@@ -234,13 +232,13 @@
             <Setter Property="Foreground" Value="#000000" />
         </Style>
         <Style x:Key="filterTextBoxStyleM" TargetType="{x:Type TextBox}">
-            <Setter Property="Width" Value="100" />
+            <Setter Property="Width" Value="140" />
             <Setter Property="VerticalAlignment" Value="Center" />
             <Setter Property="HorizontalAlignment" Value="Center" />
             <Setter Property="Margin" Value="12"/>
             <Setter Property="FontFamily" Value="Sans Serif" />
             <Setter Property="FontWeight" Value="DemiBold" />
-            <Setter Property="FontSize" Value="10" />
+            <Setter Property="FontSize" Value="14" />
             <Setter Property="Foreground" Value="#000000" />
         </Style>
         <Style x:Key="comboBoxStyle" TargetType="{x:Type ComboBox}">
@@ -277,12 +275,13 @@
         </Style>
         <Style x:Key="filterComboBoxStyleM" TargetType="{x:Type ComboBox}">
             <Setter Property="Width" Value="100" />
+            <Setter Property="Height" Value="24" />
             <Setter Property="VerticalAlignment" Value="Center" />
             <Setter Property="HorizontalAlignment" Value="Center" />
             <Setter Property="Margin" Value="12"/>
             <Setter Property="FontFamily" Value="Sans Serif" />
             <Setter Property="FontWeight" Value="DemiBold" />
-            <Setter Property="FontSize" Value="10" />
+            <Setter Property="FontSize" Value="14" />
             <Setter Property="Foreground" Value="#000000" />
         </Style>
         <Style x:Key="datePickerStyle" TargetType="{x:Type DatePicker}">
@@ -395,8 +394,8 @@
             <Setter Property="Foreground" Value="#FFFFFF" />
         </Style>
         <Style x:Key="buttonBrowseStyleM" TargetType="{x:Type Button}">
-            <Setter Property="Width" Value="80" />
-            <Setter Property="Height" Value="20" />
+            <Setter Property="Width" Value="110" />
+            <Setter Property="Height" Value="24" />
             <Setter Property="Margin" Value="10" />
             <Setter Property="Padding" Value="4" />
             <Setter Property="HorizontalAlignment" Value="Center" />
@@ -405,7 +404,7 @@
             <Setter Property="VerticalContentAlignment" Value="Center" />
             <Setter Property="FontFamily" Value="Sans Serif" />
             <Setter Property="FontWeight" Value="SemiBold" />
-            <Setter Property="FontSize" Value="10" />
+            <Setter Property="FontSize" Value="14" />
             <Setter Property="Background" Value="#000000" />
             <Setter Property="Foreground" Value="#FFFFFF" />
         </Style>
@@ -438,9 +437,10 @@
         
         <Style x:Key="BorderIcon" TargetType="{x:Type Border}">
             <Setter Property="CornerRadius" Value="10"/>
-            <Setter Property="Height" Value="25" />
+            <Setter Property="Height" Value="30" />
+            <Setter Property="Width" Value="auto" />
             <Setter Property="Margin" Value="6" />
-            <Setter Property="Background" Value="#000000" />
+            <Setter Property="Background" Value="#63666A" />
             
         </Style>
 
@@ -454,6 +454,7 @@
         <Style x:Key="selectedMainTabBorder" TargetType="{x:Type Border}">
             <Setter Property="CornerRadius" Value="0,0,20,0"/>
             <Setter Property="Width" Value="200"/>
+            <Setter Property="Margin" Value="4 0 0 0"/>
             <Setter Property="Background" Value="#FFFFFF" />
             <Setter Property="BorderBrush" Value="#FFFFFF" />
         </Style>
@@ -474,7 +475,9 @@
 
         <Style x:Key="BorderIconTextLabel" TargetType="{x:Type Label}">
             <Setter Property="FontFamily" Value="Sans Serif" />
-            <Setter Property="FontWeight" Value="Bold" />
+            <Setter Property="FontWeight" Value="Normal" />
+            <Setter Property="FontSize" Value="16" />
+            <Setter Property="Padding" Value="4" />
             <Setter Property="Foreground" Value="#FFFFFF" />
             <Setter Property="HorizontalContentAlignment" Value="Center"/>
             <Setter Property="VerticalContentAlignment" Value="Center"/>

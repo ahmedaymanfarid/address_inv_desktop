@@ -36,7 +36,7 @@ namespace address_inv_desktop
 
         String firstName;
         String lastName;
-
+        String email;
         protected List<COMPANY_ORGANISATION_MACROS.JOB_TITLE_STRUCT> jobTitles;
         protected List<BASIC_STRUCTS.LEAD_STATUS_STRUCT> leadsStatus;
         protected List<REAL_STATE_MACROS.BUDGET_RANGE_STRUCT> budgetRanges;
@@ -98,6 +98,7 @@ namespace address_inv_desktop
                 return;
 
             DisableNecessaryItems();
+
         }
 
         //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -210,7 +211,7 @@ namespace address_inv_desktop
 
                 Label currentTagLabel = new Label();
                 currentTagLabel.Style = (Style)FindResource("BorderIconTextLabel");
-                currentTagLabel.Content = listOfTags[i].property_tag;
+                currentTagLabel.Content = "  "+listOfTags[i].property_tag+"  ";
 
                 Border currentBorder = new Border();
                 currentBorder.Style = (Style)FindResource("BorderIcon");
@@ -283,15 +284,15 @@ namespace address_inv_desktop
 
             if (!listOfSelectedTags.Exists(tag_item => tag_item.tag_id == currentSelectedTag.tag_id))
             {
-                currentSelectedIcon.Background = (Brush)brush.ConvertFrom("#EDEDED");
-                currentSelectedLabel.Foreground = (Brush)brush.ConvertFrom("#000000");
+                currentSelectedIcon.Background = (Brush)brush.ConvertFrom("#000000");
+                currentSelectedLabel.Foreground = (Brush)brush.ConvertFrom("#ffffff");
 
                 listOfSelectedTags.Add(currentSelectedTag);
             }
 
             else
             {
-                currentSelectedIcon.Background = (Brush)brush.ConvertFrom("#000000");
+                currentSelectedIcon.Background = (Brush)brush.ConvertFrom("#63666A");
                 currentSelectedLabel.Foreground = (Brush)brush.ConvertFrom("#FFFFFF");
                 listOfSelectedTags.Remove(listOfSelectedTags.Find(tag_item => tag_item.tag_id == currentSelectedTag.tag_id));
             }
@@ -307,6 +308,10 @@ namespace address_inv_desktop
 
         }
         private void OnTextChangedLastName(object sender, TextChangedEventArgs e)
+        {
+
+        }
+        private void OnTextChangedEmail(object sender, TextChangedEventArgs e)
         {
 
         }
@@ -354,7 +359,21 @@ namespace address_inv_desktop
 
             return true;
         }
+        
+        private bool CheckEmailEditBox()
+        {
+            String inputString = leadEmailTextBox.Text;
+            String outputString = leadEmailTextBox.Text;
 
+            if (!integrityChecker.CheckLeadBusinessEmailEditBox(inputString,49, ref outputString, true, ref returnMessage))
+                return false;
+
+            email = outputString;
+            lead.SetLeadBusinessEmail(email);
+            leadEmailTextBox.Text = email;
+
+            return true;
+        }
         private bool CheckLeadGenderComboBox()
         {
             if (leadGenderComboBox.SelectedItem != null)
@@ -512,6 +531,8 @@ namespace address_inv_desktop
                 return;
             if (!CheckLeadLastNameEditBox())
                 return;
+            if (!CheckEmailEditBox())
+                return;
             if (!CheckStatusComboBox())
                 return;
             if (!CheckLeadBusinessPhoneEditBox())
@@ -541,6 +562,9 @@ namespace address_inv_desktop
                 return;
             if (!CheckFollowUpDatePicker())
                 return;
+
+            if (!lead.InsertIntoLeadsInterests())
+                return ;
 
             if (!CheckInterestedAreas())
                 return;

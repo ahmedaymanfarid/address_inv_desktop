@@ -9,12 +9,11 @@
 
     <Grid>
 
-        <Grid.ColumnDefinitions>
+        <Grid.ColumnDefinitions >
             <ColumnDefinition Width="0.25*" MinWidth="240"/>
             <ColumnDefinition Width="1*"/>
         </Grid.ColumnDefinitions>
-
-        <Grid Grid.Column="0" MinHeight="300" Background="white">
+        <Grid Grid.Column="0" MinHeight="300" Background="white" >
 
             <Grid.RowDefinitions>
                 <RowDefinition />
@@ -28,39 +27,35 @@
                 <RowDefinition />
             </Grid.RowDefinitions>
             <Border  Grid.Row="1" Background="#EDEDED" BorderThickness="4,0,0,0" BorderBrush="Black"></Border>
-            <Rectangle />
-
-            <TextBlock Grid.Row="0"  Style="{StaticResource sideNavigationItemStyle}" Name="DashboardLabel" Text="     Dashboard" MouseLeftButtonDown="OnButtonClickedDashboard" />
-            <Image Grid.Row="0" Source="Icons\chart_histogram.png" Height="30" Width="30" Margin="-200 10 0 0"/>
-
-            <TextBlock Grid.Row="1"  Style="{StaticResource sideNavigationItemStyle}" Name="LeadsLabel" Text="   Leads" MouseLeftButtonDown="OnButtonClickedLeads" Margin="20 0 0 0" Background="#EDEDED" Foreground="#000000" />
-            <Image Grid.Row="1" Source="Icons\note.png" Height="30" Width="30" Margin="-180 10 0 0"/>
-
-            <TextBlock Grid.Row="2"  Style="{StaticResource sideNavigationItemStyle}" Name="OwnersLabel" Text="     Owners" MouseLeftButtonDown="OnButtonClickedOwners"/>
-            <Image Grid.Row="2" Source="Icons\dashboard.png" Height="30" Width="30" Margin="-200 10 0 0"/>
-
-            <TextBlock Grid.Row="3"  Style="{StaticResource sideNavigationItemStyle}" Name="PropertiesLabel" Text="     Properties" MouseLeftButtonDown="OnButtonClickedProperties"/>
-            <Image Grid.Row="3" Source="Icons\apartment.png" Height="30" Width="30" Margin="-200 10 0 0"/>
-
-            <TextBlock Grid.Row="4"  Style="{StaticResource sideNavigationItemStyle}" Name="ClientVisitsLabel" Text="     Client Visits" MouseLeftButtonDown="OnButtonClickedVisits"/>
-            <Image Grid.Row="4" Source="Icons\client_visit_icon.png" Height="30" Width="30" Margin="-200 10 0 0"/>
-
-            <TextBlock Grid.Row="5"  Style="{StaticResource sideNavigationItemStyle}" Name="ClientCallsLabel" Text="     Client Calls" MouseLeftButtonDown="OnButtonClickedCalls"/>
-            <Image Grid.Row="5" Source="Icons\client_call_icon.png" Height="30" Width="30" Margin="-200 10 0 0"/>
-
-            <TextBlock Grid.Row="6"  Style="{StaticResource sideNavigationItemStyle}" Name="ClientAttemptsLabel" Text="     Client Attempts" MouseLeftButtonDown="OnButtonClickedAttempts"/>
-            <Image Grid.Row="6" Source="Icons\client_attempt_icon.png" Height="30" Width="30" Margin="-200 10 0 0"/>
             
-            <TextBlock Grid.Row="7"  Style="{StaticResource sideNavigationItemStyle}" Name="ClientFollowUpsLabel" Text="     Client Follow-ups" MouseLeftButtonDown="OnButtonClickedFollowUps"/>
-            <Image Grid.Row="7" Source="Icons\client_followup_icon.png" Height="30" Width="30" Margin="-200 10 0 0" />
+
+            <TextBlock Grid.Row="0"  Style="{StaticResource sideNavigationItemStyle}" Name="DashboardLabel" Text="Dashboard" MouseLeftButtonDown="OnButtonClickedDashboard" />
             
-            <TextBlock Grid.Row="8"  Style="{StaticResource sideNavigationItemStyle}" Name="AccountsLabel" Text="     Accounts" MouseLeftButtonDown="OnButtonClickedAccounts"/>
-            <Image Grid.Row="8" Source="Icons\portiat.png" Height="30" Width="30" Margin="-200 10 0 0" />
+            <TextBlock Grid.Row="1"  Style="{StaticResource sideNavigationItemStyle}" Name="LeadsLabel" Text="Leads" MouseLeftButtonDown="OnButtonClickedLeads" Background="#EDEDED" Foreground="#000000" />
+           
+
+            <TextBlock Grid.Row="2"  Style="{StaticResource sideNavigationItemStyle}" Name="OwnersLabel"  Text="Owners" MouseLeftButtonDown="OnButtonClickedOwners"/>
+            
+
+            <TextBlock Grid.Row="3"  Style="{StaticResource sideNavigationItemStyle}" Name="PropertiesLabel"   Text="Properties" MouseLeftButtonDown="OnButtonClickedProperties"/>
+        
+
+            <TextBlock Grid.Row="4"  Style="{StaticResource sideNavigationItemStyle}" Name="ClientVisitsLabel"  Text="Client Visits" MouseLeftButtonDown="OnButtonClickedVisits"/>
+           
+            <TextBlock Grid.Row="5"  Style="{StaticResource sideNavigationItemStyle}" Name="ClientCallsLabel"   Text="Client Calls" MouseLeftButtonDown="OnButtonClickedCalls"/>
+            
+
+            <TextBlock Grid.Row="6"  Style="{StaticResource sideNavigationItemStyle}" Name="ClientAttemptsLabel"  Text="Client Attempts" MouseLeftButtonDown="OnButtonClickedAttempts"/>
+            
+            <TextBlock Grid.Row="7"  Style="{StaticResource sideNavigationItemStyle}" Name="ClientFollowUpsLabel"  Text="Client Follow-ups" MouseLeftButtonDown="OnButtonClickedFollowUps"/>
+           
+            <TextBlock Grid.Row="8"  Style="{StaticResource sideNavigationItemStyle}" Name="AccountsLabel" Text="Accounts" MouseLeftButtonDown="OnButtonClickedAccounts"/>
+  
         </Grid>
 
 
         <Grid Grid.Column="1" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Background="White">
-
+           
             <Grid.ColumnDefinitions>
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
@@ -71,17 +66,18 @@
                 <RowDefinition Height="1*"/>
                 <RowDefinition Height="75"/>
             </Grid.RowDefinitions>
+            <Border  Grid.Column="1" Grid.RowSpan="4" BorderThickness="4,0,0,0" BorderBrush="Black"></Border>
 
             <Label Grid.Row="0" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Margin="48,24,48,24" Content="LEADS" Style="{StaticResource primaryHeaderTextStyle}"/>
 
-            <WrapPanel Grid.Row="1" Margin="60 0 0 0">
-                <ComboBox Style="{StaticResource filterComboBoxStyleM}" Width="80" IsEditable="True" IsReadOnly="True" Text="Assigned by"></ComboBox >
-                <ComboBox Style="{StaticResource filterComboBoxStyleM}" Width="80" IsEditable="True" IsReadOnly="True" Text="Lead Type"></ComboBox>
-                 <ComboBox Style="{StaticResource filterComboBoxStyleM}" Width="100" IsEditable="True" IsReadOnly="True" Text="Additional Filter"></ComboBox>
+            <WrapPanel Grid.Row="1" Margin="50 0 0 0">
+                <ComboBox Style="{StaticResource filterComboBoxStyleM}" Width="120" IsEditable="True" IsReadOnly="True" Text="Assigned by"></ComboBox >
+                <ComboBox Style="{StaticResource filterComboBoxStyleM}" Width="120" IsEditable="True" IsReadOnly="True" Text="Lead Type"></ComboBox>
+                 <ComboBox Style="{StaticResource filterComboBoxStyleM}" Width="140" IsEditable="True" IsReadOnly="True" Text="Additional Filter"></ComboBox>
                 <Grid>
                 
-                    <TextBox Style="{StaticResource filterTextBoxStyleM}" VerticalContentAlignment="Center" Height="17" Text="    Search for Leads"/>
-                    <Image Width="8" Margin="-85 0 0 0" Source="Icons\search_icon.png"></Image>
+                    <TextBox Style="{StaticResource filterTextBoxStyleM}" VerticalContentAlignment="Center" Height="24" Text="    Search for Leads"/>
+                    <Image Width="8" Margin="-125 0 0 0" Source="Icons\search_icon.png"></Image>
                 </Grid>
                 <Button Style="{StaticResource buttonBrowseStyleM}" Content="＋  Add Lead"></Button>
             </WrapPanel>
@@ -138,7 +134,7 @@
                             <RowDefinition />
                             <RowDefinition />
                         </Grid.RowDefinitions>
-                        <Border Background="#E6E6E3" Grid.Column="0" Grid.RowSpan="5" CornerRadius="8" Margin="8">
+                        <Border Background="#E6E6E3" Grid.Column="0" Grid.RowSpan="7" CornerRadius="8" Margin="8">
                         <Rectangle />
                         </Border>
                         <Border  Grid.Column="0" CornerRadius="5" Background="White" Margin="16 16 16 4">
@@ -150,7 +146,7 @@
                                 </Grid>
                             </Grid>
                         </Border>
-                        <Border  Grid.Column="1" Grid.RowSpan="6" Background="#E6E6E3" CornerRadius="8" Margin="8">
+                        <Border  Grid.Column="1" Grid.RowSpan="7" Background="#E6E6E3" CornerRadius="8" Margin="8">
                         <Rectangle/>
                         </Border>
                         <Border  Grid.Column="1" CornerRadius="5" Background="White" Margin="16 16 16 4">
@@ -164,7 +160,7 @@
                         </Border>
                             </Grid>
                         </Border>
-                        <Border Grid.Column="2" Grid.RowSpan="5" Background="#E6E6E3" CornerRadius="8" Margin="8">
+                        <Border Grid.Column="2" Grid.RowSpan="7" Background="#E6E6E3" CornerRadius="8" Margin="8">
                         <Rectangle />
                         </Border>
                         <Border  Grid.Column="2" CornerRadius="5" Background="White" Margin="16 16 16 4">
