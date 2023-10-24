@@ -57,20 +57,6 @@ namespace address_inv_desktop
             visitsInfo = new List<REAL_STATE_MACROS.CLIENT_VISIT_STRUCT>();
             filteredVisits = new List<REAL_STATE_MACROS.CLIENT_VISIT_STRUCT>();
 
-            yearComboBox.IsEnabled = true;
-            yearComboBox.SelectedIndex = DateTime.Now.Year - BASIC_MACROS.CRM_START_YEAR;
-
-            monthComboBox.IsEnabled = false;
-            employeeComboBox.IsEnabled = false;
-
-            yearCheckBox.IsChecked = true;
-            employeeCheckBox.IsEnabled = false;
-
-            InitializeYearsComboBox();
-
-            if (!InitializeEmployeeComboBox())
-                return;
-
             GetVisits();
             InitializeStackPanel();
             InitializeGrid();
@@ -88,92 +74,22 @@ namespace address_inv_desktop
         ///
         private void SetDefaultSettings()
         {
-            yearCheckBox.IsChecked = true;
-
-            yearCheckBox.IsEnabled = false;
-
-            if (loggedInUser.GetEmployeePositionId() == COMPANY_ORGANISATION_MACROS.MANAGER_POSTION || loggedInUser.GetEmployeePositionId() == COMPANY_ORGANISATION_MACROS.TEAM_LEAD_POSTION || loggedInUser.GetEmployeePositionId() == COMPANY_ORGANISATION_MACROS.SENIOR_POSTION)
-            {
-                employeeCheckBox.IsChecked = false;
-                employeeCheckBox.IsEnabled = true;
-                employeeComboBox.IsEnabled = false;
-            }
-            else
-            {
-                employeeCheckBox.IsChecked = true;
-                employeeCheckBox.IsEnabled = false;
-                employeeComboBox.IsEnabled = false;
-            }
+            
         }
 
         /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
         //SET FUNCTIONS
         /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-        private void SetYearComboBox()
-        {
-            yearComboBox.SelectedIndex = DateTime.Now.Year - BASIC_MACROS.CRM_START_YEAR;
-        }
-        private void SetMonthComboBox()
-        {
-            monthComboBox.SelectedIndex = DateTime.Now.Month - 1;
-        }
-        private void SetDayComboBox()
-        {
-            dayComboBox.SelectedIndex = DateTime.Now.Day - 1;
-        }
-        private void SetEmployeeComboBox()
-        {
-            employeeComboBox.SelectedIndex = 0;
-
-            for (int i = 0; i < listOfEmployees.Count; i++)
-                if (loggedInUser.GetEmployeeId() == listOfEmployees[i].employee_id)
-                    employeeComboBox.SelectedIndex = i;
-        }
-        private void SetLeadComboBox()
-        {
-            leadComboBox.SelectedIndex = 0;
-        }
+      
 
         private void SetPropertyComboBox()
         {
-            propertyComboBox.SelectedIndex = 0;
+            //propertyComboBox.SelectedIndex = 0;
         }
         //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
         /// INITIALIZATION FUNCTIONS
         //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-        private void InitializeYearsComboBox()
-        {
-            for (int year = BASIC_MACROS.CRM_START_YEAR; year <= DateTime.Now.Year; year++)
-                yearComboBox.Items.Add(year);
-
-        }
-        private void InitializeMonthsComboBox()
-        {
-            for (int i = 0; i < BASIC_MACROS.NO_OF_QUARTERS; i++)
-                monthComboBox.Items.Add(commonFunctionsObject.GetListOfMonths()[i]);
-
-        }
-        private bool InitializeEmployeeComboBox()
-        {
-            if (!commonQueriesObject.GetTeamEmployees(loggedInUser.GetEmployeeTeamId(), ref listOfEmployees))
-                return false;
-
-            for (int i = 0; i < listOfEmployees.Count; i++)
-                employeeComboBox.Items.Add(listOfEmployees[i].employee_name);
-
-            return true;
-        }
-        private bool InitializeLeadComboBox()
-        {
-            if (!commonQueriesObject.GetEmployeeLeads(loggedInUser.GetEmployeeId(), ref listOfLeads))
-                return false;
-
-            for (int i = 0; i < listOfEmployees.Count; i++)
-                employeeComboBox.Items.Add(listOfEmployees[i].employee_name);
-
-            return true;
-        }
-
+       
         private void InitializeStackPanel()
         {
             ClientVisitsStackPanel.Children.Clear();
@@ -183,14 +99,14 @@ namespace address_inv_desktop
             {
                 DateTime currentVisitDate = visitsInfo[i].visit_date;
 
-                if (yearCheckBox.IsChecked == true && currentVisitDate.Year != selectedYear)
-                    continue;
-
-                if (monthCheckBox.IsChecked == true && currentVisitDate.Month != selectedMonth)
-                    continue;
-
-                if (employeeCheckBox.IsChecked == true && visitsInfo[i].sales_person_id != listOfEmployees[employeeComboBox.SelectedIndex].employee_id)
-                    continue;
+                //if (yearCheckBox.IsChecked == true && currentVisitDate.Year != selectedYear)
+                //    continue;
+                //
+                //if (monthCheckBox.IsChecked == true && currentVisitDate.Month != selectedMonth)
+                //    continue;
+                //
+                //if (employeeCheckBox.IsChecked == true && visitsInfo[i].sales_person_id != listOfEmployees[employeeComboBox.SelectedIndex].employee_id)
+                //    continue;
 
                 filteredVisits.Add(visitsInfo[i]);
 
@@ -237,113 +153,113 @@ namespace address_inv_desktop
         private bool InitializeGrid()
         {
              
-            clientVisitsGrid.Children.Clear();
-            clientVisitsGrid.RowDefinitions.Clear();
-            clientVisitsGrid.ColumnDefinitions.Clear();
-
-            filteredVisits.Clear();
-
-            Label salesPersonHeader = new Label();
-            salesPersonHeader.Content = "Sales Person";
-            salesPersonHeader.Style = (Style)FindResource("tableSubHeaderItem");
-
-            Label dateOfVisitHeader = new Label();
-            dateOfVisitHeader.Content = "Visit Date";
-            dateOfVisitHeader.Style = (Style)FindResource("tableSubHeaderItem");
-
-            Label contactInfoHeader = new Label();
-            contactInfoHeader.Content = "Lead Info";
-            contactInfoHeader.Style = (Style)FindResource("tableSubHeaderItem");
-
-            Label purposeHeader = new Label();
-            purposeHeader.Content = "Visit Purpose";
-            purposeHeader.Style = (Style)FindResource("tableSubHeaderItem");
-
-            Label resultHeader = new Label();
-            resultHeader.Content = "Visit Result";
-            resultHeader.Style = (Style)FindResource("tableSubHeaderItem");
-
-            clientVisitsGrid.ColumnDefinitions.Add(new ColumnDefinition());
-            clientVisitsGrid.ColumnDefinitions.Add(new ColumnDefinition());
-            clientVisitsGrid.ColumnDefinitions.Add(new ColumnDefinition());
-            
-            clientVisitsGrid.RowDefinitions.Add(new RowDefinition());
-
-            
-
-            Grid.SetRow(salesPersonHeader, 0);
-            Grid.SetColumn(salesPersonHeader, 0);
-            clientVisitsGrid.Children.Add(salesPersonHeader);
-
-            Grid.SetRow(dateOfVisitHeader, 0);
-            Grid.SetColumn(dateOfVisitHeader, 1);
-            clientVisitsGrid.Children.Add(dateOfVisitHeader);
-
-            Grid.SetRow(contactInfoHeader, 0);
-            Grid.SetColumn(contactInfoHeader, 2);
-            clientVisitsGrid.Children.Add(contactInfoHeader);
-
-            Grid.SetRow(purposeHeader, 0);
-            Grid.SetColumn(purposeHeader, 3);
-            clientVisitsGrid.Children.Add(purposeHeader);
-
-            Grid.SetRow(resultHeader, 0);
-            Grid.SetColumn(resultHeader, 4);
-            clientVisitsGrid.Children.Add(resultHeader);
-
-            int currentRowNumber = 1;
-
-            for (int i = 0; i < visitsInfo.Count; i++)
-            {
-                DateTime currentVisitDate = visitsInfo[i].visit_date;
-
-                if (yearCheckBox.IsChecked == true && currentVisitDate.Year != selectedYear)
-                    continue;
-
-                if (monthCheckBox.IsChecked == true && currentVisitDate.Month != selectedMonth)
-                    continue;
-
-                if (employeeCheckBox.IsChecked == true && visitsInfo[i].sales_person_id != listOfEmployees[employeeComboBox.SelectedIndex].employee_id)
-                    continue;
-
-                filteredVisits.Add(visitsInfo[i]);
-
-
-                RowDefinition currentRow = new RowDefinition();
-
-                clientVisitsGrid.RowDefinitions.Add(currentRow);
-
-                Label salesPersonLabel = new Label();
-                salesPersonLabel.Content = visitsInfo[i].sales_person_name;
-                salesPersonLabel.Style = (Style)FindResource("tableSubItemLabel");
-
-                Grid.SetRow(salesPersonLabel, currentRowNumber);
-                Grid.SetColumn(salesPersonLabel, 0);
-                clientVisitsGrid.Children.Add(salesPersonLabel);
-
-
-                Label dateOfVisitLabel = new Label();
-                dateOfVisitLabel.Content = visitsInfo[i].visit_date;
-                dateOfVisitLabel.Style = (Style)FindResource("tableSubItemLabel");
-
-                Grid.SetRow(dateOfVisitLabel, currentRowNumber);
-                Grid.SetColumn(dateOfVisitLabel, 1);
-                clientVisitsGrid.Children.Add(dateOfVisitLabel);
-
-
-                Label contactInfoLabel = new Label();
-                contactInfoLabel.Content = visitsInfo[i].lead_name;
-                contactInfoLabel.Style = (Style)FindResource("tableSubItemLabel");
-
-                Grid.SetRow(contactInfoLabel, currentRowNumber);
-                Grid.SetColumn(contactInfoLabel, 2);
-                clientVisitsGrid.Children.Add(contactInfoLabel);
-
-                //currentRow.MouseLeftButtonDown += OnBtnClickWorkOfferItem;
-
-                currentRowNumber++;
-            }
-
+            //clientVisitsGrid.Children.Clear();
+            //clientVisitsGrid.RowDefinitions.Clear();
+            //clientVisitsGrid.ColumnDefinitions.Clear();
+            //
+            //filteredVisits.Clear();
+            //
+            //Label salesPersonHeader = new Label();
+            //salesPersonHeader.Content = "Sales Person";
+            //salesPersonHeader.Style = (Style)FindResource("tableSubHeaderItem");
+            //
+            //Label dateOfVisitHeader = new Label();
+            //dateOfVisitHeader.Content = "Visit Date";
+            //dateOfVisitHeader.Style = (Style)FindResource("tableSubHeaderItem");
+            //
+            //Label contactInfoHeader = new Label();
+            //contactInfoHeader.Content = "Lead Info";
+            //contactInfoHeader.Style = (Style)FindResource("tableSubHeaderItem");
+            //
+            //Label purposeHeader = new Label();
+            //purposeHeader.Content = "Visit Purpose";
+            //purposeHeader.Style = (Style)FindResource("tableSubHeaderItem");
+            //
+            //Label resultHeader = new Label();
+            //resultHeader.Content = "Visit Result";
+            //resultHeader.Style = (Style)FindResource("tableSubHeaderItem");
+            //
+            //clientVisitsGrid.ColumnDefinitions.Add(new ColumnDefinition());
+            //clientVisitsGrid.ColumnDefinitions.Add(new ColumnDefinition());
+            //clientVisitsGrid.ColumnDefinitions.Add(new ColumnDefinition());
+            //
+            //clientVisitsGrid.RowDefinitions.Add(new RowDefinition());
+            //
+            //
+            //
+            //Grid.SetRow(salesPersonHeader, 0);
+            //Grid.SetColumn(salesPersonHeader, 0);
+            //clientVisitsGrid.Children.Add(salesPersonHeader);
+            //
+            //Grid.SetRow(dateOfVisitHeader, 0);
+            //Grid.SetColumn(dateOfVisitHeader, 1);
+            //clientVisitsGrid.Children.Add(dateOfVisitHeader);
+            //
+            //Grid.SetRow(contactInfoHeader, 0);
+            //Grid.SetColumn(contactInfoHeader, 2);
+            //clientVisitsGrid.Children.Add(contactInfoHeader);
+            //
+            //Grid.SetRow(purposeHeader, 0);
+            //Grid.SetColumn(purposeHeader, 3);
+            //clientVisitsGrid.Children.Add(purposeHeader);
+            //
+            //Grid.SetRow(resultHeader, 0);
+            //Grid.SetColumn(resultHeader, 4);
+            //clientVisitsGrid.Children.Add(resultHeader);
+            //
+            //int currentRowNumber = 1;
+            //
+            //for (int i = 0; i < visitsInfo.Count; i++)
+            //{
+            //    DateTime currentVisitDate = visitsInfo[i].visit_date;
+            //
+            //    if (yearCheckBox.IsChecked == true && currentVisitDate.Year != selectedYear)
+            //        continue;
+            //
+            //    if (monthCheckBox.IsChecked == true && currentVisitDate.Month != selectedMonth)
+            //        continue;
+            //
+            //    if (employeeCheckBox.IsChecked == true && visitsInfo[i].sales_person_id != listOfEmployees[employeeComboBox.SelectedIndex].employee_id)
+            //        continue;
+            //
+            //    filteredVisits.Add(visitsInfo[i]);
+            //
+            //
+            //    RowDefinition currentRow = new RowDefinition();
+            //
+            //    clientVisitsGrid.RowDefinitions.Add(currentRow);
+            //
+            //    Label salesPersonLabel = new Label();
+            //    salesPersonLabel.Content = visitsInfo[i].sales_person_name;
+            //    salesPersonLabel.Style = (Style)FindResource("tableSubItemLabel");
+            //
+            //    Grid.SetRow(salesPersonLabel, currentRowNumber);
+            //    Grid.SetColumn(salesPersonLabel, 0);
+            //    clientVisitsGrid.Children.Add(salesPersonLabel);
+            //
+            //
+            //    Label dateOfVisitLabel = new Label();
+            //    dateOfVisitLabel.Content = visitsInfo[i].visit_date;
+            //    dateOfVisitLabel.Style = (Style)FindResource("tableSubItemLabel");
+            //
+            //    Grid.SetRow(dateOfVisitLabel, currentRowNumber);
+            //    Grid.SetColumn(dateOfVisitLabel, 1);
+            //    clientVisitsGrid.Children.Add(dateOfVisitLabel);
+            //
+            //
+            //    Label contactInfoLabel = new Label();
+            //    contactInfoLabel.Content = visitsInfo[i].lead_name;
+            //    contactInfoLabel.Style = (Style)FindResource("tableSubItemLabel");
+            //
+            //    Grid.SetRow(contactInfoLabel, currentRowNumber);
+            //    Grid.SetColumn(contactInfoLabel, 2);
+            //    clientVisitsGrid.Children.Add(contactInfoLabel);
+            //
+            //    //currentRow.MouseLeftButtonDown += OnBtnClickWorkOfferItem;
+            //
+            //    currentRowNumber++;
+            //}
+            //
             return true;
         }
 
@@ -448,169 +364,7 @@ namespace address_inv_desktop
             viewClientVisitWindow.Show();
         }
 
-        private void OnBtnClickExport(object sender, RoutedEventArgs e)
-        {
-            ExcelExport excelExport = new ExcelExport(clientVisitsGrid);
-        }
-
-        //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-        /// SELECTION CHANGED HANDLERS
-        //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-        private void OnSelChangedYearCombo(object sender, SelectionChangedEventArgs e)
-        {
-            if (yearComboBox.SelectedItem != null)
-                selectedYear = BASIC_MACROS.CRM_START_YEAR + yearComboBox.SelectedIndex;
-            else
-                selectedYear = 0;
-
-            InitializeStackPanel();
-            InitializeGrid();
-        }
-        private void OnSelChangedMonthCombo(object sender, SelectionChangedEventArgs e)
-        {
-            if (monthComboBox.SelectedItem != null)
-                selectedMonth = monthComboBox.SelectedIndex + 1;
-            else
-                selectedMonth = 0;
-
-            InitializeStackPanel();
-            InitializeGrid();
-        }
-        private void OnSelChangedDayCombo(object sender, SelectionChangedEventArgs e)
-        {
-            if (dayComboBox.SelectedItem != null)
-                selectedDay = dayComboBox.SelectedIndex + 1;
-            else
-                selectedDay = 0;
-
-            InitializeStackPanel();
-            InitializeGrid();
-        }
-
-        private void OnSelChangedLeadCombo(object sender, RoutedEventArgs e)
-        {
-            if (leadCheckBox.IsChecked == true)
-                selectedLead = listOfLeads[leadComboBox.SelectedIndex].contact.contact_id;
-            else
-                selectedLead = 0;
-
-            InitializeStackPanel();
-            InitializeGrid();
-        }
-        private void OnSelChangedEmployeeCombo(object sender, RoutedEventArgs e)
-        {
-            if (employeeCheckBox.IsChecked == true)
-                selectedEmployee = listOfEmployees[employeeComboBox.SelectedIndex].employee_id;
-            else
-                selectedEmployee = 0;
-
-            InitializeStackPanel();
-            InitializeGrid();
-        }
-
-        private void OnSelChangedPropertyCombo(object sender, RoutedEventArgs e)
-        {
-            if (propertyCheckBox.IsChecked == true)
-                selectedLead = listOfLeads[leadComboBox.SelectedIndex].contact.contact_id;
-            else
-                selectedLead = 0;
-
-            InitializeStackPanel();
-            InitializeGrid();
-        }
-        //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-        /// ON CHECK HANDLERS
-        //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-        private void OnCheckYearCheckBox(object sender, RoutedEventArgs e)
-        {
-            yearComboBox.IsEnabled = true;
-
-            SetYearComboBox();
-        }
-        private void OnCheckMonthCheckBox(object sender, RoutedEventArgs e)
-        {
-            monthComboBox.IsEnabled = true;
-
-            SetMonthComboBox();
-        }
-        private void OnCheckDayCheckBox(object sender, RoutedEventArgs e)
-        {
-            dayComboBox.IsEnabled = true;
-
-            SetDayComboBox();
-        }
-
-        private void OnCheckEmployeeCheckBox(object sender, RoutedEventArgs e)
-        {
-            employeeComboBox.IsEnabled = true;
-
-            SetEmployeeComboBox();
-        }
-        private void OnCheckLeadCheckBox(object sender, RoutedEventArgs e)
-        {
-            leadComboBox.IsEnabled = true;
-
-            SetLeadComboBox();
-        }
-
-        private void OnCheckPropertyCheckBox(object sender, RoutedEventArgs e)
-        {
-            propertyComboBox.IsEnabled = true;
-
-            SetPropertyComboBox();
-        }
-        //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-        /// ON UNCHECK HANDLERS
-        //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-        private void OnUncheckYearCheckBox(object sender, RoutedEventArgs e)
-        {
-            yearComboBox.IsEnabled = false;
-            yearComboBox.SelectedItem = null;
-
-            currentSelectedVisitItem = null;
-            previousSelectedVisitItem = null;
-        }
-        private void OnUncheckMonthCheckBox(object sender, RoutedEventArgs e)
-        {
-            monthComboBox.IsEnabled = false; 
-            monthComboBox.SelectedItem = null;
-
-            currentSelectedVisitItem = null;
-            previousSelectedVisitItem = null;
-        }
-        private void OnUncheckDayCheckBox(object sender, RoutedEventArgs e)
-        {
-            dayComboBox.IsEnabled = false;
-            dayComboBox.SelectedItem = null;
-
-            currentSelectedVisitItem = null;
-            previousSelectedVisitItem = null;
-        }
-        private void OnUncheckEmployeeCheckBox(object sender, RoutedEventArgs e)
-        {
-            employeeComboBox.IsEnabled = false;
-            employeeComboBox.SelectedItem = null;
-
-            currentSelectedVisitItem = null;
-            previousSelectedVisitItem = null;
-        }
-        private void OnUncheckLeadCheckBox(object sender, RoutedEventArgs e)
-        {
-            leadComboBox.IsEnabled = false;
-            leadComboBox.SelectedItem = null;
-
-            currentSelectedVisitItem = null;
-            previousSelectedVisitItem = null;
-        }
-
-        private void OnUncheckPropertyCheckBox(object sender, RoutedEventArgs e)
-        {
-            propertyComboBox.IsEnabled = false;
-            propertyComboBox.SelectedItem = null;
-
-            currentSelectedVisitItem = null;
-            previousSelectedVisitItem = null;
-        }
+   
         private void OnClosedAddVisitWindow(object sender, EventArgs e)
         {
             GetVisits();
