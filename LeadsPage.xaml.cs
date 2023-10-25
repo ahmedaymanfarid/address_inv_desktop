@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -43,9 +43,14 @@ namespace address_inv_desktop
         //private List<KeyValuePair<int, StackPanel>> salesStackArray;
         private List<KeyValuePair<COMPANY_ORGANISATION_MACROS.CONTACT_MIN_LIST_STRUCT, TreeViewItem>> leadsTreeArray;
         private List<KeyValuePair<COMPANY_ORGANISATION_MACROS.CONTACT_MIN_LIST_STRUCT, StackPanel>> leadsStackArray;
-
+        private List<COMPANY_ORGANISATION_MACROS.CONTACT_LIST_STRUCT> employeeLeadListCold;
+        private List<COMPANY_ORGANISATION_MACROS.CONTACT_LIST_STRUCT> employeeLeadListWarm;
+        private List<COMPANY_ORGANISATION_MACROS.CONTACT_LIST_STRUCT> employeeLeadListHot;
         public LeadsPage(ref Employee mLoggedInUser)
         {
+            employeeLeadListCold = new List<COMPANY_ORGANISATION_MACROS.CONTACT_LIST_STRUCT>();
+            employeeLeadListWarm = new List<COMPANY_ORGANISATION_MACROS.CONTACT_LIST_STRUCT>();
+            employeeLeadListHot = new List<COMPANY_ORGANISATION_MACROS.CONTACT_LIST_STRUCT>();
             employeesLeads = new List<KeyValuePair<COMPANY_ORGANISATION_MACROS.EMPLOYEE_STRUCT, List<COMPANY_ORGANISATION_MACROS.CONTACT_LIST_STRUCT>>>();
             listOfEmployees = new List<COMPANY_ORGANISATION_MACROS.EMPLOYEE_STRUCT>();
 
@@ -77,16 +82,16 @@ namespace address_inv_desktop
             //if (!InitializeBudgetRangeComboBox())
             //    return;
             //
-            //if (!InitializeEmployeesList())
-            //    return;
-            //
-            //if (!GetAllLeads())
-            //    return;
-            //
-            //SetDefaultSettings();
-            //
-            //InitializeSalesPersonComboBox();
-            //InitializeLeadsTree();
+            if (!InitializeEmployeesList())
+                return;
+
+            if (!GetAllLeads())
+                return;
+
+            SetDefaultSettings();
+
+            InitializeSalesPersonComboBox();
+            InitializeLeadsTree();
             //InitializeLeadsStackPanel();
 
         }
@@ -140,12 +145,14 @@ namespace address_inv_desktop
 
             for (int i = 0; i < listOfEmployees.Count; i++)
             {
-                List<COMPANY_ORGANISATION_MACROS.CONTACT_LIST_STRUCT> employeeLeadList = new List<COMPANY_ORGANISATION_MACROS.CONTACT_LIST_STRUCT>();
-
-                if (!commonQueries.GetEmployeeLeads(listOfEmployees[i].employee_id, ref employeeLeadList))
+               
+                if (!commonQueries.GetEmployeeLeadsCold(listOfEmployees[i].employee_id, ref employeeLeadListCold))
                     return false;
-
-                 employeesLeads.Add(new KeyValuePair<COMPANY_ORGANISATION_MACROS.EMPLOYEE_STRUCT, List<COMPANY_ORGANISATION_MACROS.CONTACT_LIST_STRUCT>>(listOfEmployees[i], employeeLeadList));                
+                if (!commonQueries.GetEmployeeLeadsWarm(listOfEmployees[i].employee_id, ref employeeLeadListWarm))
+                    return false;
+                if (!commonQueries.GetEmployeeLeadsHot(listOfEmployees[i].employee_id, ref employeeLeadListHot))
+                    return false;
+                employeesLeads.Add(new KeyValuePair<COMPANY_ORGANISATION_MACROS.EMPLOYEE_STRUCT, List<COMPANY_ORGANISATION_MACROS.CONTACT_LIST_STRUCT>>(listOfEmployees[i], employeeLeadListCold));                
             }
 
             return true;
@@ -189,68 +196,295 @@ namespace address_inv_desktop
 
             leadsTreeArray.Clear();
 
-            for (int i = 0; i < employeesLeads.Count(); i++)
+            for (int i = 0; i < employeeLeadListCold.Count(); i++)
             {
                 //if (salesPersonComboBox.SelectedItem != null && listOfEmployees[salesPersonComboBox.SelectedIndex].employee_id != employeesLeads[i].Key.employee_id)
                 //    continue;
+                //contactStackView.Children.RemoveRange(6, 8);
+                Border dynamicBorder = new Border();
+                dynamicBorder.Margin = new Thickness(16, 8, 16, 8);
+                dynamicBorder.Background = Brushes.White;
+                dynamicBorder.CornerRadius = new CornerRadius(8);
 
-                TreeViewItem salesPersonItem = new TreeViewItem();
+                // Create the Grid
+                Grid dynamicGrid = new Grid();
 
-                salesPersonItem.Header = employeesLeads[i].Key.employee_name;
-                salesPersonItem.Foreground = new SolidColorBrush(Color.FromRgb(16, 90, 151));
-                salesPersonItem.FontSize = 14;
-                salesPersonItem.FontWeight = FontWeights.SemiBold;
-                salesPersonItem.FontFamily = new FontFamily("Sans Serif");
-                salesPersonItem.Tag = employeesLeads[i].Key.employee_id;
+                // Define the Column Definitions
+                ColumnDefinition col1 = new ColumnDefinition();
+                ColumnDefinition col2 = new ColumnDefinition();
+                col2.Width = new GridLength(25);
+                dynamicGrid.ColumnDefinitions.Add(col1);
+                dynamicGrid.ColumnDefinitions.Add(col2);
 
-                contactTreeView.Items.Add(salesPersonItem);
+                // Define the Row Definitions
+                RowDefinition row1 = new RowDefinition();
+                RowDefinition row2 = new RowDefinition();
+                RowDefinition row3 = new RowDefinition();
+                RowDefinition row4 = new RowDefinition();
+                RowDefinition row5 = new RowDefinition();
+                dynamicGrid.RowDefinitions.Add(row1);
+                dynamicGrid.RowDefinitions.Add(row2);
+                dynamicGrid.RowDefinitions.Add(row3);
+                dynamicGrid.RowDefinitions.Add(row4);
+                dynamicGrid.RowDefinitions.Add(row5);
 
-                for (int j = 0; j < employeesLeads[i].Value.Count; j++)
-                {
-                    //bool containsName = employeesLeads[i].Value[j].contact_name.IndexOf(contactNameTextBox.Text, StringComparison.OrdinalIgnoreCase) >= 0;
+                // Create the Labels
+                Label label1 = new Label();
+                label1.Content = employeeLeadListCold[i].contact_name;
+                label1.FontSize = 12;
+                label1.FontWeight = FontWeights.Bold;
+                Grid.SetRow(label1, 0);
 
-                    bool containsPhone = false;
+                Separator dynamicSeparator = new Separator();
+                dynamicSeparator.Margin = new Thickness(0, 29, 10, 0);
+                dynamicSeparator.FontWeight = FontWeights.UltraBold;
+                dynamicSeparator.Background = new SolidColorBrush(Color.FromArgb(0xFF, 0x86, 0xC5, 0xDA)); // Assuming you want the specific color #86c5da
+                
 
-                    //foreach (String contact_phone in employeesLeads[i].Value[j].contact_phones)
-                    //    containsPhone |= contact_phone.IndexOf(contactPhoneTextBox.Text, StringComparison.OrdinalIgnoreCase) >= 0;
-                    //
-                    //if (contactNameCheckBox.IsChecked == true && contactNameTextBox.Text != null && !containsName)
-                    //    continue;
-                    //if (contactPhoneCheckBox.IsChecked == true && contactPhoneTextBox.Text != null && !containsPhone)
-                    //    continue;
-                    //if (leadStatusCheckBox.IsChecked == true && leadStatusList[leadStatusComboBox.SelectedIndex].status_id != employeesLeads[i].Value[j].lead_status.status_id)
-                    //    continue;
-                    //if (budgetCheckBox.IsChecked == true && budgetRangeList[budgetComboBox.SelectedIndex].budget_id != employeesLeads[i].Value[j].budget_range.budget_id)
-                    //    continue;
-                    //
-                    //if (lastCallCheckBox.IsChecked == true && lastCallDatePicker.SelectedDate != employeesLeads[i].Value[j].last_call.Date)
-                    //    continue;
-                    //if (lastVisitCheckBox.IsChecked == true && lastVisitDatePicker.SelectedDate != employeesLeads[i].Value[j].last_visit.Date)
-                    //    continue;
-                    //if (lastAttemptCheckBox.IsChecked == true && lastAttemptDatePicker.SelectedDate != employeesLeads[i].Value[j].last_attempt.Date)
-                    //    continue;
+                Label label2 = new Label();
+                label2.Content = "✦ Doctor";
+                label2.FontSize = 10;
+                label2.FontWeight = FontWeights.SemiBold;
+                Grid.SetRow(label2, 1);
 
-                    TreeViewItem leadTreeItem = new TreeViewItem();
+                Label label3 = new Label();
+                label3.Content = "📞 (+20) 1063214506";
+                label3.FontSize = 10;
+                label3.FontWeight = FontWeights.SemiBold;
+                Grid.SetRow(label3, 2);
 
-                    leadTreeItem.Header = employeesLeads[i].Value[j].contact_name;
-                    leadTreeItem.Tag = employeesLeads[i].Value[j].contact_id;
-                    leadTreeItem.FontSize = 12;
-                    leadTreeItem.FontWeight = FontWeights.Normal;
+                Label label4 = new Label();
+                label4.Content = "◲ Appartment";
+                label4.FontSize = 10;
+                label4.FontWeight = FontWeights.SemiBold;
+                Grid.SetRow(label4, 3);
 
-                    salesPersonItem.Items.Add(leadTreeItem);
+                Label label5 = new Label();
+                label5.Content = "$ Budget Range: 5M-7.5M";
+                label5.FontSize = 10;
+                label5.FontWeight = FontWeights.SemiBold;
+                Grid.SetRow(label5, 4);
 
-                    COMPANY_ORGANISATION_MACROS.CONTACT_MIN_LIST_STRUCT lead_item = new COMPANY_ORGANISATION_MACROS.CONTACT_MIN_LIST_STRUCT();
+                // Create the Edit Button
+                Label editButton = new Label();
+                editButton.Name = "EditButton3";
+                editButton.HorizontalContentAlignment = HorizontalAlignment.Right;
+                editButton.Width = 25;
+                ImageBrush imageBrush = new ImageBrush();
+                imageBrush.ImageSource = new BitmapImage(new Uri("D:/real_estate_crm/address_inv_desktop/Icons/client_followup_icon.png", UriKind.Relative));
+                editButton.Background = imageBrush;
+                Grid.SetColumn(editButton, 1);
+                Grid.SetRow(editButton, 0);
 
-                    lead_item.sales_person_id = employeesLeads[i].Value[j].sales_person_id;
-                    lead_item.contact.contact_id = employeesLeads[i].Value[j].contact_id;
-                    lead_item.contact.contact_name = employeesLeads[i].Value[j].contact_name;
+                // Add the Labels to the Grid
+                dynamicGrid.Children.Add(label1);
+                dynamicGrid.Children.Add(dynamicSeparator);
+                dynamicGrid.Children.Add(label2);
+                dynamicGrid.Children.Add(label3);
+                dynamicGrid.Children.Add(label4);
+                dynamicGrid.Children.Add(label5);
+                dynamicGrid.Children.Add(editButton);
 
-                    leadsTreeArray.Add(new KeyValuePair<COMPANY_ORGANISATION_MACROS.CONTACT_MIN_LIST_STRUCT, TreeViewItem>(lead_item, leadTreeItem));
+                // Add the Grid to the Border
+                dynamicBorder.Child = dynamicGrid;
+                // Add the Border to your container, for example, a StackPanel named 'yourStackPanel'
+                contactStackView.Children.Add(dynamicBorder);
 
-                }
-
+                Grid.SetColumn(dynamicBorder, 2);
+                Grid.SetRow(dynamicBorder, i+1);
             }
+            for (int i = 0; i < employeeLeadListWarm.Count(); i++)
+            {
+                //if (salesPersonComboBox.SelectedItem != null && listOfEmployees[salesPersonComboBox.SelectedIndex].employee_id != employeesLeads[i].Key.employee_id)
+                //    continue;
+                //contactStackView.Children.RemoveRange(6, 8);
+                Border dynamicBorder = new Border();
+                dynamicBorder.Margin = new Thickness(16, 8, 16, 8);
+                dynamicBorder.Background = Brushes.White;
+                dynamicBorder.CornerRadius = new CornerRadius(8);
 
+                // Create the Grid
+                Grid dynamicGrid = new Grid();
+
+                // Define the Column Definitions
+                ColumnDefinition col1 = new ColumnDefinition();
+                ColumnDefinition col2 = new ColumnDefinition();
+                col2.Width = new GridLength(25);
+                dynamicGrid.ColumnDefinitions.Add(col1);
+                dynamicGrid.ColumnDefinitions.Add(col2);
+
+                // Define the Row Definitions
+                RowDefinition row1 = new RowDefinition();
+                RowDefinition row2 = new RowDefinition();
+                RowDefinition row3 = new RowDefinition();
+                RowDefinition row4 = new RowDefinition();
+                RowDefinition row5 = new RowDefinition();
+                dynamicGrid.RowDefinitions.Add(row1);
+                dynamicGrid.RowDefinitions.Add(row2);
+                dynamicGrid.RowDefinitions.Add(row3);
+                dynamicGrid.RowDefinitions.Add(row4);
+                dynamicGrid.RowDefinitions.Add(row5);
+
+                // Create the Labels
+                Label label1 = new Label();
+                label1.Content = employeeLeadListWarm[i].contact_name;
+                label1.FontSize = 12;
+                label1.FontWeight = FontWeights.Bold;
+                Grid.SetRow(label1, 0);
+
+                Separator dynamicSeparator = new Separator();
+                dynamicSeparator.Margin = new Thickness(0, 29, 10, 0);
+                dynamicSeparator.FontWeight = FontWeights.UltraBold;
+                dynamicSeparator.Background = Brushes.Orange;
+
+                Label label2 = new Label();
+                label2.Content = "✦ CEO";
+                label2.FontSize = 10;
+                label2.FontWeight = FontWeights.SemiBold;
+                Grid.SetRow(label2, 1);
+
+                Label label3 = new Label();
+                label3.Content = "📞 (+20) 1144957862";
+                label3.FontSize = 10;
+                label3.FontWeight = FontWeights.SemiBold;
+                Grid.SetRow(label3, 2);
+
+                Label label4 = new Label();
+                label4.Content = "◲ Villa";
+                label4.FontSize = 10;
+                label4.FontWeight = FontWeights.SemiBold;
+                Grid.SetRow(label4, 3);
+
+                Label label5 = new Label();
+                label5.Content = "$ Budget Range: 2.5M-3M";
+                label5.FontSize = 10;
+                label5.FontWeight = FontWeights.SemiBold;
+                Grid.SetRow(label5, 4);
+
+                // Create the Edit Button
+                Label editButton = new Label();
+                editButton.Name = "EditButton3";
+                editButton.HorizontalContentAlignment = HorizontalAlignment.Right;
+                editButton.Width = 25;
+                ImageBrush imageBrush = new ImageBrush();
+                imageBrush.ImageSource = new BitmapImage(new Uri("D:/real_estate_crm/address_inv_desktop/Icons/client_followup_icon.png", UriKind.Relative));
+                editButton.Background = imageBrush;
+                Grid.SetColumn(editButton, 1);
+                Grid.SetRow(editButton, 0);
+
+                // Add the Labels to the Grid
+                dynamicGrid.Children.Add(label1);
+                dynamicGrid.Children.Add(dynamicSeparator);
+                dynamicGrid.Children.Add(label2);
+                dynamicGrid.Children.Add(label3);
+                dynamicGrid.Children.Add(label4);
+                dynamicGrid.Children.Add(label5);
+                dynamicGrid.Children.Add(editButton);
+
+                // Add the Grid to the Border
+                dynamicBorder.Child = dynamicGrid;
+                // Add the Border to your container, for example, a StackPanel named 'yourStackPanel'
+                contactStackView.Children.Add(dynamicBorder);
+
+                Grid.SetColumn(dynamicBorder, 1);
+                Grid.SetRow(dynamicBorder, i+1);
+            }
+            for (int i = 0; i < employeeLeadListHot.Count(); i++)
+            {
+                //if (salesPersonComboBox.SelectedItem != null && listOfEmployees[salesPersonComboBox.SelectedIndex].employee_id != employeesLeads[i].Key.employee_id)
+                //    continue;
+                //contactStackView.Children.RemoveRange(6, 8);
+                Border dynamicBorder = new Border();
+                dynamicBorder.Margin = new Thickness(16, 8, 16, 8);
+                dynamicBorder.Background = Brushes.White;
+                dynamicBorder.CornerRadius = new CornerRadius(8);
+
+                // Create the Grid
+                Grid dynamicGrid = new Grid();
+
+                // Define the Column Definitions
+                ColumnDefinition col1 = new ColumnDefinition();
+                ColumnDefinition col2 = new ColumnDefinition();
+                col2.Width = new GridLength(25);
+                dynamicGrid.ColumnDefinitions.Add(col1);
+                dynamicGrid.ColumnDefinitions.Add(col2);
+
+                // Define the Row Definitions
+                RowDefinition row1 = new RowDefinition();
+                RowDefinition row2 = new RowDefinition();
+                RowDefinition row3 = new RowDefinition();
+                RowDefinition row4 = new RowDefinition();
+                RowDefinition row5 = new RowDefinition();
+                dynamicGrid.RowDefinitions.Add(row1);
+                dynamicGrid.RowDefinitions.Add(row2);
+                dynamicGrid.RowDefinitions.Add(row3);
+                dynamicGrid.RowDefinitions.Add(row4);
+                dynamicGrid.RowDefinitions.Add(row5);
+
+                // Create the Labels
+                Label label1 = new Label();
+                label1.Content = employeeLeadListHot[i].contact_name;
+                label1.FontSize = 12;
+                label1.FontWeight = FontWeights.Bold;
+                Grid.SetRow(label1, 0);
+
+                Separator dynamicSeparator = new Separator();
+                dynamicSeparator.Margin = new Thickness(0, 29, 10, 0);
+                dynamicSeparator.FontWeight = FontWeights.UltraBold;
+                dynamicSeparator.Background = Brushes.Red;
+
+                Label label2 = new Label();
+                label2.Content = "✦ Engineer";
+                label2.FontSize = 10;
+                label2.FontWeight = FontWeights.SemiBold;
+                Grid.SetRow(label2, 1);
+
+                Label label3 = new Label();
+                label3.Content = "📞 (+20) 119326278";
+                label3.FontSize = 10;
+                label3.FontWeight = FontWeights.SemiBold;
+                Grid.SetRow(label3, 2);
+
+                Label label4 = new Label();
+                label4.Content = "◲ Chalet";
+                label4.FontSize = 10;
+                label4.FontWeight = FontWeights.SemiBold;
+                Grid.SetRow(label4, 3);
+
+                Label label5 = new Label();
+                label5.Content = "$ Budget Range: 5M-7.5M";
+                label5.FontSize = 10;
+                label5.FontWeight = FontWeights.SemiBold;
+                Grid.SetRow(label5, 4);
+
+                // Create the Edit Button
+                Label editButton = new Label();
+                editButton.Name = "EditButton3";
+                editButton.HorizontalContentAlignment = HorizontalAlignment.Right;
+                editButton.Width = 25;
+                ImageBrush imageBrush = new ImageBrush();
+                imageBrush.ImageSource = new BitmapImage(new Uri("D:/real_estate_crm/address_inv_desktop/Icons/client_followup_icon.png", UriKind.Relative));
+                editButton.Background = imageBrush;
+                Grid.SetColumn(editButton, 1);
+                Grid.SetRow(editButton, 0);
+
+                // Add the Labels to the Grid
+                dynamicGrid.Children.Add(label1);
+                dynamicGrid.Children.Add(dynamicSeparator);
+                dynamicGrid.Children.Add(label2);
+                dynamicGrid.Children.Add(label3);
+                dynamicGrid.Children.Add(label4);
+                dynamicGrid.Children.Add(label5);
+                dynamicGrid.Children.Add(editButton);
+
+                // Add the Grid to the Border
+                dynamicBorder.Child = dynamicGrid;
+                // Add the Border to your container, for example, a StackPanel named 'yourStackPanel'
+                contactStackView.Children.Add(dynamicBorder);
+
+                Grid.SetColumn(dynamicBorder, 0);
+                Grid.SetRow(dynamicBorder, i + 1);
+            }
             return true;
         }
 

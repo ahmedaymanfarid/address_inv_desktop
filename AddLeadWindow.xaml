@@ -124,20 +124,20 @@
                             <Label Style="{StaticResource tableItemLabel}" Content="Interested State"/>
                             <ComboBox Style="{StaticResource comboBoxStyle}" Name="stateComboBox" SelectionChanged="OnSelChangedState"/>
                         </WrapPanel>
-
-                        <WrapPanel Name="CityWrapPanel">
+                        <WrapPanel Grid.Row="7">
+                            <WrapPanel Name="CityWrapPanel">
                             <Label Style="{StaticResource tableItemLabel}" Content="Interested City *"/>
                             <ComboBox Style="{StaticResource comboBoxStyle}" Name="cityComboBox" SelectionChanged="OnSelChangedCity"/>
                         </WrapPanel>
-                    </WrapPanel>
 
-                    <WrapPanel Grid.Row="7">
+                   
                         <WrapPanel Name="DistrictWrapPanel">
                             <Label Style="{StaticResource tableItemLabel}" Content="Interested District *"/>
                             <ComboBox Style="{StaticResource comboBoxStyle}" Name="districtComboBox" SelectionChanged="OnSelChangedDistrict"/>
                         </WrapPanel>
                     </WrapPanel>
 
+                    </WrapPanel>
                     <Grid Grid.Row="8">
 
                         <Grid.RowDefinitions>

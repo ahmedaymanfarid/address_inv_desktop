@@ -78,7 +78,7 @@
                     <TextBox Style="{StaticResource filterTextBoxStyleM}" VerticalContentAlignment="Center" Height="24" Text="    Search for Leads"/>
                     <Image Width="8" Margin="-125 0 0 0" Source="Icons\search_icon.png"></Image>
                 </Grid>
-                <Button Style="{StaticResource buttonBrowseStyleM}" Content="＋  Add Lead"></Button>
+                <Button Style="{StaticResource buttonBrowseStyleM}" Content="＋  Add Lead" Click="OnBtnClickAddLead"></Button>
             </WrapPanel>
             <!--
             <Grid Grid.Row="1" Margin="12,0">
@@ -173,7 +173,7 @@
                         </Border>
                     </Grid>
                 </Border>
-                <Border Grid.Column="0" Grid.Row="1" Margin="16 8 16 8" Background="White" CornerRadius="8">
+                <!--<Border Grid.Column="0" Grid.Row="1" Margin="16 8 16 8" Background="White" CornerRadius="8">
                         <Grid  >
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition/>
@@ -356,7 +356,7 @@
                                 </Label>
                             </Grid>
 
-                        </Border>
+                        </Border>-->
                        
                     </Grid>
                 </Border>

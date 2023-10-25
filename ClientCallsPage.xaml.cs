@@ -62,7 +62,7 @@ namespace address_inv_desktop
             loggedInUser = mLoggedInUser;
             currentDateTime = DateTime.Now;
 
-          
+            GetCallsReport();
             SetDateDefaultValues();
             SetDefaultSettings();
         }

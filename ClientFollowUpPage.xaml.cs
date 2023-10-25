@@ -61,9 +61,11 @@ namespace address_inv_desktop
 
             loggedInUser = mLoggedInUser;
             currentDateTime = DateTime.Now;
-
             SetDateDefaultValues();
             SetDefaultSettings();
+
+            GetFollowUpReport();
+            InitializeFollowUpStackPanel();
         }
         private bool GetFollowUpReport()
         {

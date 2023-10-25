@@ -568,7 +568,7 @@ namespace address_inv_desktop
 
             if (!CheckInterestedAreas())
                 return;
-
+            this.Close();///////change later
             if (!CheckInterestedTags())
                 return;
 
