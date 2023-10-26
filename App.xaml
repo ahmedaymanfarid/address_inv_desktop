@@ -411,19 +411,53 @@
         <Style x:Key="stackPanelItemHeader" TargetType="{x:Type Label}">
             <Setter Property="VerticalContentAlignment" Value="Center" />
             <Setter Property="FontFamily" Value="Sans Serif" />
+            <Setter Property="Padding" Value="14,10,0,0" />
             <Setter Property="FontWeight" Value="Bold" />
-            <Setter Property="FontSize" Value="16" />
+            <Setter Property="FontSize" Value="20" />
             <Setter Property="Foreground" Value="#000000" />
-            <Setter Property="Background" Value="#FFFFFF" />
         </Style>
 
         <Style x:Key="stackPanelItemBody" TargetType="{x:Type Label}">
             <Setter Property="VerticalContentAlignment" Value="Center" />
-            <Setter Property="Padding" Value="10,0,0,0" />
+            <Setter Property="Padding" Value="10,10,0,0" />
+            <Setter Property="Margin" Value="10,0,0,0" />
             <Setter Property="FontFamily" Value="Sans Serif" />
-            <Setter Property="FontSize" Value="12" />
+            <Setter Property="FontSize" Value="16" />
             <Setter Property="Foreground" Value="#000000" />
-            <Setter Property="Background" Value="#FFFFFF" />
+        </Style>
+        <Style x:Key="stackPanelItemBodyCold" TargetType="{x:Type Label}">
+            <Setter Property="VerticalContentAlignment" Value="Center" />
+            <Setter Property="Padding" Value="10,10,0,0" />
+            <Setter Property="Margin" Value="10,0,0,10" />
+            <Setter Property="FontFamily" Value="Sans Serif" />
+            <Setter Property="FontSize" Value="16" />
+            <Setter Property="Content" Value="Not Interested" />
+            <Setter Property="Foreground" Value="blue" />
+        </Style>
+        <Style x:Key="stackPanelItemBodyHot" TargetType="{x:Type Label}">
+            <Setter Property="VerticalContentAlignment" Value="Center" />
+            <Setter Property="Padding" Value="10,10,0,10" />
+            <Setter Property="Margin" Value="10,0,0,0" />
+            <Setter Property="FontFamily" Value="Sans Serif" />
+            <Setter Property="FontSize" Value="16" />
+            <Setter Property="Content" Value="Interested" />
+            <Setter Property="Foreground" Value="red" />
+        </Style>
+        <Style x:Key="stackPanelItemBodyWarm" TargetType="{x:Type Label}">
+            <Setter Property="VerticalContentAlignment" Value="Center" />
+            <Setter Property="Padding" Value="10,10,0,10" />
+            <Setter Property="Margin" Value="10,0,0,0" />
+            <Setter Property="FontFamily" Value="Sans Serif" />
+            <Setter Property="FontSize" Value="16" />
+            <Setter Property="Content" Value="Not Interested this month" />
+            <Setter Property="Foreground" Value="Orange" />
+        </Style>
+        <Style x:Key="stackPanelItemBodyInsideBorder" TargetType="{x:Type Label}">
+            <Setter Property="VerticalContentAlignment" Value="Center" />
+            <Setter Property="Padding" Value="10,6,0,0" />
+            <Setter Property="FontFamily" Value="Sans Serif" />
+            <Setter Property="FontSize" Value="16" />
+            <Setter Property="Foreground" Value="#ffffff" />
         </Style>
 
         <Style x:Key="stackPanelItemDetails" TargetType="{x:Type Label}">
@@ -437,10 +471,11 @@
         
         <Style x:Key="BorderIcon" TargetType="{x:Type Border}">
             <Setter Property="CornerRadius" Value="10"/>
-            <Setter Property="Height" Value="30" />
-            <Setter Property="Width" Value="auto" />
-            <Setter Property="Margin" Value="6" />
-            <Setter Property="Background" Value="#63666A" />
+            <Setter Property="Height" Value="40" />
+            <Setter Property="Width" Value="230" />
+            <Setter Property="Margin" Value="600 -100 0 0" />
+            <Setter Property="Background" Value="#000000" />
+            <Setter Property="VerticalAlignment" Value="Center" />
             
         </Style>
 

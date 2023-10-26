@@ -27,8 +27,8 @@ namespace address_inv_desktop
         protected CommonQueries commonQueriesObject;
         protected CommonFunctions CommonFunctionsObject;
 
-        private Grid previousSelectedVisitItem;
-        private Grid currentSelectedVisitItem;
+        private StackPanel previousSelectedVisitItem;
+        private StackPanel currentSelectedVisitItem;
 
         private DateTime queryStartDateTime;
         private DateTime queryEndDateTime;
@@ -103,23 +103,50 @@ namespace address_inv_desktop
 
                 filteredFollowUp.Add(follow_upsList[i]);
 
+                Border dynamicBorder = new Border();
+                dynamicBorder.Margin = new Thickness(8);
+                dynamicBorder.Background = Brushes.White ;
+                dynamicBorder.CornerRadius = new CornerRadius(20);
+
                 StackPanel currentStackPanel = new StackPanel();
                 currentStackPanel.Orientation = Orientation.Vertical;
 
                 Label companyAndLeadLabel = new Label();
-                companyAndLeadLabel.Content = follow_upsList[i].lead_name;
+                companyAndLeadLabel.Content = " "+ follow_upsList[i].lead_name;
                 companyAndLeadLabel.Style = (Style)FindResource("stackPanelItemHeader");
 
-                Label salesPersonNameLabel = new Label();
-                salesPersonNameLabel.Content = follow_upsList[i].sales_person_name;
-                salesPersonNameLabel.Style = (Style)FindResource("stackPanelItemBody");
+                Separator dynamicSeparator = new Separator();
+                dynamicSeparator.Margin = new Thickness(10, 6, 10, 2);
+                dynamicSeparator.FontWeight = FontWeights.UltraBold;
+                dynamicSeparator.Background = Brushes.Black;
+                //Label salesPersonNameLabel = new Label();
+                //salesPersonNameLabel.Content = follow_upsList[i].sales_person_name;
+                //salesPersonNameLabel.Style = (Style)FindResource("stackPanelItemBody");
 
+                
+                Label leadEmailLabel = new Label();
+                //leadEmailLabel.Content = "-  " + follow_upsList[i].lead_email;
+                if (follow_upsList[i].lead_email == "Cold")
+                    leadEmailLabel.Style = (Style)FindResource("stackPanelItemBodyCold");
+                else if (follow_upsList[i].lead_email == "Hot")
+                    leadEmailLabel.Style = (Style)FindResource("stackPanelItemBodyHot");
+                else
+                    leadEmailLabel.Style = (Style)FindResource("stackPanelItemBodyWarm");
+
+                Label leadMobileLabel = new Label();
+                leadMobileLabel.Content = "📞  " + follow_upsList[i].lead_mobile;
+                leadMobileLabel.Style = (Style)FindResource("stackPanelItemBody");
+
+                
                 Label dateOfVisitLabel = new Label();
-                dateOfVisitLabel.Content = follow_upsList[i].follow_up_date;
-                dateOfVisitLabel.Style = (Style)FindResource("stackPanelItemBody");
+                dateOfVisitLabel.Content = "🕒  " + follow_upsList[i].follow_up_date;
+                dateOfVisitLabel.Style = (Style)FindResource("stackPanelItemBodyInsideBorder");
+                Border border = new Border();
+                border.Style = (Style)FindResource("BorderIcon");
+                border.Child = dateOfVisitLabel;
 
                 Label follow_upNotesLabel = new Label();
-                follow_upNotesLabel.Content = follow_upsList[i].followup_notes;
+                follow_upNotesLabel.Content = "📋  " + follow_upsList[i].followup_notes;
                 follow_upNotesLabel.Style = (Style)FindResource("stackPanelItemBody");
 
                 Label lineLabel = new Label();
@@ -127,22 +154,21 @@ namespace address_inv_desktop
                 lineLabel.Style = (Style)FindResource("stackPanelItemBody");
 
                 currentStackPanel.Children.Add(companyAndLeadLabel);
-                currentStackPanel.Children.Add(salesPersonNameLabel);
-                currentStackPanel.Children.Add(dateOfVisitLabel);
+                currentStackPanel.Children.Add(dynamicSeparator);
+                //currentStackPanel.Children.Add(salesPersonNameLabel);
+                currentStackPanel.Children.Add(leadMobileLabel);
                 currentStackPanel.Children.Add(follow_upNotesLabel);
 
-                currentStackPanel.Children.Add(lineLabel);
+                currentStackPanel.Children.Add(leadEmailLabel);
+                currentStackPanel.Children.Add(border);
+                //currentStackPanel.Children.Add(lineLabel);
 
-                Grid newGrid = new Grid();
-                ColumnDefinition column1 = new ColumnDefinition();
+                dynamicBorder.Child = currentStackPanel;
+                //currentStackPanel.MouseLeftButtonDown += OnBtnClickVisitItem;
 
-                newGrid.ColumnDefinitions.Add(column1);
-                newGrid.MouseLeftButtonDown += OnBtnClickVisitItem;
 
-                Grid.SetColumn(currentStackPanel, 0);
-
-                newGrid.Children.Add(currentStackPanel);
-                ClientFollowUpStackPanel.Children.Add(newGrid);
+                //dynamicBorder.Children.Add(currentStackPanel);
+                ClientFollowUpStackPanel.Children.Add(dynamicBorder);
 
             }
         }
@@ -221,7 +247,7 @@ namespace address_inv_desktop
         private void OnBtnClickVisitItem(object sender, RoutedEventArgs e)
         {
             previousSelectedVisitItem = currentSelectedVisitItem;
-            currentSelectedVisitItem = (Grid)sender;
+            currentSelectedVisitItem = (StackPanel)sender;
             BrushConverter brush = new BrushConverter();
 
             if (previousSelectedVisitItem != null)

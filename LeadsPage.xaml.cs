@@ -395,7 +395,7 @@ namespace address_inv_desktop
                 //    continue;
                 //contactStackView.Children.RemoveRange(6, 8);
                 Border dynamicBorder = new Border();
-                dynamicBorder.Margin = new Thickness(16, 8, 16, 8);
+                dynamicBorder.Margin = new Thickness(16, 10, 16, 8);
                 dynamicBorder.Background = Brushes.White;
                 dynamicBorder.CornerRadius = new CornerRadius(8);
 
