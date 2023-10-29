@@ -38,6 +38,7 @@
                         <RowDefinition Height="1*"/>
                         <RowDefinition Height="1*"/>
                         <RowDefinition Height="1*"/>
+                        <RowDefinition Height="1*"/>
                     </Grid.RowDefinitions>
 
                     <WrapPanel Grid.Row="0">
@@ -104,6 +105,19 @@
                     </WrapPanel>
 
                     <WrapPanel Grid.Row="5">
+                        <WrapPanel Name="AreaRangeWrapPanel">
+                            <Label Style="{StaticResource tableItemLabel}" Content="Area Range"/>
+                            <ComboBox Style="{StaticResource comboBoxStyle}" Name="areaRangeComboBox" SelectionChanged="OnSelChangedAreaRange"/>
+                        </WrapPanel>
+
+                        <WrapPanel Name="DeliveryRangeWrapPanel">
+                            <Label Style="{StaticResource tableItemLabel}" Content="Delivery Range"/>
+                            <ComboBox Style="{StaticResource comboBoxStyle}" Name="deliveryRangeCombBox" SelectionChanged="OnSelChangedDeliveryRange"/>
+                        </WrapPanel>
+
+                    </WrapPanel>
+      
+                    <WrapPanel Grid.Row="6">
                         <WrapPanel Name="LeadPaymentWrapPanel">
                             <Label Style="{StaticResource tableItemLabel}" Content="Payment Method"/>
                             <ComboBox Style="{StaticResource comboBoxStyle}" Name="leadPaymentComboBox" SelectionChanged="OnSelChangedPaymentMethod"/>
@@ -115,7 +129,7 @@
 
                     </WrapPanel>
 
-                    <WrapPanel Grid.Row="6">
+                    <WrapPanel Grid.Row="7">
                         <WrapPanel Name="LeadPersonalPhoneWrapPanel">
                             <Label Style="{StaticResource tableItemLabel}" Content="Personal Phone"/>
                             <TextBox Style="{StaticResource textBoxStyle}" Name="leadPersonalPhoneTextBox" TextChanged="OnTextChangedPersonalPhone"/>
@@ -124,7 +138,7 @@
                             <Label Style="{StaticResource tableItemLabel}" Content="Interested State"/>
                             <ComboBox Style="{StaticResource comboBoxStyle}" Name="stateComboBox" SelectionChanged="OnSelChangedState"/>
                         </WrapPanel>
-                        <WrapPanel Grid.Row="7">
+                        <WrapPanel Grid.Row="8">
                             <WrapPanel Name="CityWrapPanel">
                             <Label Style="{StaticResource tableItemLabel}" Content="Interested City *"/>
                             <ComboBox Style="{StaticResource comboBoxStyle}" Name="cityComboBox" SelectionChanged="OnSelChangedCity"/>

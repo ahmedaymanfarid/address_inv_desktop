@@ -271,7 +271,7 @@ namespace address_inv_desktop
                 editButton.HorizontalContentAlignment = HorizontalAlignment.Right;
                 editButton.Width = 25;
                 ImageBrush imageBrush = new ImageBrush();
-                imageBrush.ImageSource = new BitmapImage(new Uri("D:/real_estate_crm/address_inv_desktop/Icons/client_followup_icon.png", UriKind.Relative));
+                //imageBrush.ImageSource = new BitmapImage(new Uri(@"Icons\client_followup_icon.png", UriKind.Relative));
                 editButton.Background = imageBrush;
                 Grid.SetColumn(editButton, 1);
                 Grid.SetRow(editButton, 0);
@@ -367,7 +367,7 @@ namespace address_inv_desktop
                 editButton.HorizontalContentAlignment = HorizontalAlignment.Right;
                 editButton.Width = 25;
                 ImageBrush imageBrush = new ImageBrush();
-                imageBrush.ImageSource = new BitmapImage(new Uri("D:/real_estate_crm/address_inv_desktop/Icons/client_followup_icon.png", UriKind.Relative));
+                //imageBrush.ImageSource = new BitmapImage(new Uri(@"Icons\client_followup_icon.png", UriKind.Relative));
                 editButton.Background = imageBrush;
                 Grid.SetColumn(editButton, 1);
                 Grid.SetRow(editButton, 0);
@@ -463,7 +463,7 @@ namespace address_inv_desktop
                 editButton.HorizontalContentAlignment = HorizontalAlignment.Right;
                 editButton.Width = 25;
                 ImageBrush imageBrush = new ImageBrush();
-                imageBrush.ImageSource = new BitmapImage(new Uri("D:/real_estate_crm/address_inv_desktop/Icons/client_followup_icon.png", UriKind.Relative));
+                //imageBrush.ImageSource = new BitmapImage(new Uri(@"Icons\client_followup_icon.png", UriKind.Relative));
                 editButton.Background = imageBrush;
                 Grid.SetColumn(editButton, 1);
                 Grid.SetRow(editButton, 0);
@@ -580,7 +580,7 @@ namespace address_inv_desktop
                     leadGridItem.ColumnDefinitions.Add(iconColumn);
                     leadGridItem.ColumnDefinitions.Add(stackColumn);
 
-                    Image contactIcon = new Image { Source = new BitmapImage(new Uri(@"icons\contact_icon.png", UriKind.Relative)) };
+                    Image contactIcon = new Image { Source = new BitmapImage(new Uri(@"Icons\contact_icon.png", UriKind.Relative)) };
                     ResizeImage(ref contactIcon, 40, 40);
                     
                     leadGridItem.Children.Add(contactIcon);

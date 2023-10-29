@@ -40,6 +40,8 @@ namespace address_inv_desktop
         protected List<COMPANY_ORGANISATION_MACROS.JOB_TITLE_STRUCT> jobTitles;
         protected List<BASIC_STRUCTS.LEAD_STATUS_STRUCT> leadsStatus;
         protected List<REAL_STATE_MACROS.BUDGET_RANGE_STRUCT> budgetRanges;
+        protected List<REAL_STATE_MACROS.AREA_RANGE_STRUCT> areaRanges;
+        protected List<REAL_STATE_MACROS.DELIVERY_RANGE_STRUCT> deliveryRanges;
         protected List<REAL_STATE_MACROS.PAYMENT_METHOD_STRUCT> paymentMethods;
         protected List<REAL_STATE_MACROS.PROPERTY_TAG_STRUCT> listOfTags;
         protected List<REAL_STATE_MACROS.PROPERTY_TAG_STRUCT> listOfSelectedTags;
@@ -70,6 +72,8 @@ namespace address_inv_desktop
             jobTitles = new List<COMPANY_ORGANISATION_MACROS.JOB_TITLE_STRUCT>();
             leadsStatus = new List<BASIC_STRUCTS.LEAD_STATUS_STRUCT>();
             budgetRanges = new List<REAL_STATE_MACROS.BUDGET_RANGE_STRUCT>();
+            areaRanges = new List<REAL_STATE_MACROS.AREA_RANGE_STRUCT>();
+            deliveryRanges = new List<REAL_STATE_MACROS.DELIVERY_RANGE_STRUCT>();
             paymentMethods = new List<REAL_STATE_MACROS.PAYMENT_METHOD_STRUCT>();
             listOfTags = new List<REAL_STATE_MACROS.PROPERTY_TAG_STRUCT>();
             listOfSelectedTags = new List<REAL_STATE_MACROS.PROPERTY_TAG_STRUCT>();
@@ -86,6 +90,10 @@ namespace address_inv_desktop
                 return;
 
             if (!InitializeBudgetRangeComboBox())
+                return;
+            if (!InitializeAreaRangeComboBox())
+                return;
+            if (!InitializeDeliveryRangeComboBox())
                 return;
 
             if (!InitializePaymentMethodComboBox())
@@ -148,6 +156,26 @@ namespace address_inv_desktop
 
             return true;
         }
+        private bool InitializeAreaRangeComboBox()
+        {
+            if (!commonQueries.GetAreaRanges(ref areaRanges))
+                return false;
+
+            for (int i = 0; i < areaRanges.Count; i++)
+                areaRangeComboBox.Items.Add(areaRanges[i].area_range);
+
+            return true;
+        }
+        private bool InitializeDeliveryRangeComboBox()
+        {
+            if (!commonQueries.GetDeliveryRanges(ref deliveryRanges))
+                return false;
+
+            for (int i = 0; i < deliveryRanges.Count; i++)
+                deliveryRangeCombBox.Items.Add(deliveryRanges[i].delivery_range);
+
+            return true;
+        }
 
         private bool InitializePaymentMethodComboBox()
         {
@@ -206,15 +234,15 @@ namespace address_inv_desktop
 
             for (int i = 0; i < listOfTags.Count(); i++)
             {
-                if (lead.GetLeadInterests().Exists(tag_tem => tag_tem.tag_id == listOfTags[i].tag_id))
-                    continue;
+                //if (lead.GetLeadInterests().Exists(tag_tem => tag_tem.tag_id == listOfTags[i].tag_id))
+                //    continue;
 
                 Label currentTagLabel = new Label();
-                currentTagLabel.Style = (Style)FindResource("BorderIconTextLabel");
+                currentTagLabel.Style = (Style)FindResource("MiniBorderIconTextLabel");
                 currentTagLabel.Content = "  "+listOfTags[i].property_tag+"  ";
 
                 Border currentBorder = new Border();
-                currentBorder.Style = (Style)FindResource("BorderIcon");
+                currentBorder.Style = (Style)FindResource("MiniBorderIcon");
                 currentBorder.Child = currentTagLabel;
                 currentBorder.MouseDown += OnMouseDownBorderIcon;
 
@@ -239,6 +267,12 @@ namespace address_inv_desktop
 
         }
         private void OnSelChangedBudgetRange(object sender, SelectionChangedEventArgs e)
+        {
+        }
+        private void OnSelChangedAreaRange(object sender, SelectionChangedEventArgs e)
+        {
+        }
+        private void OnSelChangedDeliveryRange(object sender, SelectionChangedEventArgs e)
         {
         }
         private void OnSelChangedPaymentMethod(object sender, SelectionChangedEventArgs e)
