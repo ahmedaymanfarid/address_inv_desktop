@@ -4,6 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:address_inv_desktop"
+         xmlns:wpfTool="clr-namespace:Xceed.Wpf.Toolkit;assembly=Xceed.Wpf.Toolkit"
         mc:Ignorable="d"
         Background="#EDEDED"
         Height="750" Width="700"
@@ -55,26 +56,26 @@
                     </WrapPanel>
                     <WrapPanel Grid.Row="1">
                         <WrapPanel Name="EmailWrapPanel">
-                            <Label Style="{StaticResource tableItemLabel}" Content="Email *"/>
+                            <Label Style="{StaticResource tableItemLabel}" Content="Email"/>
                             <TextBox Style="{StaticResource textBoxStyle}" Name="leadEmailTextBox" TextChanged="OnTextChangedEmail"/>
                         </WrapPanel>
 
                         <WrapPanel Name="CallWrapPanel">
                             <Label Style="{StaticResource tableItemLabel}" Content="Last Call"/>
-                            <DatePicker Style="{StaticResource datePickerStyle}" Name="callDatePicker"/>
+                            <wpfTool:DateTimePicker Style="{StaticResource datePickerStyle}" Name="callDatePicker"/>
                         </WrapPanel>
 
                     </WrapPanel>
                     <WrapPanel Grid.Row="2">
                         <WrapPanel Name="AttemptWrapPanel">
                             <Label Style="{StaticResource tableItemLabel}" Content="Last Attempt"/>
-                            <DatePicker Style="{StaticResource datePickerStyle}" Name="attemptDatePicker"/>
+                            <wpfTool:DateTimePicker Style="{StaticResource datePickerStyle}" Name="attemptDatePicker"/>
                         </WrapPanel>
                     
                         <WrapPanel Name="FollowUpWrapPanel">
-                            <Label Style="{StaticResource tableItemLabel}" Content="Last Follow Up"/>
-                            <DatePicker Style="{StaticResource datePickerStyle}" Name="followUpDatePicker"/>
-                        </WrapPanel>
+                            <Label Style="{StaticResource tableItemLabel}" Content="Next Action"/>
+                            <wpfTool:DateTimePicker Style="{StaticResource datePickerStyle}" Name="followUpDatePicker"/>
+                             </WrapPanel>
 
                     </WrapPanel>
 
@@ -106,8 +107,8 @@
 
                     <WrapPanel Grid.Row="5">
                         <WrapPanel Name="AreaRangeWrapPanel">
-                            <Label Style="{StaticResource tableItemLabel}" Content="Area Range"/>
-                            <ComboBox Style="{StaticResource comboBoxStyle}" Name="areaRangeComboBox" SelectionChanged="OnSelChangedAreaRange"/>
+                            <Label Style="{StaticResource tableItemLabel}" Content="Unit Type"/>
+                            <ComboBox Style="{StaticResource comboBoxStyle}" Name="unitTypeComboBox" SelectionChanged="OnSelChangedUnitType"/>
                         </WrapPanel>
 
                         <WrapPanel Name="DeliveryRangeWrapPanel">
@@ -116,62 +117,33 @@
                         </WrapPanel>
 
                     </WrapPanel>
-      
+
                     <WrapPanel Grid.Row="6">
-                        <WrapPanel Name="LeadPaymentWrapPanel">
-                            <Label Style="{StaticResource tableItemLabel}" Content="Payment Method"/>
-                            <ComboBox Style="{StaticResource comboBoxStyle}" Name="leadPaymentComboBox" SelectionChanged="OnSelChangedPaymentMethod"/>
-                        </WrapPanel>
                         <WrapPanel Name="LeadBusinessPhoneWrapPanel">
                             <Label Style="{StaticResource tableItemLabel}" Content="Business Phone *"/>
                             <TextBox Style="{StaticResource textBoxStyle}" Name="leadBusinessPhoneTextBox" TextChanged="OnTextChangedBusinessPhone"/>
                         </WrapPanel>
-
-                    </WrapPanel>
-
-                    <WrapPanel Grid.Row="7">
                         <WrapPanel Name="LeadPersonalPhoneWrapPanel">
                             <Label Style="{StaticResource tableItemLabel}" Content="Personal Phone"/>
                             <TextBox Style="{StaticResource textBoxStyle}" Name="leadPersonalPhoneTextBox" TextChanged="OnTextChangedPersonalPhone"/>
                         </WrapPanel>
+                    </WrapPanel>
+
+                    <WrapPanel Grid.Row="7">
+
                         <WrapPanel Name="StateWrapPanel">
-                            <Label Style="{StaticResource tableItemLabel}" Content="Interested State"/>
+                            <Label Style="{StaticResource tableItemLabel}" Content="Interested Area"/>
                             <ComboBox Style="{StaticResource comboBoxStyle}" Name="stateComboBox" SelectionChanged="OnSelChangedState"/>
                         </WrapPanel>
-                        <WrapPanel Grid.Row="8">
-                            <WrapPanel Name="CityWrapPanel">
-                            <Label Style="{StaticResource tableItemLabel}" Content="Interested City *"/>
-                            <ComboBox Style="{StaticResource comboBoxStyle}" Name="cityComboBox" SelectionChanged="OnSelChangedCity"/>
-                        </WrapPanel>
-
-                   
-                        <WrapPanel Name="DistrictWrapPanel">
-                            <Label Style="{StaticResource tableItemLabel}" Content="Interested District *"/>
-                            <ComboBox Style="{StaticResource comboBoxStyle}" Name="districtComboBox" SelectionChanged="OnSelChangedDistrict"/>
-                        </WrapPanel>
-                    </WrapPanel>
 
                     </WrapPanel>
-                    <Grid Grid.Row="8">
 
-                        <Grid.RowDefinitions>
-                            <RowDefinition/>
-                            <RowDefinition/>
-                            <RowDefinition/>
-                        </Grid.RowDefinitions>
 
-                        <WrapPanel Grid.Row="0" Name="NotesWrapPanel">
+                    <WrapPanel Grid.Row="8" Name="NotesWrapPanel">
                             <Label Style="{StaticResource tableItemLabel}" Content="Notes"/>
                             <TextBox Style="{StaticResource commentsTextBoxStyle}" Name="notesTextBox"/>
                         </WrapPanel>
-                        <WrapPanel Grid.Row="1">
-                            <Label Style="{StaticResource tableItemLabel}" Content="Tags"/>
-
-                            <WrapPanel Margin="12" Name="TagsStackPanel" Background="#EDEDED">
-
-                            </WrapPanel>
-                        </WrapPanel>
-                    </Grid>
+                       
                 </Grid>
 
             </WrapPanel>

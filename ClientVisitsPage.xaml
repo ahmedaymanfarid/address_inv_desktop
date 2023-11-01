@@ -24,20 +24,25 @@
                 <RowDefinition />
                 <RowDefinition />
                 <RowDefinition />
-                <RowDefinition />
-                <RowDefinition />
             </Grid.RowDefinitions>
-            <Border  Grid.Row="4" Background="#EDEDED" BorderThickness="4,0,0,0" BorderBrush="Black"></Border>
+            <Border  Grid.Row="3" Background="#EDEDED" BorderThickness="4,0,0,0" BorderBrush="Black"></Border>
 
-            <TextBlock Grid.Row="0" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Style="{StaticResource sideNavigationItemStyle}" Name="DashboardLabel" Text="Dashboard" MouseLeftButtonDown="OnButtonClickedDashboard"/>
-            <TextBlock Grid.Row="1" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Style="{StaticResource sideNavigationItemStyle}" Name="LeadsLabel" Text="Leads" MouseLeftButtonDown="OnButtonClickedLeads"/>
-            <TextBlock Grid.Row="2" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Style="{StaticResource sideNavigationItemStyle}" Name="OwnersLabel" Text="Owners" MouseLeftButtonDown="OnButtonClickedOwners"/>
-            <TextBlock Grid.Row="3" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Style="{StaticResource sideNavigationItemStyle}" Name="PropertiesLabel" Text="Properties" MouseLeftButtonDown="OnButtonClickedProperties"/>
-            <TextBlock Grid.Row="4" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Style="{StaticResource sideNavigationItemStyle}" Name="ClientVisitsLabel" Text="Client Visits" MouseLeftButtonDown="OnButtonClickedVisits" Background="#EDEDED" Foreground="#000000"/>
-            <TextBlock Grid.Row="5" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Style="{StaticResource sideNavigationItemStyle}" Name="ClientCallsLabel" Text="Client Calls" MouseLeftButtonDown="OnButtonClickedCalls"/>
-            <TextBlock Grid.Row="6" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Style="{StaticResource sideNavigationItemStyle}" Name="ClientAttemptsLabel" Text="Client Attempts" MouseLeftButtonDown="OnButtonClickedAttempts"/>
-            <TextBlock Grid.Row="7" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Style="{StaticResource sideNavigationItemStyle}" Name="ClientFollowUpsLabel" Text="Client Follow-ups" MouseLeftButtonDown="OnButtonClickedFollowUps"/>
-            <TextBlock Grid.Row="8" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Style="{StaticResource sideNavigationItemStyle}" Name="AccountsLabel" Text="Accounts" MouseLeftButtonDown="OnButtonClickedAccounts"/>
+
+            <TextBlock Grid.Row="0"  Style="{StaticResource sideNavigationItemStyle}" Name="DashboardLabel" Text="Dashboard" MouseLeftButtonDown="OnButtonClickedDashboard" />
+
+            <TextBlock Grid.Row="1"  Style="{StaticResource sideNavigationItemStyle}" Name="OwnersLabel"  Text="New Leads" MouseLeftButtonDown="OnButtonClickedNewLeads"/>
+
+            <TextBlock Grid.Row="2"  Style="{StaticResource sideNavigationItemStyle}" Name="LeadsLabel" Text="Contacts" MouseLeftButtonDown="OnButtonClickedContacts"  />
+
+            <TextBlock Grid.Row="3"  Style="{StaticResource sideNavigationItemStyle}" Name="ClientVisitsLabel"  Text="Client Visits" MouseLeftButtonDown="OnButtonClickedVisits" Background="#EDEDED" Foreground="#000000"/>
+
+            <TextBlock Grid.Row="4"  Style="{StaticResource sideNavigationItemStyle}" Name="ClientCallsLabel"   Text="Client Calls" MouseLeftButtonDown="OnButtonClickedCalls"/>
+
+
+            <TextBlock Grid.Row="5"  Style="{StaticResource sideNavigationItemStyle}" Name="ClientAttemptsLabel"  Text="Client Attempts" MouseLeftButtonDown="OnButtonClickedAttempts"/>
+
+            <TextBlock Grid.Row="6"  Style="{StaticResource sideNavigationItemStyle}" Name="ClientFollowUpsLabel"  Text="Client Follow-ups" MouseLeftButtonDown="OnButtonClickedFollowUps"/>
+
 
         </Grid>
 

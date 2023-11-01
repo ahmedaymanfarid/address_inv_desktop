@@ -23,34 +23,26 @@
                 <RowDefinition />
                 <RowDefinition />
                 <RowDefinition />
-                <RowDefinition />
-                <RowDefinition />
             </Grid.RowDefinitions>
-            <Border  Grid.Row="1" Background="#EDEDED" BorderThickness="4,0,0,0" BorderBrush="Black"></Border>
+            <Border  Grid.Row="2" Background="#EDEDED" BorderThickness="4,0,0,0" BorderBrush="Black"></Border>
             
 
             <TextBlock Grid.Row="0"  Style="{StaticResource sideNavigationItemStyle}" Name="DashboardLabel" Text="Dashboard" MouseLeftButtonDown="OnButtonClickedDashboard" />
+
+            <TextBlock Grid.Row="1"  Style="{StaticResource sideNavigationItemStyle}" Name="OwnersLabel"  Text="New Leads" MouseLeftButtonDown="OnButtonClickedNewLeads"/>
             
-            <TextBlock Grid.Row="1"  Style="{StaticResource sideNavigationItemStyle}" Name="LeadsLabel" Text="Leads" MouseLeftButtonDown="OnButtonClickedLeads" Background="#EDEDED" Foreground="#000000" />
+            <TextBlock Grid.Row="2"  Style="{StaticResource sideNavigationItemStyle}" Name="LeadsLabel" Text="Contacts" MouseLeftButtonDown="OnButtonClickedContacts" Background="#EDEDED" Foreground="#000000" />
+
+            <TextBlock Grid.Row="3"  Style="{StaticResource sideNavigationItemStyle}" Name="ClientVisitsLabel"  Text="Client Visits" MouseLeftButtonDown="OnButtonClickedVisits"/>
            
-
-            <TextBlock Grid.Row="2"  Style="{StaticResource sideNavigationItemStyle}" Name="OwnersLabel"  Text="Owners" MouseLeftButtonDown="OnButtonClickedOwners"/>
+            <TextBlock Grid.Row="4"  Style="{StaticResource sideNavigationItemStyle}" Name="ClientCallsLabel"   Text="Client Calls" MouseLeftButtonDown="OnButtonClickedCalls"/>
             
 
-            <TextBlock Grid.Row="3"  Style="{StaticResource sideNavigationItemStyle}" Name="PropertiesLabel"   Text="Properties" MouseLeftButtonDown="OnButtonClickedProperties"/>
-        
-
-            <TextBlock Grid.Row="4"  Style="{StaticResource sideNavigationItemStyle}" Name="ClientVisitsLabel"  Text="Client Visits" MouseLeftButtonDown="OnButtonClickedVisits"/>
+            <TextBlock Grid.Row="5"  Style="{StaticResource sideNavigationItemStyle}" Name="ClientAttemptsLabel"  Text="Client Attempts" MouseLeftButtonDown="OnButtonClickedAttempts"/>
+            
+            <TextBlock Grid.Row="6"  Style="{StaticResource sideNavigationItemStyle}" Name="ClientFollowUpsLabel"  Text="Client Follow-ups" MouseLeftButtonDown="OnButtonClickedFollowUps"/>
            
-            <TextBlock Grid.Row="5"  Style="{StaticResource sideNavigationItemStyle}" Name="ClientCallsLabel"   Text="Client Calls" MouseLeftButtonDown="OnButtonClickedCalls"/>
-            
-
-            <TextBlock Grid.Row="6"  Style="{StaticResource sideNavigationItemStyle}" Name="ClientAttemptsLabel"  Text="Client Attempts" MouseLeftButtonDown="OnButtonClickedAttempts"/>
-            
-            <TextBlock Grid.Row="7"  Style="{StaticResource sideNavigationItemStyle}" Name="ClientFollowUpsLabel"  Text="Client Follow-ups" MouseLeftButtonDown="OnButtonClickedFollowUps"/>
            
-            <TextBlock Grid.Row="8"  Style="{StaticResource sideNavigationItemStyle}" Name="AccountsLabel" Text="Accounts" MouseLeftButtonDown="OnButtonClickedAccounts"/>
-  
         </Grid>
 
 
@@ -67,12 +59,12 @@
             </Grid.RowDefinitions>
             <Border  Grid.Column="1" Grid.RowSpan="4" BorderThickness="4,0,0,0" BorderBrush="Black"></Border>
 
-            <Label Grid.Row="0" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Margin="48,24,48,24" Content="LEADS" Style="{StaticResource primaryHeaderTextStyle}"/>
+            <Label Grid.Row="0" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Margin="48,20,48,20" Content="Pipeline" Style="{StaticResource primaryHeaderTextStyle}"/>
 
             <WrapPanel Grid.Row="1" Margin="50 0 0 0">
                 <ComboBox Style="{StaticResource filterComboBoxStyleM}" Width="120" IsEditable="True" IsReadOnly="True" Text="Assigned by"></ComboBox >
-                <ComboBox Style="{StaticResource filterComboBoxStyleM}" Width="120" IsEditable="True" IsReadOnly="True" Text="Lead Type"></ComboBox>
-                 <ComboBox Style="{StaticResource filterComboBoxStyleM}" Width="140" IsEditable="True" IsReadOnly="True" Text="Additional Filter"></ComboBox>
+                <ComboBox Style="{StaticResource filterComboBoxStyleM}" Width="120" IsEditable="True" IsReadOnly="True" Text="Unit Type"></ComboBox>
+                 <ComboBox Style="{StaticResource filterComboBoxStyleM}" Width="140" IsEditable="True" IsReadOnly="True" Text="Destination Type"></ComboBox>
                 <Grid>
                 
                     <TextBox Style="{StaticResource filterTextBoxStyleM}" VerticalContentAlignment="Center" Height="24" Text="    Search for Leads"/>
@@ -141,7 +133,7 @@
                         <Label Content="Hot" Style="{StaticResource tableHeaderItemM}"  Foreground="#ff6242"/>
                         <Grid Grid.Column="0" HorizontalAlignment="Stretch" Margin="30 0 0 0" VerticalAlignment="Center">
                                 <Label Foreground="#ff6242">⚫</Label>
-                                <Label Foreground="White" Margin="5 0 0 0">2</Label>
+                                    <Label Foreground="White" Margin="5 0 0 0" Name="hotCount"></Label>
                                 </Grid>
                             </Grid>
                         </Border>
@@ -154,7 +146,7 @@
                         <Border  Grid.Column="1" HorizontalAlignment="Stretch" Margin="45 0 0 0" VerticalAlignment="Center" CornerRadius="5">
                             <Grid>
                                 <Label Foreground="#fbb145">⚫</Label>
-                                <Label Foreground="White" Margin="5 0 0 0">3</Label>
+                                        <Label Foreground="White" Margin="5 0 0 0" x:Name="warmCount"></Label>
                             </Grid>
                         </Border>
                             </Grid>
@@ -168,7 +160,7 @@
                         <Border  Grid.Column="2" HorizontalAlignment="Stretch" Margin="35 0 0 0" VerticalAlignment="Center" CornerRadius="5">
                             <Grid>
                                 <Label Foreground="#86c5da">⚫</Label>
-                                        <Label Foreground="White" Margin="5 0 0 0">2</Label>
+                                        <Label Foreground="White" Margin="5 0 0 0" x:Name="coldCount"></Label>
                             </Grid>
                         </Border>
                     </Grid>
