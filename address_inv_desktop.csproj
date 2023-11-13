@@ -336,10 +336,6 @@
     <Resource Include="Icons\search_icon.png" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\..\01electronics_erp\01electronics_library\01electronics_library.csproj">
-      <Project>{a0cb9e08-2813-48db-96c4-7f9ff208ce32}</Project>
-      <Name>01electronics_library</Name>
-    </ProjectReference>
     <ProjectReference Include="..\address_inv_library\address_inv_library.csproj">
       <Project>{05aaab2e-c3b4-4f09-b499-e0520bfaefb4}</Project>
       <Name>address_inv_library</Name>
