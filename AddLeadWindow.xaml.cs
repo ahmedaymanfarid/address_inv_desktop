@@ -40,6 +40,7 @@ namespace address_inv_desktop
         protected List<COMPANY_ORGANISATION_MACROS.JOB_TITLE_STRUCT> jobTitles;
         protected List<BASIC_STRUCTS.LEAD_STATUS_STRUCT> leadsStatus;
         protected List<REAL_STATE_MACROS.BUDGET_RANGE_STRUCT> budgetRanges;
+        protected List<REAL_STATE_MACROS.PROPERTY_TYPE_STRUCT> propertyType;
         protected List<REAL_STATE_MACROS.AREA_RANGE_STRUCT> areaRanges;
         protected List<REAL_STATE_MACROS.DELIVERY_RANGE_STRUCT> deliveryRanges;
         protected List<REAL_STATE_MACROS.PAYMENT_METHOD_STRUCT> paymentMethods;
@@ -72,6 +73,7 @@ namespace address_inv_desktop
             jobTitles = new List<COMPANY_ORGANISATION_MACROS.JOB_TITLE_STRUCT>();
             leadsStatus = new List<BASIC_STRUCTS.LEAD_STATUS_STRUCT>();
             budgetRanges = new List<REAL_STATE_MACROS.BUDGET_RANGE_STRUCT>();
+            propertyType = new List<REAL_STATE_MACROS.PROPERTY_TYPE_STRUCT>();
             areaRanges = new List<REAL_STATE_MACROS.AREA_RANGE_STRUCT>();
             deliveryRanges = new List<REAL_STATE_MACROS.DELIVERY_RANGE_STRUCT>();
             paymentMethods = new List<REAL_STATE_MACROS.PAYMENT_METHOD_STRUCT>();
@@ -91,21 +93,17 @@ namespace address_inv_desktop
 
             if (!InitializeBudgetRangeComboBox())
                 return;
-            if (!InitializeAreaRangeComboBox())
-                return;
+        
             if (!InitializeDeliveryRangeComboBox())
-                return;
-
-            if (!InitializePaymentMethodComboBox())
                 return;
 
             if (!InitializeStateComboBox())
                 return;
-
-            if (!InitializeTagsStackPanel())
+            if (!InitializeUnitTypeComboBox())
                 return;
 
-            DisableNecessaryItems();
+            
+
 
         }
 
@@ -113,11 +111,7 @@ namespace address_inv_desktop
         /// INITIALIZATION FUNCTIONS
         //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
         ///
-        private void DisableNecessaryItems()
-        {
-            cityComboBox.IsEnabled = false;
-            districtComboBox.IsEnabled = false;
-        }
+
         
         private void InitializeGenderComboBox()
         {
@@ -156,16 +150,7 @@ namespace address_inv_desktop
 
             return true;
         }
-        private bool InitializeAreaRangeComboBox()
-        {
-            if (!commonQueries.GetAreaRanges(ref areaRanges))
-                return false;
 
-            for (int i = 0; i < areaRanges.Count; i++)
-                areaRangeComboBox.Items.Add(areaRanges[i].area_range);
-
-            return true;
-        }
         private bool InitializeDeliveryRangeComboBox()
         {
             if (!commonQueries.GetDeliveryRanges(ref deliveryRanges))
@@ -177,80 +162,59 @@ namespace address_inv_desktop
             return true;
         }
 
-        private bool InitializePaymentMethodComboBox()
-        {
-            if (!commonQueries.GetPaymentMethods(ref paymentMethods))
-                return false;
-
-            for (int i = 0; i < paymentMethods.Count; i++)
-                leadPaymentComboBox.Items.Add(paymentMethods[i].payment_method);
-
-            return true;
-        }
+      
 
         private bool InitializeStateComboBox()
         {
-            if (!commonQueries.GetAllCountryStates(BASIC_MACROS.EGYPT_ID, ref listOfStates))
+            //if (!commonQueries.GetAllCountryStates(BASIC_MACROS.EGYPT_ID, ref listOfStates))
+             //   return false;
+             if(!commonQueries.GetAllStates(ref listOfStates))
                 return false;
-
             for (int i = 0; i < listOfStates.Count(); i++)
                 stateComboBox.Items.Add(listOfStates[i].state_name);
 
             return true;
         }
-        private bool InitializeCityComboBox()
+        private bool InitializeUnitTypeComboBox()
         {
-            cityComboBox.Items.Clear();
+            unitTypeComboBox.Items.Clear();
 
-            if (stateComboBox.SelectedIndex != -1)
-                if (!commonQueries.GetAllStateCities(listOfStates[stateComboBox.SelectedIndex].state_id, ref listOfCities))
+                if (!commonQueries.GetUnitTypes(ref propertyType))
                     return false;
 
-            for (int i = 0; i < listOfCities.Count(); i++)
-                cityComboBox.Items.Add(listOfCities[i].city_name);
+            for (int i = 0; i < propertyType.Count(); i++)
+                unitTypeComboBox.Items.Add(propertyType[i].property_type);
 
             return true;
         }
-        private bool InitializeDistrictComboBox()
-        {
-            districtComboBox.Items.Clear();
+     
 
-            if (cityComboBox.SelectedIndex != -1)
-                if (!commonQueries.GetAllCityDistricts(listOfCities[cityComboBox.SelectedIndex].city_id, ref listOfDistricts))
-                    return false;
+        //private bool InitializeTagsStackPanel()
+        //{
+        //    TagsStackPanel.Children.Clear();
 
-            for (int i = 0; i < listOfDistricts.Count(); i++)
-                districtComboBox.Items.Add(listOfDistricts[i].district_name);
+        //    if (!commonQueries.GetPropertyTags(ref listOfTags))
+        //        return false;
 
-            return true;
-        }
+        //    for (int i = 0; i < listOfTags.Count(); i++)
+        //    {
+        //        //if (lead.GetLeadInterests().Exists(tag_tem => tag_tem.tag_id == listOfTags[i].tag_id))
+        //        //    continue;
 
-        private bool InitializeTagsStackPanel()
-        {
-            TagsStackPanel.Children.Clear();
+        //        Label currentTagLabel = new Label();
+        //        currentTagLabel.Style = (Style)FindResource("MiniBorderIconTextLabel");
+        //        currentTagLabel.Content = "  "+listOfTags[i].property_tag+"  ";
 
-            if (!commonQueries.GetPropertyTags(ref listOfTags))
-                return false;
+        //        Border currentBorder = new Border();
+        //        currentBorder.Style = (Style)FindResource("MiniBorderIcon");
+        //        currentBorder.Child = currentTagLabel;
+        //        currentBorder.MouseDown += OnMouseDownBorderIcon;
 
-            for (int i = 0; i < listOfTags.Count(); i++)
-            {
-                //if (lead.GetLeadInterests().Exists(tag_tem => tag_tem.tag_id == listOfTags[i].tag_id))
-                //    continue;
+        //        TagsStackPanel.Children.Add(currentBorder);
+        //    }
 
-                Label currentTagLabel = new Label();
-                currentTagLabel.Style = (Style)FindResource("MiniBorderIconTextLabel");
-                currentTagLabel.Content = "  "+listOfTags[i].property_tag+"  ";
-
-                Border currentBorder = new Border();
-                currentBorder.Style = (Style)FindResource("MiniBorderIcon");
-                currentBorder.Child = currentTagLabel;
-                currentBorder.MouseDown += OnMouseDownBorderIcon;
-
-                TagsStackPanel.Children.Add(currentBorder);
-            }
-
-            return true;
-        }
+        //    return true;
+        //}
         //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
         /// ON SELECTION CHANGED HANDLERS
         //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -285,53 +249,39 @@ namespace address_inv_desktop
 
         private void OnSelChangedState(object sender, SelectionChangedEventArgs e)
         {
-            if (!InitializeCityComboBox())
-                return;
-
-            cityComboBox.IsEnabled = true;
-            districtComboBox.IsEnabled = false;
+           
         }
-        private void OnSelChangedCity(object sender, SelectionChangedEventArgs e)
-        {
-            if (!InitializeDistrictComboBox())
-                return;
-
-            districtComboBox.IsEnabled = true;
-        }
-        private void OnSelChangedDistrict(object sender, SelectionChangedEventArgs e)
-        {
-
-        }
+       
 
         //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
         /// ON MOUSE DOWN HANDLERS
         //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-        private void OnMouseDownBorderIcon(object sender, RoutedEventArgs e)
-        {
-            Border currentSelectedIcon = (Border)sender;
-            Label currentSelectedLabel = (Label)currentSelectedIcon.Child;
+        //private void OnMouseDownBorderIcon(object sender, RoutedEventArgs e)
+        //{
+        //    Border currentSelectedIcon = (Border)sender;
+        //    Label currentSelectedLabel = (Label)currentSelectedIcon.Child;
 
-            BrushConverter brush = new BrushConverter();
+        //    BrushConverter brush = new BrushConverter();
 
-            int currentSelectedIndex = TagsStackPanel.Children.IndexOf(currentSelectedIcon);
-            REAL_STATE_MACROS.PROPERTY_TAG_STRUCT currentSelectedTag = listOfTags[currentSelectedIndex];
+        //    int currentSelectedIndex = TagsStackPanel.Children.IndexOf(currentSelectedIcon);
+        //    REAL_STATE_MACROS.PROPERTY_TAG_STRUCT currentSelectedTag = listOfTags[currentSelectedIndex];
 
-            if (!listOfSelectedTags.Exists(tag_item => tag_item.tag_id == currentSelectedTag.tag_id))
-            {
-                currentSelectedIcon.Background = (Brush)brush.ConvertFrom("#000000");
-                currentSelectedLabel.Foreground = (Brush)brush.ConvertFrom("#ffffff");
+        //    if (!listOfSelectedTags.Exists(tag_item => tag_item.tag_id == currentSelectedTag.tag_id))
+        //    {
+        //        currentSelectedIcon.Background = (Brush)brush.ConvertFrom("#000000");
+        //        currentSelectedLabel.Foreground = (Brush)brush.ConvertFrom("#ffffff");
 
-                listOfSelectedTags.Add(currentSelectedTag);
-            }
+        //        listOfSelectedTags.Add(currentSelectedTag);
+        //    }
 
-            else
-            {
-                currentSelectedIcon.Background = (Brush)brush.ConvertFrom("#63666A");
-                currentSelectedLabel.Foreground = (Brush)brush.ConvertFrom("#FFFFFF");
-                listOfSelectedTags.Remove(listOfSelectedTags.Find(tag_item => tag_item.tag_id == currentSelectedTag.tag_id));
-            }
+        //    else
+        //    {
+        //        currentSelectedIcon.Background = (Brush)brush.ConvertFrom("#63666A");
+        //        currentSelectedLabel.Foreground = (Brush)brush.ConvertFrom("#FFFFFF");
+        //        listOfSelectedTags.Remove(listOfSelectedTags.Find(tag_item => tag_item.tag_id == currentSelectedTag.tag_id));
+        //    }
 
-        }
+        //}
 
         //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
         /// ON TEXT CHANGED HANDLERS
@@ -442,14 +392,14 @@ namespace address_inv_desktop
 
             return true;
         }
-        
-        private bool CheckPaymentMethodComboBox()
+        private bool CheckUnitTypeComboBox()
         {
-            if (leadPaymentComboBox.SelectedItem != null)
-                lead.SetLeadPaymentMethod(paymentMethods[leadPaymentComboBox.SelectedIndex]);
+            if (unitTypeComboBox.SelectedItem != null)
+                lead.SetLeadPropertyType(propertyType[unitTypeComboBox.SelectedIndex]);
 
             return true;
         }
+
         private bool CheckLeadBusinessPhoneEditBox()
         {
             String inputString = leadBusinessPhoneTextBox.Text;
@@ -482,9 +432,9 @@ namespace address_inv_desktop
 
         private bool CheckCallDatePicker()
         {
-            if(callDatePicker.SelectedDate != null)
+            if(callDatePicker.Text != null)
             {
-                lastCall.SetCallDate((DateTime)callDatePicker.SelectedDate);
+                lastCall.SetCallDate((Convert.ToDateTime( callDatePicker.Text)));
                 lastCall.SetCallLead(lead);
 
                 if (!lastCall.IssueNewCall())
@@ -496,9 +446,9 @@ namespace address_inv_desktop
 
         private bool CheckAttemptDatePicker()
         {
-            if (attemptDatePicker.SelectedDate != null)
+            if (attemptDatePicker.Text != null)
             {
-                lastAttempt.SetAttemptDate((DateTime)attemptDatePicker.SelectedDate);
+                lastAttempt.SetAttemptDate((Convert.ToDateTime(callDatePicker.Text)));
                 lastAttempt.SetAttemptLead(lead);
 
                 if (!lastAttempt.IssueNewAttempt())
@@ -510,9 +460,9 @@ namespace address_inv_desktop
 
         private bool CheckFollowUpDatePicker()
         {
-            if (followUpDatePicker.SelectedDate != null)
+            if (followUpDatePicker.Text != null)
             {
-                followUp.SetFollowUpDate((DateTime)followUpDatePicker.SelectedDate);
+                followUp.SetFollowUpDate((Convert.ToDateTime(callDatePicker.Text)));
                 followUp.SetFollowUpLead(lead);
 
                 if (!followUp.IssueNewFollowUp())
@@ -522,14 +472,7 @@ namespace address_inv_desktop
             return true;
         }
 
-        private bool CheckInterestedAreas()
-        {
-            if (stateComboBox.SelectedIndex != -1 && cityComboBox.SelectedIndex != -1 && districtComboBox.SelectedIndex != -1)
-                if (!lead.AddNewInterestedArea(listOfDistricts[districtComboBox.SelectedIndex].district_id, listOfDistricts[districtComboBox.SelectedIndex].district_name))
-                    return false;
-
-            return true;
-        }
+     
 
         private bool CheckNotes()
         {
@@ -579,7 +522,7 @@ namespace address_inv_desktop
             
             if (!CheckBudgetRangeComboBox())
                 return;
-            if (!CheckPaymentMethodComboBox())
+            if (!CheckUnitTypeComboBox())
                 return;
             
             if (!CheckLeadPersonalPhoneEditBox())
@@ -600,9 +543,7 @@ namespace address_inv_desktop
             if (!lead.InsertIntoLeadsInterests())
                 return ;
 
-            if (!CheckInterestedAreas())
-                return;
-            this.Close();///////change later
+          
             if (!CheckInterestedTags())
                 return;
 
@@ -621,6 +562,9 @@ namespace address_inv_desktop
             this.Close();
         }
 
+        private void OnSelChangedUnitType(object sender, SelectionChangedEventArgs e)
+        {
 
+        }
     }
 }

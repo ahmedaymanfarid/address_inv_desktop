@@ -201,6 +201,7 @@ namespace address_inv_desktop
                 //if (salesPersonComboBox.SelectedItem != null && listOfEmployees[salesPersonComboBox.SelectedIndex].employee_id != employeesLeads[i].Key.employee_id)
                 //    continue;
                 //contactStackView.Children.RemoveRange(6, 8);
+                coldCount.Content = employeeLeadListCold.Count();
                 Border dynamicBorder = new Border();
                 dynamicBorder.Margin = new Thickness(16, 8, 16, 8);
                 dynamicBorder.Background = Brushes.White;
@@ -260,7 +261,7 @@ namespace address_inv_desktop
                 Grid.SetRow(label4, 3);
 
                 Label label5 = new Label();
-                label5.Content = "$ Budget Range: 5M-7.5M";
+                label5.Content = "📋 Last Update: Buying";
                 label5.FontSize = 10;
                 label5.FontWeight = FontWeights.SemiBold;
                 Grid.SetRow(label5, 4);
@@ -298,6 +299,7 @@ namespace address_inv_desktop
                 //if (salesPersonComboBox.SelectedItem != null && listOfEmployees[salesPersonComboBox.SelectedIndex].employee_id != employeesLeads[i].Key.employee_id)
                 //    continue;
                 //contactStackView.Children.RemoveRange(6, 8);
+                warmCount.Content = employeeLeadListWarm.Count();
                 Border dynamicBorder = new Border();
                 dynamicBorder.Margin = new Thickness(16, 8, 16, 8);
                 dynamicBorder.Background = Brushes.White;
@@ -356,7 +358,7 @@ namespace address_inv_desktop
                 Grid.SetRow(label4, 3);
 
                 Label label5 = new Label();
-                label5.Content = "$ Budget Range: 2.5M-3M";
+                label5.Content = "📋 Last Update: Not Iterested";
                 label5.FontSize = 10;
                 label5.FontWeight = FontWeights.SemiBold;
                 Grid.SetRow(label5, 4);
@@ -394,6 +396,7 @@ namespace address_inv_desktop
                 //if (salesPersonComboBox.SelectedItem != null && listOfEmployees[salesPersonComboBox.SelectedIndex].employee_id != employeesLeads[i].Key.employee_id)
                 //    continue;
                 //contactStackView.Children.RemoveRange(6, 8);
+                hotCount.Content = employeeLeadListHot.Count();
                 Border dynamicBorder = new Border();
                 dynamicBorder.Margin = new Thickness(16, 10, 16, 8);
                 dynamicBorder.Background = Brushes.White;
@@ -452,7 +455,7 @@ namespace address_inv_desktop
                 Grid.SetRow(label4, 3);
 
                 Label label5 = new Label();
-                label5.Content = "$ Budget Range: 5M-7.5M";
+                label5.Content = "📋 Last Update: Meeting";
                 label5.FontSize = 10;
                 label5.FontWeight = FontWeights.SemiBold;
                 Grid.SetRow(label5, 4);
@@ -1036,7 +1039,7 @@ namespace address_inv_desktop
             DashboardPage dashboardPage = new DashboardPage(ref loggedInUser);
             this.NavigationService.Navigate(dashboardPage);
         }
-        private void OnButtonClickedLeads(object sender, RoutedEventArgs e)
+        private void OnButtonClickedContacts(object sender, RoutedEventArgs e)
         {
             LeadsPage leadsPage = new LeadsPage(ref loggedInUser);
             this.NavigationService.Navigate(leadsPage);
@@ -1071,11 +1074,15 @@ namespace address_inv_desktop
             ClientFollowUpPage clientFollowUpPage = new ClientFollowUpPage(ref loggedInUser);
             this.NavigationService.Navigate(clientFollowUpPage);
         }
-        private void OnButtonClickedAccounts(object sender, MouseButtonEventArgs e)
+        private void OnButtonClickedNewLeads(object sender, MouseButtonEventArgs e)
         {
             
         }
-        
+
+        private void OnButtonClickedVisits(object sender, MouseButtonEventArgs e)
+        {
+
+        }
     }
 
 

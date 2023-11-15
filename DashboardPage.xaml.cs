@@ -40,7 +40,7 @@ namespace address_inv_desktop
             DashboardPage dashboardPage = new DashboardPage(ref loggedInUser);
             this.NavigationService.Navigate(dashboardPage);
         }
-        private void OnButtonClickedLeads(object sender, RoutedEventArgs e)
+        private void OnButtonClickedContacts(object sender, RoutedEventArgs e)
         {
             LeadsPage leadsPage = new LeadsPage(ref loggedInUser);
             this.NavigationService.Navigate(leadsPage);
@@ -76,6 +76,11 @@ namespace address_inv_desktop
             this.NavigationService.Navigate(clientFollowUpPage);
         }
         private void OnButtonClickedAccounts(object sender, MouseButtonEventArgs e)
+        {
+
+        }
+
+        private void OnButtonClickedNewLeads(object sender, MouseButtonEventArgs e)
         {
 
         }
